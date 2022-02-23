@@ -16,6 +16,7 @@ object Repositories {
     }
 
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val mainDispatcher: CoroutineDispatcher = Dispatchers.Main
 
     val noteRepository: NoteRepository by lazy {
         RoomNoteRepository(database.getNoteDao(), ioDispatcher)

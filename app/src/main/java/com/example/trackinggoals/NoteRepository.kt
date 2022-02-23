@@ -4,7 +4,7 @@ interface NoteRepository {
 
     suspend fun getCurrentMonthYear(currentYear:Int,currentMonth:Int,currentDay:Int):String
 
-    suspend fun getListCurrentMonthYear(currentYear:Int, currentMonth:Int, currentDay:Int): List<Note>
+    suspend fun getListCurrentMonthYear(currentYear:Int, currentMonth:Int, currentDay:Int): List<NoteWithIncoming>
 
     suspend fun getIdNote(noteId:Int,currentData: String):Incoming
 

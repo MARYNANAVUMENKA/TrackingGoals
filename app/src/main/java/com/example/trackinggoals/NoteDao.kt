@@ -1,5 +1,6 @@
 package com.example.trackinggoals
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -33,6 +34,6 @@ interface NoteDao {
     fun getAllIncoming(): List<IncomingDbEntity>
 
     @Transaction
-    @Query("SELECT*FROM notes")
-    fun getNotewithIncoming():List<NoteWithIncoming>
+    @Query("SELECT*FROM notes ")
+    fun getNotewithIncoming(): List<NoteWithIncoming>
 }

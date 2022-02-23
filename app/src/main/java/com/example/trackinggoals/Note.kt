@@ -15,5 +15,5 @@ data class Incoming(
 
 data class NoteIncoming(
     val note:Note,
-    val listIncoming: List<Incoming>?=null
+    val listIncoming: List<Incoming>
 )

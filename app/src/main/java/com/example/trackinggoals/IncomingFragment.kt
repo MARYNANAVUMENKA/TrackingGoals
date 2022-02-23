@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import com.example.trackinggoals.databinding.FragmentNewNoteBinding
-import kotlinx.coroutines.newSingleThreadContext
+import com.example.trackinggoals.databinding.FragmentNoteIncomingBinding
 
 
 class IncomingFragment() : Fragment() {
-    private lateinit var binding: FragmentNewNoteBinding
+    private lateinit var binding: FragmentNoteIncomingBinding
 
 
     private val viewModel by viewModelCreator { IncomingViewModel(Repositories.noteRepository) }
@@ -22,7 +21,7 @@ class IncomingFragment() : Fragment() {
         val noteId = requireArguments().getInt(ARG_NOTE_ID)
         val currentData = requireArguments().getString(ARG_NOTE_DATA)
         if (currentData != null) {
-            viewModel.loadNote(noteId, currentData)
+            viewModel.loadNoteWithIncoming(noteId, currentData)
         }
     }
 
@@ -31,26 +30,34 @@ class IncomingFragment() : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentNewNoteBinding.inflate(inflater, container, false)
+        binding = FragmentNoteIncomingBinding.inflate(inflater, container, false)
 
 //        binding.editTextNewNote.setOnClickListener {}
 
-        binding.imageViewDoneNewNote.setOnClickListener {
-            val textIncoming = binding.editTextNewNote.text.toString()
+        binding.imageViewDone.setOnClickListener {
+            val textIncoming = binding.editText.text.toString()
             if (textIncoming.isNotEmpty()) {
                 val noteId = requireArguments().getInt(ARG_NOTE_ID)
                 val currentData = requireArguments().getString(ARG_NOTE_DATA)
                 if (currentData != null) {
                     viewModel.saveNoteWithIncoming(textIncoming, noteId, currentData)
                 }
+            }else{
+                val noteId = requireArguments().getInt(ARG_NOTE_ID)
+                val currentData = requireArguments().getString(ARG_NOTE_DATA)
+                if (currentData != null) {
+                    viewModel.deleteNoteWithIncoming(textIncoming, noteId, currentData)
+                }
+                }
+
                 navigator().goBack()
 
             }
-        }
-        binding.imageViewBackNewNote.setOnClickListener {
+
+        binding.imageViewBack.setOnClickListener {
 
         }
-        binding.imageViewDeleteNewNote.setOnClickListener {
+        binding.imageViewDelete.setOnClickListener {
 
         }
 //        binding.imageViewPicNewNote
@@ -58,7 +65,10 @@ class IncomingFragment() : Fragment() {
 
 
         viewModel.currentData.observe(viewLifecycleOwner) {
-            binding.btnDataNewNote.text = it
+            binding.btnData.text=it
+        }
+        viewModel.textMessage.observe(viewLifecycleOwner){
+            binding.editText.setText(it)
         }
 
 

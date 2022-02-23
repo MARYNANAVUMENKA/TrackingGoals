@@ -17,26 +17,21 @@ class IncomingViewModel(
     private val _note = MutableLiveData<Note>()
     val note: LiveData<Note> = _note
 
-    private val _incoming = MutableLiveData<Incoming>()
-    val incoming: LiveData<Incoming> = _incoming
+    private val _textMessage = MutableLiveData<String>()
+    val textMessage: LiveData<String> = _textMessage
 
     private val _currentData = MutableLiveData<String>()
     val currentData: LiveData<String> = _currentData
 
-
-    fun loadNote(idNote: Int, currentData: String) {
+    fun loadNoteWithIncoming(idNote: Int, currentData: String) {
         scope.launch {
             try {
                 val incomingCurrent = withContext(Dispatchers.IO) {
                     noteRepository.getIdNote(idNote, currentData)
                 }
-                _incoming.value = incomingCurrent
-
-//                    val currentDay = withContext(Dispatchers.IO) {
-//                        noteRepository.getCurrentDay(idNote)
-//                    }
+                val textMessage = incomingCurrent.textMessages
+                _textMessage.value = textMessage
                 _currentData.value = currentData
-
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -54,6 +49,9 @@ class IncomingViewModel(
                 e.printStackTrace()
             }
         }
+    }
+    fun deleteNoteWithIncoming(text: String,noteId:Int,currentData: String){
+        TODO("Not yet implemented")
     }
 
 

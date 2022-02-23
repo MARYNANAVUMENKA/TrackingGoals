@@ -21,13 +21,13 @@
 
 
             <ImageButton
-                android:id="@+id/imageViewBackNewNote"
+                android:id="@+id/imageViewBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="11dp"
                 android:layout_marginTop="11dp"
                 android:background="?android:selectableItemBackground"
-                app:layout_constraintEnd_toStartOf="@+id/btnDataNewNote"
+                app:layout_constraintEnd_toStartOf="@+id/btnData"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
                 app:srcCompat="@drawable/ic_arrow_back" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnDataNewNote"
+                android:id="@+id/btnData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:selectableItemBackground"
@@ -44,13 +44,13 @@
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                app:layout_constraintEnd_toStartOf="@+id/imageViewDoneNewNote"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewDone"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageViewBackNewNote"
+                app:layout_constraintStart_toEndOf="@+id/imageViewBack"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/imageViewDoneNewNote"
+                android:id="@+id/imageViewDone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
@@ -58,7 +58,7 @@
                 android:background="?android:selectableItemBackground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/btnDataNewNote"
+                app:layout_constraintStart_toEndOf="@+id/btnData"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_done" />
 
@@ -66,7 +66,7 @@
 
 
         <EditText
-            android:id="@+id/editTextNewNote"
+            android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -91,11 +91,11 @@
             android:textSize="16sp"
             android:layout_margin="15dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNewNote"
+            app:layout_constraintTop_toBottomOf="@+id/editText"
             android:text="Относится к цели:" />
 
         <EditText
-            android:id="@+id/editTextNewNoteGoals"
+            android:id="@+id/editTextGoals"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -117,45 +117,45 @@
             android:id="@+id/constraintLayout3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNewNoteGoals"
+            app:layout_constraintTop_toBottomOf="@+id/editTextGoals"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageButton
-                android:id="@+id/imageViewPicNewNote"
+                android:id="@+id/imageViewPic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageViewGoalsNewNote"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewGoals"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/ic_add_photo" />
 
             <ImageButton
-                android:id="@+id/imageViewGoalsNewNote"
+                android:id="@+id/imageViewGoals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="250dp"
                 android:background="?android:selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageViewDeleteNewNote"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewDelete"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageViewPicNewNote"
+                app:layout_constraintStart_toEndOf="@+id/imageViewPic"
                 app:srcCompat="@drawable/ic_menu_goals" />
 
 
             <ImageButton
-                android:id="@+id/imageViewDeleteNewNote"
+                android:id="@+id/imageViewDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageViewGoalsNewNote"
+                app:layout_constraintStart_toEndOf="@+id/imageViewGoals"
                 app:srcCompat="@drawable/ic_delete" />
 
 

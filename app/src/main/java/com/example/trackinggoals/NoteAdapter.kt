@@ -8,27 +8,27 @@ import com.example.trackinggoals.databinding.ItemNoteBinding
 
 interface NoteActionListener {
 
-    fun onNewNoteDetails(note: Note)
+    fun onNewNoteDetails(noteWithIncoming: NoteWithIncoming)
 
 }
 
 class NoteAdapter(private val actionListener: NoteActionListener) :
     RecyclerView.Adapter<NoteAdapter.Holder>(), View.OnClickListener {
 
-    var notes: List<Note> = emptyList()
+    var notesWithIncoming: List<NoteWithIncoming> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     override fun onClick(v: View) {
-        val note = v.tag as Note
+        val noteWithIncoming = v.tag as NoteWithIncoming
         when (v.id) {
             R.id.imagePlus -> {
-                actionListener.onNewNoteDetails(note)
+                actionListener.onNewNoteDetails(noteWithIncoming)
             }
             else -> {
-                actionListener.onNewNoteDetails(note)
+                actionListener.onNewNoteDetails(noteWithIncoming)
             }
         }
 
@@ -45,16 +45,17 @@ class NoteAdapter(private val actionListener: NoteActionListener) :
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val note = notes[position]
+        val noteWithIncoming = notesWithIncoming[position]
 
         with(holder.binding) {
-            holder.itemView.tag = note
-            imagePlus.tag = note
-            textDayWeek.text = note.currentData
+            holder.itemView.tag = noteWithIncoming
+            imagePlus.tag = noteWithIncoming
+            textDayWeek.text = noteWithIncoming.noteDbEntity.currentData
+            textViewIncoming.text = noteWithIncoming.listincomingMessages[0].textMessages
         }
     }
 
-    override fun getItemCount(): Int = notes.size
+    override fun getItemCount(): Int = notesWithIncoming.size
 
     class Holder(
         val binding: ItemNoteBinding

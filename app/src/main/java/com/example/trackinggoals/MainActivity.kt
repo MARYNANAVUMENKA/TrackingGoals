@@ -2,11 +2,7 @@ package com.example.trackinggoals
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import com.example.trackinggoals.databinding.ActivityMainBinding
-import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity(), Navigator {
 
@@ -33,7 +29,7 @@ class MainActivity : AppCompatActivity(), Navigator {
                     R.id.menuDiary -> {
                         supportFragmentManager
                             .beginTransaction()
-                            .add(R.id.fragmentContainer, NoteListFragment.newInstance())
+                            .replace(R.id.fragmentContainer, NoteListFragment.newInstance())
                             .commit()
                     }
                     R.id.menuGoals -> {}
@@ -43,20 +39,23 @@ class MainActivity : AppCompatActivity(), Navigator {
             }
         }
 
-    override fun showNewNote(note: Note) {
+    override fun showNewNote(noteWithIncoming: NoteWithIncoming) {
         supportFragmentManager
             .beginTransaction()
             .addToBackStack(null)
             .replace(
                 R.id.fragmentContainer,
-                IncomingFragment.newInstance(note.id, note.currentData)
+                IncomingFragment.newInstance(noteWithIncoming.noteDbEntity.id, noteWithIncoming.noteDbEntity.currentData)
             )
             .commit()
     }
 
 
     override fun goBack() {
-        onBackPressed()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer, NoteListFragment.newInstance())
+            .commit()
     }
 
 

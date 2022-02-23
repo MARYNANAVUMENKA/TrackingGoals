@@ -63,14 +63,14 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/textViewIncoming"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="14sp"
                     android:textColor="@color/black"
-                    tools:text="TextView" />
+                     />
             </LinearLayout>
 
             <View
