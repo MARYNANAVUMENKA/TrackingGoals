@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TrackingGoals</string>
+    <string name="menu_diary">Дневник</string>
+    <string name="menu_goals">Цели</string>
+    <string name="menu_menu">Меню</string>
+    <string name="text_new_note">Новая заметка</string>
 </resources>
