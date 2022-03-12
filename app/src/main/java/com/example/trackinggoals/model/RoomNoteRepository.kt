@@ -1,10 +1,9 @@
-package com.example.trackinggoals
+package com.example.trackinggoals.model
 
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,6 +20,9 @@ class RoomNoteRepository(
     ): String {
         val calendar = Calendar.getInstance()
         calendar.set(currentYear, currentMonth, currentDay)
+
+//        val monthNames: Array<String> = resources.getStringArray(R.array.month)
+//        как получить месяц из ресурсов
 
         val monthNames = arrayOf(
             "Январь",
@@ -53,7 +55,8 @@ class RoomNoteRepository(
         for (i in 1..calendarCurrent.getActualMaximum(Calendar.DAY_OF_MONTH)) {
             val calendar = Calendar.getInstance()
             calendar.set(currentYear, currentMonth, i)
-            val data = SimpleDateFormat("EEEE, dd MMMM",Locale("ru")).format(calendar.time).capitalize()
+            val data =
+                SimpleDateFormat("EEEE, dd MMMM", Locale("ru")).format(calendar.time).capitalize()
             allDays.add(data)
         }
 
@@ -63,48 +66,26 @@ class RoomNoteRepository(
         var list = mutableListOf<NoteWithIncoming>()
         for (i in 0 until allDays.size) {
             val noteDbEntity = NoteDbEntity(1, allDays[i])
-            val incomingDbEntity = IncomingDbEntity(1, 1, " ")
+            val incomingDbEntity = IncomingDbEntity(1, 1, "")
             val listIncomingDbEntity = listOf<IncomingDbEntity>(incomingDbEntity)
             val noteWithIncoming = NoteWithIncoming(noteDbEntity, listIncomingDbEntity)
             list.add(noteWithIncoming)
         }
 
-            list.addAll(listNoteWithIncoming)
-           for (item in listNoteWithIncoming ){
-           list.removeIf { it.noteDbEntity.currentData== item.noteDbEntity.currentData && it.noteDbEntity.id==1 }}
-           list.sortBy { it.noteDbEntity.currentData.substringAfter(',') }
-
-
+        list.addAll(listNoteWithIncoming)
+        for (item in listNoteWithIncoming) {
+            list.removeIf { it.noteDbEntity.currentData == item.noteDbEntity.currentData && it.noteDbEntity.id == 1 }
+        }
+        list.sortBy { it.noteDbEntity.currentData.substringAfter(',') }
 
         Log.d("rrrrr", list.toString())
-
-
-//        for (i in 0 until allDays.size){
-//            for (j in 0 until listNoteWithIncoming.size) {
-//                    val noteDbEntity = NoteDbEntity(1, allDays[i])
-//                    val incomingDbEntity = IncomingDbEntity(1, 1, " ")
-//                    val listIncomingDbEntity = listOf<IncomingDbEntity>(incomingDbEntity)
-//                    val noteWithIncoming = NoteWithIncoming(noteDbEntity, listIncomingDbEntity)
-//                    list.add(noteWithIncoming)
-//                if (allDays.contains(listNoteWithIncoming[j]?.noteDbEntity.currentData)) {
-//
-//                    var noteWithIncoming = listNoteWithIncoming[j]
-//                    var ind =list.indexOf(list[i])
-//                    list.add(ind,noteWithIncoming)
-//                    list.removeAt(ind)
-//                }
-//            }
-//        }
-
-
-        Log.d("rrrrrr", list.toString())
         return list
     }
 
 
     override suspend fun getIdNote(noteId: Int, currentData: String): Incoming {
         return when (noteId) {
-            1 -> Incoming(1, 1, " ")
+            1 -> Incoming(1, 1, "")
             else -> noteDao.findByNoteId(noteId).toIncoming()
         }
     }
@@ -116,32 +97,28 @@ class RoomNoteRepository(
 
     override suspend fun getlistNoteWithIncoming(): List<NoteWithIncoming> {
         TODO("Not yet implemented")
-
-//        return if (noteDao.getNotewithIncoming().isEmpty()) {
-//            emptyList()
-//        } else {
-//            noteDao.getNotewithIncoming()
-//        }
     }
 
     override suspend fun saveNoteWithIncoming(text: String, noteId: Int, currentData: String) {
-        if (noteId == 1) {
-            var id = UUID.randomUUID().hashCode()
-            val note = NoteDbEntity(id, currentData)
-            noteDao.createNote(note)
-            val idIm = UUID.randomUUID().hashCode()
-            val incomingDbEntity = IncomingDbEntity(idIm, id, text)
-            noteDao.createIncomingMessage(incomingDbEntity)
-        } else {
-            val noteDbEntity = noteDao.findById(noteId)
-            noteDao.deleteNote(noteDbEntity)
-            var id = UUID.randomUUID().hashCode()
-            val note = NoteDbEntity(id, currentData)
-            noteDao.createNote(note)
-            var idIm = UUID.randomUUID().hashCode()
-            val incomingDbEntity = IncomingDbEntity(idIm, id, text)
-            noteDao.createIncomingMessage(incomingDbEntity)
-        }
+        var id = UUID.randomUUID().hashCode()
+        val note = NoteDbEntity(id, currentData)
+        noteDao.createNote(note)
+        val idIm = UUID.randomUUID().hashCode()
+        val incomingDbEntity = IncomingDbEntity(idIm, id, text)
+        noteDao.createIncomingMessage(incomingDbEntity)
     }
+
+    override suspend fun editNoteWithIncoming(text: String, noteId: Int, currentData: String) {
+        noteDao.update(text, noteId)
+    }
+
+
+    override suspend fun deleteNoteWithIncoming(noteId: Int) {
+        noteDao.deleteNoteWithIncoming(
+            noteDao.findById(noteId),
+            listOf(noteDao.findByNoteId(noteId))
+        )
+    }
+
 }
 

@@ -1,9 +1,11 @@
-package com.example.trackinggoals
+package com.example.trackinggoals.screens
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.trackinggoals.model.NoteRepository
+import com.example.trackinggoals.model.NoteWithIncoming
 import kotlinx.coroutines.*
 import java.util.*
 
@@ -59,5 +61,9 @@ class NoteListViewModel(
                 e.printStackTrace()
             }
         }
+    }
+    override fun onCleared() {
+        scope.cancel()
+        super.onCleared()
     }
 }

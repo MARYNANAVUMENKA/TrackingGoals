@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--    android:background=""-->
+
+
+    <FrameLayout
+        android:id="@+id/frameTopStepFirst"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <ImageButton
+            android:id="@+id/imageButtomBackStepFirst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:background="?android:selectableItemBackground"
+            app:srcCompat="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/textViewStepFirst"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="center"
+            android:background="?android:selectableItemBackground"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="@string/textView_goalsStepFirst_first"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="26sp" />
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineEndStepFirst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="25dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineStartStepFirst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="25dp" />
+
+        <TextView
+            android:id="@+id/textViewGoalsStepFirstTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/textView_goalsStepFirst_title"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewGoalsStepFirstDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-light"
+            android:lines="3"
+            android:minLines="3"
+            android:text="@string/textView_goalsStepFirst_description"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEndStepFirst"
+            app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGoalsStepFirstTitle" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardViewGoalsStepFirst"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="9dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEndStepFirst"
+            app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGoalsStepFirstDescription">
+
+
+            <ImageView
+                android:id="@+id/imageViewIncoming"
+                android:layout_width="match_parent"
+                android:layout_height="130dp" />
+
+            <EditText
+                android:id="@+id/editTextInputGoalsStepFirst"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="130dp"
+                android:fontFamily="sans-serif-medium"
+                android:hint="@string/hint_goalsStepFirst"
+                android:inputType="textMultiLine"
+                android:lines="2"
+                android:textSize="16sp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonGoalsStepFirstChoosePic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/text_blue"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/button_goalsStepFirst_choosePic"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineEndStepFirst"
+            app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewGoalsStepFirst" />
+
+        <TextView
+            android:id="@+id/textViewGoalsStepSecondTitleSecond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/textView_goalsStepFirst_title_second"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
+            app:layout_constraintTop_toBottomOf="@+id/buttonGoalsStepFirstChoosePic" />
+
+        <TextView
+            android:id="@+id/textViewGoalsStepSecondDescriptionSecond"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-light"
+            android:lines="3"
+            android:minLines="3"
+            android:text="@string/textView_goalsStepFirst_description_second"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEndStepFirst"
+            app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGoalsStepSecondTitleSecond" />
+
+
+        <TextView
+            android:id="@+id/textViewGoalsStepSecondData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/textView_goalsStepFirst_data"
+            app:layout_constraintStart_toStartOf="@+id/guidelineStartStepFirst"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGoalsStepSecondDescriptionSecond" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonGoalsStepSecondChooseDat"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineEndStepFirst"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guidelineStartStepFirst"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGoalsStepSecondData" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonGoalsStepFirstNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@color/text_blue"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/button_goalsStepFirst_next"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEndStepFirst"
+            app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
+            app:layout_constraintTop_toBottomOf="@+id/buttonGoalsStepSecondChooseDat" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

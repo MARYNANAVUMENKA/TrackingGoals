@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textDayWeek"
+        android:id="@+id/textViewItemNoteDayWeek"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -17,10 +17,8 @@
         android:textSize="16sp"
         tools:text="Cуббота, 1 января" />
 
-
-
     <TextView
-        android:id="@+id/textToday"
+        android:id="@+id/textViewItemNoteToday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="320dp"
@@ -53,7 +51,7 @@
                 app:layout_constraintGuide_begin="19dp" />
 
             <LinearLayout
-                android:id="@+id/linearText"
+                android:id="@+id/frameItemNote"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:orientation="vertical"
@@ -63,14 +61,13 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/textViewIncoming"
+                    android:id="@+id/textViewItemNoteIncoming"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-medium"
-                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-light"
                     android:textColor="@color/black"
-                     />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <View
@@ -82,31 +79,31 @@
                 android:layout_marginEnd="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/linearText"/>
+                app:layout_constraintTop_toBottomOf="@id/frameItemNote"/>
 
             <FrameLayout
-                android:id="@+id/newNote"
+                android:id="@+id/frameGoals"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearText"
+                app:layout_constraintTop_toBottomOf="@+id/frameItemNote"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 >
 
                 <TextView
-                    android:id="@+id/textViewNewNote"
+                    android:id="@+id/textViewItemNote"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginBottom="12dp"
                     android:layout_marginTop="12dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="@string/text_new_note"
+                    android:text="@string/textView_note"
                     android:textColor="@color/text_blue"
                     android:textSize="16sp" />
 
                 <ImageView
-                    android:id="@+id/imagePlus"
+                    android:id="@+id/imagePlusItemNote"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="340dp"

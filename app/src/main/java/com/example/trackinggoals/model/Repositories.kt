@@ -1,4 +1,4 @@
-package com.example.trackinggoals
+package com.example.trackinggoals.model
 
 import android.content.Context
 import androidx.room.Room
@@ -21,6 +21,10 @@ object Repositories {
     val noteRepository: NoteRepository by lazy {
         RoomNoteRepository(database.getNoteDao(), ioDispatcher)
     }
+    val goalsRepository: GoalsRepository by lazy {
+        RoomGoalsRepository(noteRepository,database.getGoalsDao(), ioDispatcher)
+    }
+
 
     fun init(context: Context) {
         applicationContext = context

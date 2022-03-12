@@ -1,4 +1,4 @@
-package com.example.trackinggoals
+package com.example.trackinggoals.model
 
 interface NoteRepository {
 
@@ -6,11 +6,15 @@ interface NoteRepository {
 
     suspend fun getListCurrentMonthYear(currentYear:Int, currentMonth:Int, currentDay:Int): List<NoteWithIncoming>
 
-    suspend fun getIdNote(noteId:Int,currentData: String):Incoming
+    suspend fun getIdNote(noteId:Int,currentData: String): Incoming
 
     suspend fun getCurrentDay(noteId:Int):String
 
     suspend fun getlistNoteWithIncoming(): List<NoteWithIncoming>
 
     suspend fun saveNoteWithIncoming(text:String,noteId:Int,currentData: String)
+
+    suspend fun editNoteWithIncoming(text:String,noteId:Int,currentData: String)
+
+    suspend fun deleteNoteWithIncoming(noteId:Int)
 }

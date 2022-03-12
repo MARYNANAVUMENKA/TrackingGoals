@@ -1,6 +1,4 @@
-package com.example.trackinggoals
-
-import java.util.*
+package com.example.trackinggoals.model
 
 data class Note(
     val id: Int,
@@ -13,7 +11,5 @@ data class Incoming(
     val textMessages: String
 )
 
-data class NoteIncoming(
-    val note:Note,
-    val listIncoming: List<Incoming>
-)
+
+

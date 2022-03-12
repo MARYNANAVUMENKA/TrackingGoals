@@ -1,4 +1,4 @@
-package com.example.trackinggoals
+package com.example.trackinggoals.screens
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.trackinggoals.databinding.FragmentNoteListBinding
 import android.view.*
+import com.example.trackinggoals.*
+import com.example.trackinggoals.model.NoteWithIncoming
+import com.example.trackinggoals.model.Repositories
 import java.util.*
 
 
@@ -37,7 +40,7 @@ class NoteListFragment : Fragment() {
             val d = cal.get(Calendar.DAY_OF_MONTH)
             val datepickerdialog = DatePickerDialog(requireActivity(),
                 { _, year, month, day ->
-                    val currentMonth:String=when(month){
+                    val currentMonth:String = when(month){
                         0->"Январь"
                         1->"Февраль"
                         2-> "Март"
@@ -57,7 +60,7 @@ class NoteListFragment : Fragment() {
             datepickerdialog.show()
         }
 
-        adapter = NoteAdapter(object : NoteActionListener{
+        adapter = NoteAdapter(object : NoteActionListener {
             override fun onNewNoteDetails(noteWithIncoming: NoteWithIncoming) {
                 navigator().showNewNote(noteWithIncoming)
             }
