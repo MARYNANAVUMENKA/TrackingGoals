@@ -2,7 +2,6 @@ package com.example.trackinggoals.model
 
 import kotlinx.coroutines.CoroutineDispatcher
 import java.util.*
-import javax.security.auth.PrivateCredentialPermission
 
 class RoomGoalsRepository(
     private val noteRepository: NoteRepository,
@@ -30,6 +29,10 @@ class RoomGoalsRepository(
         }
     }
 
+    override suspend fun getAllId(): List<Int> {
+        return goalsDao.getAllId()
+    }
+
     override suspend fun getIdGoals(id:Int): Goals {
         val listId=goalsDao.getAllId()
 
@@ -42,19 +45,21 @@ class RoomGoalsRepository(
 
     }
 
-    override suspend fun saveGoals(
-        id: Int,textGoals:String
-    ) {
-        val goalsDbEntity=GoalsDbEntity(UUID.randomUUID().hashCode(),"",textGoals,"",0,"","" )
+    override suspend fun createGoals() {
+        val goalsDbEntity = GoalsDbEntity(UUID.randomUUID().hashCode(),"","","",0,"","" )
         goalsDao.createGoals(goalsDbEntity)
-
     }
 
-    override suspend fun editGoalsText(
-        id: Int,
-        textGoals: String
-    ) {
+    override suspend fun updateText(textGoals: String, id: Int) {
         goalsDao.updateText(textGoals, id)
+    }
+
+    override suspend fun updatePhoto(photo: String, id: Int) {
+        goalsDao.updatePhoto(photo, id)
+    }
+
+    override suspend fun updateDataExecution(dataExecution: String, id: Int) {
+        goalsDao.updateDataExecution(dataExecution,id)
     }
 
 

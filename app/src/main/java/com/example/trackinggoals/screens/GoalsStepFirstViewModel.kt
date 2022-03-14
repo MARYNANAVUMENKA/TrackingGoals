@@ -35,11 +35,12 @@ class GoalsStepFirstViewModel(
             }
         }
     }
-    fun saveGoals(id:Int,textGoals:String,){
+
+    fun updateTextGoals(textGoals:String,id:Int){
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    goalsRepository.saveGoals(id,textGoals)
+                    goalsRepository.updateText(textGoals,id)
                 }
 
             } catch (e: Exception) {
@@ -47,11 +48,23 @@ class GoalsStepFirstViewModel(
             }
         }
     }
-    fun editGoals(id:Int,textGoals:String){
+    fun updatePhototGoals(photo:String,id:Int){
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    goalsRepository.editGoalsText(id,textGoals)
+                    goalsRepository.updatePhoto(photo,id)
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+    fun updateDataGoals(data:String,id:Int){
+        scope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    goalsRepository.updateDataExecution(data,id)
                 }
 
             } catch (e: Exception) {

@@ -34,6 +34,8 @@ class GoalsStepSecondViewModel(
             }
         }
     }
+
+
     override fun onCleared() {
         scope.cancel()
         super.onCleared()

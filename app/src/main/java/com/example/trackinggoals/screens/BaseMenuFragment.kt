@@ -50,7 +50,10 @@ class BaseMenuFragment : Fragment() {
                                 .replace(R.id.fragmentContainerMenu, GoalsConstructorFragment.newInstance())
                                 .commit()
                         }else{
-//                            здесь будет переход на GoalsListFragment
+                            childFragmentManager
+                                .beginTransaction()
+                                .replace(R.id.fragmentContainerMenu, GoalsListFragment.newInstance())
+                                .commit()
                         }
                     }
 

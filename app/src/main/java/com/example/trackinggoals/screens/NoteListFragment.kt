@@ -26,9 +26,12 @@ class NoteListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = FragmentNoteListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.currentMonthYearLiveData.observe(viewLifecycleOwner){
             binding.btnToolbarNoteList.text=it
         }
@@ -73,8 +76,9 @@ class NoteListFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
-        return binding.root
+
     }
+
 
 
     companion object {

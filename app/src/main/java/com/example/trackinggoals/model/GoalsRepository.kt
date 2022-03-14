@@ -4,9 +4,18 @@ interface GoalsRepository {
 
     suspend fun getListGoals(): List<Goals>
 
+    suspend fun getAllId():List<Int>
+
     suspend fun getIdGoals(id:Int): Goals
 
-    suspend fun saveGoals(id:Int,textGoals:String)
+    suspend fun createGoals()
 
-    suspend fun editGoalsText(id:Int,textGoals:String)
+    suspend fun updateText(textGoals: String, id: Int)
+
+    suspend fun updatePhoto(photo: String, id: Int)
+
+    suspend fun updateDataExecution(dataExecution: String, id: Int)
+
+
+
 }

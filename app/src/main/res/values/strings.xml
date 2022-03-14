@@ -19,10 +19,10 @@
     <string name="alert_dialog_action_yes">Да</string>
     <string name="alert_dialog_action_no">Нет</string>
 
-    <string name="alert_dialog_next_title">Продолжить без сохранения?</string>
-    <string name="alert_dialog_next_text">Не введен текст желания. Данные не будут сохранены.</string>
-    <string name="alert_dialog_action_next">Продолжить</string>
-    <string name="alert_dialog_action_next_return">Вернуться</string>
+<!--    <string name="alert_dialog_next_title">Продолжить без сохранения?</string>-->
+<!--    <string name="alert_dialog_next_text">Не введен текст желания. Данные не будут сохранены.</string>-->
+<!--    <string name="alert_dialog_action_next">Продолжить</string>-->
+<!--    <string name="alert_dialog_action_next_return">Вернуться</string>-->
 
 
     <string name="january">Январь</string>

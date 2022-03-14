@@ -93,17 +93,38 @@
             app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
             app:layout_constraintTop_toBottomOf="@+id/textViewGoalsStepFirstDescription">
 
-
-            <ImageView
-                android:id="@+id/imageViewIncoming"
+            <FrameLayout
+                android:id="@+id/framePicGoalsStepFirst"
                 android:layout_width="match_parent"
-                android:layout_height="130dp" />
+                android:layout_height="wrap_content"
+                >
+            <ImageView
+                android:id="@+id/imageViewGoalsStepFirst"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:src="@drawable/ic_photo_default"
+                android:scaleType="centerCrop"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/buttonGoalsStepFirstChoosePic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="55dp"
+                    android:paddingEnd="55dp"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/text_blue"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/button_goalsStepFirst_choosePic"
+                    android:textColor="@color/white"
+                    android:visibility="visible"
+                    />
+            </FrameLayout>
 
             <EditText
                 android:id="@+id/editTextInputGoalsStepFirst"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="130dp"
+                android:layout_marginTop="170dp"
                 android:fontFamily="sans-serif-medium"
                 android:hint="@string/hint_goalsStepFirst"
                 android:inputType="textMultiLine"
@@ -113,18 +134,8 @@
         </com.google.android.material.card.MaterialCardView>
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonGoalsStepFirstChoosePic"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/text_blue"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/button_goalsStepFirst_choosePic"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineEndStepFirst"
-            app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewGoalsStepFirst" />
+
+
 
         <TextView
             android:id="@+id/textViewGoalsStepSecondTitleSecond"
@@ -136,7 +147,7 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
-            app:layout_constraintTop_toBottomOf="@+id/buttonGoalsStepFirstChoosePic" />
+            app:layout_constraintTop_toBottomOf="@+id/cardViewGoalsStepFirst" />
 
         <TextView
             android:id="@+id/textViewGoalsStepSecondDescriptionSecond"

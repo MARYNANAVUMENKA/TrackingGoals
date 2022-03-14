@@ -16,5 +16,37 @@ class GoalsConstructorViewModel(
 ) : ViewModel() {
     private val scope = CoroutineScope(Dispatchers.Main)
 
+    private val _idGoals = MutableLiveData<Int>()
+    val idGoals: LiveData<Int> = _idGoals
+
+
+    fun createEmptyGoals() {
+        scope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    goalsRepository.createGoals()
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+    fun getIdEmptyGoals() {
+        scope.launch {
+            try {
+                val listId=withContext(Dispatchers.IO) {
+                    goalsRepository.getAllId()
+                }
+                _idGoals.value = listId[0]
+                Log.d("gggg", _idGoals.value.toString())
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+
 
 }

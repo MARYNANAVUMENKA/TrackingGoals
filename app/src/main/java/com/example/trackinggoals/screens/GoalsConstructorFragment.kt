@@ -18,6 +18,11 @@ class GoalsConstructorFragment: Fragment() {
 
     private val viewModel by viewModelCreator { GoalsConstructorViewModel(Repositories.goalsRepository) }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.createEmptyGoals()
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,8 +35,13 @@ class GoalsConstructorFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         binding.buttonConstructorGoalsStart.setOnClickListener {
-            navigator().showGoalsStepFirst(1)
+            viewModel.getIdEmptyGoals()
+            viewModel.idGoals.observe(viewLifecycleOwner){
+                navigator().showGoalsStepFirst(it)
+            }
         }
     }
 
