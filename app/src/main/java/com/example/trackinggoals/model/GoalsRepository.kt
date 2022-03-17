@@ -4,11 +4,11 @@ interface GoalsRepository {
 
     suspend fun getListGoals(): List<Goals>
 
-    suspend fun getAllId():List<Int>
-
     suspend fun getIdGoals(id:Int): Goals
 
-    suspend fun createGoals()
+    suspend fun createGoals():Int
+
+    suspend fun removeGoals(id:Int)
 
     suspend fun updateText(textGoals: String, id: Int)
 
@@ -16,6 +16,13 @@ interface GoalsRepository {
 
     suspend fun updateDataExecution(dataExecution: String, id: Int)
 
+    suspend fun updateIsActive(isActive: Boolean, id: Int)
+
+    suspend fun updateQuantity(quantity: Int, id: Int)
+
+    suspend fun updateUnit(unit: String, id: Int)
+
+    suspend fun updateCriterion(criterion: String, id: Int)
 
 
 }

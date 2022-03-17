@@ -53,6 +53,38 @@
         <item>@string/december</item>
     </string-array>
 
+    <string name="rub">Рублей</string>
+    <string name="dollar">Долларов</string>
+    <string name="client">Клиентов</string>
+    <string name="users">Пользователей</string>
+    <string name="subscribers">Подписчиков</string>
+    <string name="orders">Заказов</string>
+    <string name="units">Штук</string>
+    <string name="times">Раз</string>
+    <string name="days">Дней</string>
+    <string name="kilogram">Килограмм</string>
+    <string name="books">Книг</string>
+
+    <string-array name="unit">
+        <item>@string/rub</item>
+        <item>@string/dollar</item>
+        <item>@string/client</item>
+        <item>@string/users</item>
+        <item>@string/subscribers</item>
+        <item>@string/orders</item>
+        <item>@string/units</item>
+        <item>@string/times</item>
+        <item>@string/days</item>
+        <item>@string/kilogram</item>
+        <item>@string/books</item>
+    </string-array>
+
+
+
+
+
+
+
 
     <string name="text_goals_accumulated">НАКОПЛЕНО</string>
     <string name="text_goals_reaching_now">Достигаю сейчас</string>
@@ -82,7 +114,16 @@
 
     <string name="textView_bottom_sheet_photo_load">Загрузить свою</string>
     <string name="textView_bottom_sheet_photo_create">Сделать снимок</string>
-    <string name="textView_sheet_photo_cancel">Отмена</string>
+    <string name="textView_bottom_sheet_photo_cancel">Отмена</string>
+
+    <string name="textView_bottom_sheet_goals_edit">Редактировать</string>
+    <string name="textView_bottom_sheet_goals_accomplished">Цель достигнута</string>
+    <string name="textView_bottom_sheet_goals_remove">Удалить цель</string>
+    <string name="textView_bottom_sheet_goals_cancel">Отмена</string>
+
+    <string name="popupmenu_goals_edit">Редактировать</string>
+    <string name="popupmenu_goals_accomplished">Цель достигнута</string>
+    <string name="popupmenu_goals_remove">Удалить цель</string>
 
 
 

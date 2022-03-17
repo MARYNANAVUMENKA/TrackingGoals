@@ -34,7 +34,6 @@ class PhotoBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         binding.textViewBottomSheetPhotoLoad.setOnClickListener {
             Toast.makeText(requireContext(), "load", Toast.LENGTH_SHORT)
-            loadImage()
             dismiss()
         }
         binding.textViewBottomSheetPhotoCreate.setOnClickListener {
@@ -45,24 +44,6 @@ class PhotoBottomSheetDialogFragment : BottomSheetDialogFragment() {
             dismiss()
         }
     }
-
-    fun loadImage() {
-        activity?.let {
-            if (ContextCompat.checkSelfPermission(
-                    it.applicationContext,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1)
-            } else {
-                val Intent =
-                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                startActivityForResult(Intent, 2)
-
-            }
-        }
-    }
-
 
 
 //    override fun onDismiss(dialog: DialogInterface) {

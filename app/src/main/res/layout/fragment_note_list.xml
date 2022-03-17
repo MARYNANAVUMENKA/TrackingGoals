@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="?android:attr/windowBackground"
+        android:background="@color/background_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,11 +20,11 @@
             android:layout_height="match_parent"
             android:gravity="start">
 
-            <com.google.android.material.button.MaterialButton
+            <Button
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:id="@+id/btnToolbarNoteList"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="?android:selectableItemBackground"
                 android:fontFamily="sans-serif-black"
                 android:includeFontPadding="false"
                 android:paddingLeft="0dp"
@@ -47,6 +47,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

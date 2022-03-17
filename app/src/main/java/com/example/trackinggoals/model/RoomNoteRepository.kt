@@ -56,7 +56,7 @@ class RoomNoteRepository(
             val calendar = Calendar.getInstance()
             calendar.set(currentYear, currentMonth, i)
             val data =
-                SimpleDateFormat("EEEE, dd MMMM", Locale("ru")).format(calendar.time).capitalize()
+                SimpleDateFormat("EEEE, dd MMMM").format(calendar.time).capitalize()
             allDays.add(data)
         }
 

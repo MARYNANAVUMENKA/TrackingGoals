@@ -20,7 +20,7 @@ class GoalsConstructorFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.createEmptyGoals()
+
     }
 
 
@@ -38,7 +38,7 @@ class GoalsConstructorFragment: Fragment() {
 
 
         binding.buttonConstructorGoalsStart.setOnClickListener {
-            viewModel.getIdEmptyGoals()
+            viewModel.createEmptyGoals()
             viewModel.idGoals.observe(viewLifecycleOwner){
                 navigator().showGoalsStepFirst(it)
             }

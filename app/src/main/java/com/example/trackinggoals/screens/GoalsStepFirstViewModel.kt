@@ -72,6 +72,18 @@ class GoalsStepFirstViewModel(
             }
         }
     }
+    fun deleteGoals(id:Int){
+        scope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    goalsRepository.removeGoals(id)
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
 
 
     override fun onCleared() {

@@ -4,12 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.example.trackinggoals.R
 import com.example.trackinggoals.databinding.FragmentGoalsStepFirstBinding
 import com.example.trackinggoals.databinding.FragmentGoalsStepSecondBinding
 import com.example.trackinggoals.model.Repositories
+import com.example.trackinggoals.navigator
 import com.example.trackinggoals.viewModelCreator
+import java.util.*
 
 class GoalsStepSecondFragment: Fragment() {
     private lateinit var binding: FragmentGoalsStepSecondBinding
@@ -32,23 +37,38 @@ class GoalsStepSecondFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.criterion.observe(viewLifecycleOwner){
 
-        }
+
         viewModel.unit.observe(viewLifecycleOwner){
-
+            binding.autoCompleteTextGoalsStepSecondUnit.setText(it)
         }
         viewModel.quantity.observe(viewLifecycleOwner){
-
+            binding.editTextGoalsStepSecondWant.setText(it.toString())
         }
-        binding.editTextGoalsStepSecondWant.setOnClickListener {
-
+        viewModel.criterion.observe(viewLifecycleOwner){
+            binding.editTextGoalsStepSecondCriterion.setText(it)
         }
-        binding.editTextGoalsStepSecondCriterion.setOnClickListener {
 
+        val items = resources.getStringArray(R.array.unit)
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
+        binding.autoCompleteTextGoalsStepSecondUnit.setAdapter(adapter)
+
+        binding.autoCompleteTextGoalsStepSecondUnit.setOnItemClickListener { parent, _, position, _ ->
+            var item = parent.getItemAtPosition(position).toString()
         }
-        binding
 
+        binding.buttonGoalsStepSecondComplete.setOnClickListener {
+            val goalsId = requireArguments().getInt(ARG_GOALS_ID)
+            viewModel.updateQuantityGoals(binding.editTextGoalsStepSecondWant.text.toString().toInt(), goalsId)
+            viewModel.updateUnitGoals(binding.autoCompleteTextGoalsStepSecondUnit.text.toString(), goalsId)
+            viewModel.updateCriterionGoals(binding.editTextGoalsStepSecondCriterion.text.toString()
+                .uppercase(Locale.getDefault()),goalsId)
+            navigator().goBaseMenu()
+        }
+        binding.imageViewBackStepSecond.setOnClickListener {
+            val goalsId = requireArguments().getInt(ARG_GOALS_ID)
+            navigator().showGoalsStepFirst(goalsId)
+        }
 
     }
     companion object {

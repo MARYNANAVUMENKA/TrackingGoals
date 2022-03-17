@@ -11,6 +11,8 @@ data class GoalsDbEntity(
     @PrimaryKey
     @ColumnInfo(name = "id")
     val id: Int,
+    @ColumnInfo(name = "is_active")
+    val isActive: Boolean,
     @ColumnInfo(name = "photo")
     val photo:String,
     @ColumnInfo(name = "text_goals")
@@ -26,6 +28,7 @@ data class GoalsDbEntity(
 ) {
     fun toGoals() = Goals(
         id=id,
+        isActive=isActive,
         photo=photo,
         textGoals=textGoals,
         dataExecution=dataExecution,

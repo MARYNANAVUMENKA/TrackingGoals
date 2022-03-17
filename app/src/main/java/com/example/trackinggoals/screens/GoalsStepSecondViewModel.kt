@@ -11,8 +11,8 @@ class GoalsStepSecondViewModel(
 ): ViewModel() {
     private val scope = CoroutineScope(Dispatchers.Main)
 
-    private val _quantity = MutableLiveData<String>()
-    val quantity: LiveData<String> = _quantity
+    private val _quantity = MutableLiveData<Int>()
+    val quantity: LiveData<Int> = _quantity
 
     private val _unit = MutableLiveData<String>()
     val unit: LiveData<String> = _unit
@@ -26,9 +26,45 @@ class GoalsStepSecondViewModel(
                 val goals = withContext(Dispatchers.IO) {
                     goalsRepository.getIdGoals(id)
                 }
-                _quantity.value = goals.photo
-                _unit.value = goals.textGoals
-                _criterion.value = goals.dataExecution
+                _quantity.value = goals.quantity
+                _unit.value = goals.unit
+                _criterion.value = goals.criterion
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+    fun updateQuantityGoals(quantity:Int,id:Int){
+        scope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    goalsRepository.updateQuantity(quantity, id)
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+    fun updateUnitGoals(unit:String,id:Int){
+        scope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    goalsRepository.updateUnit(unit, id)
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+    fun updateCriterionGoals(criterion:String,id:Int){
+        scope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    goalsRepository.updateCriterion(criterion, id)
+                }
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }

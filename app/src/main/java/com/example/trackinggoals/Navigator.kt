@@ -7,10 +7,12 @@ interface Navigator {
 
     fun showNewNote(noteWithIncoming: NoteWithIncoming)
 
+    fun goBack()
+
     fun goBaseMenu()
 
-    fun showGoalsStepFirst(goalsId:Int)
+    fun showGoalsStepFirst(goalsId: Int)
 
-    fun showGoalsStepSecond(goalsId:Int)
+    fun showGoalsStepSecond(goalsId: Int)
 
 }
