@@ -1,6 +1,5 @@
-package com.example.trackinggoals
+package com.example.trackinggoals.model
 
-import androidx.lifecycle.Transformations.map
 import androidx.room.*
 
 @Entity(
@@ -14,13 +13,7 @@ data class NoteDbEntity(
     val id: Int,
     @ColumnInfo(name = "current_data")
     val currentData: String,
-) {
-    fun toNotes(): Note = Note(
-        id = id,
-        currentData = currentData
-    )
-
-}
+)
 
 
 @Entity(
@@ -32,14 +25,16 @@ data class IncomingDbEntity(
     val idIm: Int,
     @ColumnInfo(name = "id_note")
     val idNote: Int,
-    @ColumnInfo(name = "textMessages")
+    @ColumnInfo(name = "text_messages")
     val textMessages: String,
 ) {
-    fun toIncoming(): Incoming = Incoming(
+    fun toIncoming(): Incoming =
+        Incoming(
         idIm = idIm,
         idNote = idNote,
         textMessages = textMessages
     )
+
 }
 
 

@@ -1,9 +1,11 @@
-package com.example.trackinggoals
+package com.example.trackinggoals.screens
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.trackinggoals.model.NoteWithIncoming
+import com.example.trackinggoals.R
 import com.example.trackinggoals.databinding.ItemNoteBinding
 
 interface NoteActionListener {
@@ -40,7 +42,7 @@ class NoteAdapter(private val actionListener: NoteActionListener) :
         val binding = ItemNoteBinding.inflate(inflater, parent, false)
 
         binding.root.setOnClickListener(this)
-        binding.imagePlus.setOnClickListener(this)
+        binding.imagePlusItemNote.setOnClickListener(this)
         return Holder(binding)
     }
 
@@ -49,9 +51,9 @@ class NoteAdapter(private val actionListener: NoteActionListener) :
 
         with(holder.binding) {
             holder.itemView.tag = noteWithIncoming
-            imagePlus.tag = noteWithIncoming
-            textDayWeek.text = noteWithIncoming.noteDbEntity.currentData
-            textViewIncoming.text = noteWithIncoming.listincomingMessages[0].textMessages
+            imagePlusItemNote.tag = noteWithIncoming
+            textViewItemNoteDayWeek.text = noteWithIncoming.noteDbEntity.currentData
+            textViewItemNoteIncoming.text = noteWithIncoming.listincomingMessages[0].textMessages
         }
     }
 

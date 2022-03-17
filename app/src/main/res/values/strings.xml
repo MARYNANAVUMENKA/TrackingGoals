@@ -1,7 +1,89 @@
 <resources>
     <string name="app_name">TrackingGoals</string>
+    <!--fragment_base_menu-->
     <string name="menu_diary">Дневник</string>
     <string name="menu_goals">Цели</string>
     <string name="menu_menu">Меню</string>
-    <string name="text_new_note">Новая заметка</string>
+    <!--    item_note-->
+    <string name="textView_note">Новая заметка</string>
+    <!--    fragment_note_incoming-->
+    <string name="editText_incoming">Твой вывод,воспоминание за день,ключевое событие или заметка</string>
+    <!--    alert_dialog-->
+    <string name="alert_dialog_exit_title">Выйти без сохранения?</string>
+    <string name="alert_dialog_exit_text">Не введен текст.Остальные данные не будут сохранены.</string>
+    <string name="alert_dialog_action_exit">Выйти</string>
+    <string name="alert_dialog_action_return">Вернуться</string>
+
+    <string name="alert_dialog_delete_title">Удалить заметку</string>
+    <string name="alert_dialog_delete_text">Подтверди удаление заметки.Восстановить её будет невозможно</string>
+    <string name="alert_dialog_action_yes">Да</string>
+    <string name="alert_dialog_action_no">Нет</string>
+
+<!--    <string name="alert_dialog_next_title">Продолжить без сохранения?</string>-->
+<!--    <string name="alert_dialog_next_text">Не введен текст желания. Данные не будут сохранены.</string>-->
+<!--    <string name="alert_dialog_action_next">Продолжить</string>-->
+<!--    <string name="alert_dialog_action_next_return">Вернуться</string>-->
+
+
+    <string name="january">Январь</string>
+    <string name="february">Февраль</string>
+    <string name="march">Март</string>
+    <string name="april">Апрель</string>
+    <string name="may">Май</string>
+    <string name="june">Июнь</string>
+    <string name="july">Июль</string>
+    <string name="august">Август</string>
+    <string name="september">Сентябрь</string>
+    <string name="october">Октябрь</string>
+    <string name="november">Ноябрь</string>
+    <string name="december">Декабрь</string>
+
+    <string-array name="month">
+        <item>@string/january</item>
+        <item>@string/february</item>
+        <item>@string/march</item>
+        <item>@string/april</item>
+        <item>@string/may</item>
+        <item>@string/june</item>
+        <item>@string/july</item>
+        <item>@string/august</item>
+        <item>@string/september</item>
+        <item>@string/october</item>
+        <item>@string/november</item>
+        <item>@string/december</item>
+    </string-array>
+
+
+    <string name="text_goals_accumulated">НАКОПЛЕНО</string>
+    <string name="text_goals_reaching_now">Достигаю сейчас</string>
+    <string name="text_goals_achieved">Достигнутые</string>
+    <string name="add_goals_content_description">Add new goals</string>
+    <string name="button_constructor_start">Начать</string>
+    <string name="textView_constructor_title">Конструктор целей</string>
+    <string name="textView_constructor_description">Это твой мощный инструмент для достижения любых целей. За два шага создай свою цель,воплощай и следи за прогрессом!</string>
+
+    <string name="textView_goalsStepFirst_first">Шаг 1</string>
+    <string name="textView_goalsStepFirst_title">Чего ты хочешь?</string>
+    <string name="textView_goalsStepFirst_description">Напиши желание которое тебя вдохновляет,и добавь картинку.Пиши, даже если пока не знаешь как этого достичь</string>
+    <string name="hint_goalsStepFirst">Сформулируй своё желание и запиши его сюда</string>
+    <string name="button_goalsStepFirst_choosePic">Выбрать картинку</string>
+    <string name="button_goalsStepFirst_next">Далее</string>
+    <string name="textView_goalsStepFirst_title_second">Когда планируешь достичь?</string>
+    <string name="textView_goalsStepFirst_description_second">Рекомендуемые сроки от 3 месяцев до 3 лет.Ведь ты хочешь этого не к старости,а сейчас?</string>
+    <string name="textView_goalsStepFirst_data">ВЫБЕРИ ДАТУ</string>
+
+    <string name="textView_goalsStepSecond_second">Шаг 2</string>
+    <string name="textView_goalsStepSecond_result">В чём измерить результат?</string>
+    <string name="textView_goalsStepSecond_result_description">Измерения нужны для отслеживания процесса.В чём можно её посчитать?</string>
+    <string name="editText_goalsStepSecond_want">СКОЛЬКО ХОЧУ</string>
+    <string name="editText_goalsStepSecond_quantity">ЕДИНИЦА ИЗМЕРЕНИЯ</string>
+    <string name="editText_goalsStepSecond_criterion">ОПИСАНИЕ КРИТЕРИЯ</string>
+    <string name="button_goalsStepSecond_complete">Завершить создание</string>
+
+    <string name="textView_bottom_sheet_photo_load">Загрузить свою</string>
+    <string name="textView_bottom_sheet_photo_create">Сделать снимок</string>
+    <string name="textView_sheet_photo_cancel">Отмена</string>
+
+
+
 </resources>
