@@ -43,21 +43,22 @@ class NoteListFragment : Fragment() {
             val d = cal.get(Calendar.DAY_OF_MONTH)
             val datepickerdialog = DatePickerDialog(requireActivity(),
                 { _, year, month, day ->
+                    val items = resources.getStringArray(R.array.month)
                     val currentMonth:String = when(month){
-                        0->"Январь"
-                        1->"Февраль"
-                        2-> "Март"
-                        3->"Апрель"
-                        4->"Май"
-                        5->"Июнь"
-                        6->"Июль"
-                        7->"Август"
-                        8-> "Сентябрь"
-                        9->"Октябрь"
-                        10->"Ноябрь"
-                        else ->"Декабрь"
+                        0->items[0]
+                        1->items[1]
+                        2-> items[2]
+                        3->items[3]
+                        4->items[4]
+                        5->items[5]
+                        6->items[6]
+                        7->items[7]
+                        8-> items[8]
+                        9->items[9]
+                        10->items[10]
+                        else ->items[11]
                     }
-                    binding.btnToolbarNoteList.text = "$currentMonth, $year"
+//                    binding.btnToolbarNoteList.text = "$currentMonth, $year"
                     viewModel.loadListNoteWithIncoming(year,month,day)
                 }, y, m, d)
             datepickerdialog.show()

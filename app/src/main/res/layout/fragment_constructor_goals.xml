@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+         android:background="@color/background"
         tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +20,7 @@
             android:id="@+id/toolbarConstructorGoals"
             android:layout_width="0dp"
             android:layout_height="?android:attr/actionBarSize"
-            android:background="?android:attr/windowBackground"
+            android:background="@color/background_menu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -30,11 +30,12 @@
                 android:layout_height="match_parent"
                 android:gravity="start">
 
-                <com.google.android.material.button.MaterialButton
+                <Button
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:id="@+id/buttonToolbarConstructorGoals"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="?android:selectableItemBackground"
+                    android:background="@color/background_menu"
                     android:fontFamily="sans-serif-black"
                     android:includeFontPadding="false"
                     android:paddingLeft="0dp"

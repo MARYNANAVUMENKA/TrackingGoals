@@ -53,7 +53,9 @@ class NoteAdapter(private val actionListener: NoteActionListener) :
             holder.itemView.tag = noteWithIncoming
             imagePlusItemNote.tag = noteWithIncoming
             textViewItemNoteDayWeek.text = noteWithIncoming.noteDbEntity.currentData
-            textViewItemNoteIncoming.text = noteWithIncoming.listincomingMessages[0].textMessages
+            textViewItemNoteIncoming.text =noteWithIncoming.listincomingMessages[0].textMessages
+//                noteWithIncoming.listincomingMessages.map { listincomingMessages->listincomingMessages.textMessages }
+//                    .toString()
         }
     }
 

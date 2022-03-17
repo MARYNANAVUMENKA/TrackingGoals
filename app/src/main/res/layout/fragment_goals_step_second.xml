@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<!--    android:background=""-->
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
-    <FrameLayout
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/frameTopStepSecond"
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/background_menu">
 
         <ImageButton
             android:id="@+id/imageViewBackStepSecond"
@@ -17,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:background="?android:selectableItemBackground"
+            android:background="@color/background_menu"
             app:srcCompat="@drawable/ic_arrow_back" />
 
         <TextView
@@ -25,18 +26,19 @@
             android:layout_width="wrap_content"
             android:layout_height="?android:attr/actionBarSize"
             android:layout_gravity="center"
-            android:background="?android:selectableItemBackground"
+            android:background="@color/background_menu"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:text="@string/textView_goalsStepSecond_second"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="26sp" />
-    </FrameLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineEndStepSecond"
@@ -53,7 +55,6 @@
             app:layout_constraintGuide_begin="25dp" />
 
 
-
         <TextView
             android:id="@+id/textViewGoalsStepSecondResult"
             android:layout_width="wrap_content"
@@ -64,7 +65,7 @@
             android:textColor="@color/black"
             android:textSize="26sp"
             app:layout_constraintStart_toStartOf="@id/guidelineStartStepSecond"
-            app:layout_constraintTop_toTopOf="parent"  />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textViewGoalsStepSecondResultDescription"
@@ -93,8 +94,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputGoalsStepSecondWant"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="@id/guidelineEndStepSecond"
             app:layout_constraintStart_toStartOf="@id/guidelineStartStepSecond"
@@ -105,7 +107,8 @@
                 android:id="@+id/editTextGoalsStepSecondWant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberPassword"
+                android:imeOptions="actionNext"
+                android:inputType="number"
                 android:lines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,26 +123,31 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputGoalsStepSecondQuantity"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="@id/guidelineEndStepSecond"
             app:layout_constraintStart_toStartOf="@id/guidelineStartStepSecond"
             app:layout_constraintTop_toBottomOf="@+id/textViewGoalsStepSecondQuantity"
             app:layout_constraintVertical_chainStyle="packed">
 
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/editTextGoalsStepSecondQuantity"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:inputType="numberPassword"-->
-<!--                android:lines="1" />-->
+
+            <!--            <com.google.android.material.textfield.TextInputEditText-->
+            <!--                android:id="@+id/editTextGoalsStepSecondQuantity"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:inputType="numberPassword"-->
+            <!--                android:lines="1" />-->
 
             <AutoCompleteTextView
+                android:id="@+id/autoCompleteTextGoalsStepSecondUnit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="none"
-                />
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -155,8 +163,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputGoalsStepSecondCriterion"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="@id/guidelineEndStepSecond"
             app:layout_constraintStart_toStartOf="@id/guidelineStartStepSecond"
@@ -167,7 +176,8 @@
                 android:id="@+id/editTextGoalsStepSecondCriterion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberPassword"
+                android:imeOptions="actionDone"
+                android:inputType="text"
                 android:lines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -183,8 +193,6 @@
             app:layout_constraintEnd_toEndOf="@id/guidelineEndStepSecond"
             app:layout_constraintStart_toStartOf="@id/guidelineStartStepSecond"
             app:layout_constraintTop_toBottomOf="@+id/textInputGoalsStepSecondCriterion" />
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

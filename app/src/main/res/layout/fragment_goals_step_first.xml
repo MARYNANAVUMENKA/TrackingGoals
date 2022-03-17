@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <!--    android:background=""-->
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
 
-    <FrameLayout
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/frameTopStepFirst"
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/background_menu">
 
         <ImageButton
             android:id="@+id/imageButtomBackStepFirst"
@@ -18,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="20dp"
-            android:background="?android:selectableItemBackground"
+            android:background="@color/background_menu"
             app:srcCompat="@drawable/ic_arrow_back" />
 
         <TextView
@@ -26,14 +27,14 @@
             android:layout_width="wrap_content"
             android:layout_height="?android:attr/actionBarSize"
             android:layout_gravity="center"
-            android:background="?android:selectableItemBackground"
+            android:background="@color/background_menu"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:text="@string/textView_goalsStepFirst_first"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="26sp" />
-    </FrameLayout>
+            android:textSize="24sp" />
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -119,17 +120,24 @@
                     android:visibility="visible"
                     />
             </FrameLayout>
-
-            <EditText
-                android:id="@+id/editTextInputGoalsStepFirst"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="170dp"
-                android:fontFamily="sans-serif-medium"
-                android:hint="@string/hint_goalsStepFirst"
-                android:inputType="textMultiLine"
-                android:lines="2"
-                android:textSize="16sp" />
+                android:layout_marginTop="170dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextInputGoalsStepFirst"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/hint_goalsStepFirst"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:inputType="textMultiLine"
+                    android:lines="2"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -174,29 +182,33 @@
             app:layout_constraintStart_toStartOf="@+id/guidelineStartStepFirst"
             app:layout_constraintTop_toBottomOf="@+id/textViewGoalsStepSecondDescriptionSecond" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/buttonGoalsStepSecondChooseDat"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:backgroundTint="#FFFFFF"
             android:fontFamily="sans-serif-medium"
-            android:textColor="@color/white"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/guidelineEndStepFirst"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guidelineStartStepFirst"
-            app:layout_constraintTop_toBottomOf="@+id/textViewGoalsStepSecondData" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewGoalsStepSecondData"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonGoalsStepFirstNext"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="12dp"
             android:backgroundTint="@color/text_blue"
             android:fontFamily="sans-serif-medium"
             android:text="@string/button_goalsStepFirst_next"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@id/guidelineEndStepFirst"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
             app:layout_constraintTop_toBottomOf="@+id/buttonGoalsStepSecondChooseDat" />
 

@@ -23,29 +23,17 @@ class GoalsConstructorViewModel(
     fun createEmptyGoals() {
         scope.launch {
             try {
-                withContext(Dispatchers.IO) {
+                val id=withContext(Dispatchers.IO) {
                     goalsRepository.createGoals()
                 }
+                _idGoals.value = id
 
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
     }
-    fun getIdEmptyGoals() {
-        scope.launch {
-            try {
-                val listId=withContext(Dispatchers.IO) {
-                    goalsRepository.getAllId()
-                }
-                _idGoals.value = listId[0]
-                Log.d("gggg", _idGoals.value.toString())
 
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
 
 
 

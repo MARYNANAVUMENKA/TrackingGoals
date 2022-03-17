@@ -26,6 +26,7 @@ import com.example.trackinggoals.model.Repositories
 import com.example.trackinggoals.navigator
 import com.example.trackinggoals.screens.GoalsConstructorFragment
 import com.example.trackinggoals.viewModelCreator
+import java.text.SimpleDateFormat
 import java.util.*
 
 class GoalsStepFirstFragment : Fragment() {
@@ -80,8 +81,12 @@ class GoalsStepFirstFragment : Fragment() {
             val d = cal.get(Calendar.DAY_OF_MONTH)
             val datepickerdialog = DatePickerDialog(requireActivity(),
                 { _, year, month, day ->
-                    binding.buttonGoalsStepSecondChooseDat.text = "$day $month, $year"
-                }, y, m, d)
+                    val calendar = Calendar.getInstance()
+                    calendar.set(year, month, day)
+                    val data = SimpleDateFormat("dd MMMM,yyyy").format(calendar.time).capitalize()
+                    binding.buttonGoalsStepSecondChooseDat.text = data
+                }, y, m, d
+            )
             datepickerdialog.show()
         }
 
@@ -90,18 +95,18 @@ class GoalsStepFirstFragment : Fragment() {
         binding.buttonGoalsStepFirstNext.setOnClickListener {
             val goalsId = requireArguments().getInt(ARG_GOALS_ID)
             viewModel.updateTextGoals(binding.editTextInputGoalsStepFirst.text.toString(), goalsId)
-            viewModel.updateDataGoals(binding.buttonGoalsStepSecondChooseDat.text.toString(),goalsId)
+            viewModel.updateDataGoals(binding.buttonGoalsStepSecondChooseDat.text.toString(), goalsId)
 //            viewModel.updatePhototGoals()
             navigator().showGoalsStepSecond(goalsId)
         }
 
 
         binding.imageButtomBackStepFirst.setOnClickListener {
-            when (binding.editTextInputGoalsStepFirst.text.toString()) {
-                "" -> showAlertDialogStepFirstBack()
-                else -> {
-                    //возврат на fragment_list_goals
-                }
+            if (binding.editTextInputGoalsStepFirst.text.toString()==""){
+                viewModel.deleteGoals(requireArguments().getInt(ARG_GOALS_ID))
+                navigator().goBaseMenu()
+            }else{
+                navigator().goBaseMenu()
             }
         }
     }

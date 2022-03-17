@@ -16,11 +16,11 @@ interface GoalsDao {
     @Query("SELECT * FROM goals")
     fun getAllGoals(): List<GoalsDbEntity>
 
-    @Query("SELECT id FROM goals")
-    fun getAllId(): List<Int>
-
     @Query("SELECT * FROM goals WHERE id = :id")
     suspend fun findById(id: Int): GoalsDbEntity
+
+    @Query("UPDATE goals SET is_active =:isActive WHERE id = :id")
+    fun updateIsActive(isActive: Boolean, id: Int)
 
     @Query("UPDATE goals SET text_goals =:textGoals WHERE id = :id")
     fun updateText(textGoals: String, id: Int)
@@ -32,7 +32,7 @@ interface GoalsDao {
     fun updateDataExecution(dataExecution: String, id: Int)
 
     @Query("UPDATE goals SET quantity =:quantity WHERE id = :id")
-    fun updateQuantity(quantity: String, id: Int)
+    fun updateQuantity(quantity: Int, id: Int)
 
     @Query("UPDATE goals SET unit =:unit WHERE id = :id")
     fun updateUnit(unit: String, id: Int)

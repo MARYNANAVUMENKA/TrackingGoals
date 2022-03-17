@@ -15,12 +15,11 @@ import com.example.trackinggoals.viewModelCreator
 
 class GoalsListFragment : Fragment() {
     private lateinit var binding: FragmentGoalsListBinding
-    private lateinit var adapter:GoalsAdapter
+    private lateinit var adapter: GoalsAdapter
     private val viewModel by viewModelCreator { GoalsListViewModel(Repositories.goalsRepository) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.loadListGoals()
     }
 
     override fun onCreateView(
@@ -28,21 +27,39 @@ class GoalsListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=FragmentGoalsListBinding.inflate(inflater, container, false)
+        binding = FragmentGoalsListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter= GoalsAdapter(object :GoalsActionListener{
+        adapter = GoalsAdapter(object : GoalsActionListener {
             override fun onEditGoals(goals: Goals) {
                 navigator().showGoalsStepFirst(goals.id)
             }
+
+            override fun onEditStatusGoals(goals: Goals) {
+                viewModel.editStatusGoals(goals.isActive, goals.id)
+
+            }
+
+            override fun onRemoveGoals(goals: Goals) {
+                viewModel.removeGoals(goals.id)
+
+            }
         })
-        viewModel.listGoalsLiveData.observe(viewLifecycleOwner){
+        binding.floatingActionButtonGoalsList.setOnClickListener {
+            viewModel.createEmptyGoals()
+            viewModel.idGoals.observe(viewLifecycleOwner) {
+                navigator().showGoalsStepFirst(it)
+            }
+        }
+
+        viewModel.listGoalsLiveData.observe(viewLifecycleOwner) {
             adapter.goals = it
         }
+
 
         val layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewGoalsList.layoutManager = layoutManager

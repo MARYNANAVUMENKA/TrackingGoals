@@ -60,6 +60,9 @@ class MainActivity : AppCompatActivity(),Navigator {
             .replace(R.id.fragmentContainer, GoalsStepSecondFragment.newInstance(goalsId))
             .commit()
     }
+    override fun goBack() {
+        onBackPressed()
+    }
 
 
 }

@@ -3,25 +3,29 @@ package com.example.trackinggoals.model
 import kotlinx.coroutines.CoroutineDispatcher
 import java.util.*
 
+
+
 class RoomGoalsRepository(
     private val noteRepository: NoteRepository,
     private val goalsDao: GoalsDao,
     private val ioDispatcher: CoroutineDispatcher,
-): GoalsRepository {
+) : GoalsRepository {
+
 
     override suspend fun getListGoals(): List<Goals> {
-        val listGoalsDbEntity= goalsDao.getAllGoals()
-        if(listGoalsDbEntity.isNullOrEmpty()){
+        val listGoalsDbEntity = goalsDao.getAllGoals()
+        if (listGoalsDbEntity.isNullOrEmpty()) {
             return emptyList()
-        }else{
-            val listGoals=listGoalsDbEntity.map {
+        } else {
+            val listGoals = listGoalsDbEntity.map {
                 Goals(
                     id = it.id,
-                    photo=it.photo,
+                    isActive = true,
+                    photo = it.photo,
                     textGoals = it.textGoals,
                     dataExecution = it.dataExecution,
                     quantity = it.quantity,
-                    unit=it.unit,
+                    unit = it.unit,
                     criterion = it.criterion
                 )
             }
@@ -29,25 +33,20 @@ class RoomGoalsRepository(
         }
     }
 
-    override suspend fun getAllId(): List<Int> {
-        return goalsDao.getAllId()
+
+    override suspend fun getIdGoals(id: Int): Goals {
+        return goalsDao.findById(id).toGoals()
     }
 
-    override suspend fun getIdGoals(id:Int): Goals {
-        val listId=goalsDao.getAllId()
-
-        val goals = if (listId.contains(id)) {
-            goalsDao.findById(id).toGoals()
-        } else {
-            GoalsDbEntity(1,"","","",0,"","").toGoals()
-        }
-        return goals
-
-    }
-
-    override suspend fun createGoals() {
-        val goalsDbEntity = GoalsDbEntity(UUID.randomUUID().hashCode(),"","","",0,"","" )
+    override suspend fun createGoals(): Int {
+        val id = UUID.randomUUID().hashCode()
+        val goalsDbEntity = GoalsDbEntity(id, true, "", "", "", 0, "", "")
         goalsDao.createGoals(goalsDbEntity)
+        return id
+    }
+
+    override suspend fun removeGoals(id: Int) {
+        goalsDao.deleteGoals(goalsDao.findById(id))
     }
 
     override suspend fun updateText(textGoals: String, id: Int) {
@@ -59,8 +58,30 @@ class RoomGoalsRepository(
     }
 
     override suspend fun updateDataExecution(dataExecution: String, id: Int) {
-        goalsDao.updateDataExecution(dataExecution,id)
+        goalsDao.updateDataExecution(dataExecution, id)
     }
+
+    override suspend fun updateIsActive(isActive: Boolean, id: Int) {
+        if (isActive){
+            goalsDao.updateIsActive(false,id)
+        }else{
+            goalsDao.updateIsActive(true,id)
+        }
+
+    }
+
+    override suspend fun updateQuantity(quantity: Int, id: Int) {
+        goalsDao.updateQuantity(quantity,id)
+    }
+
+    override suspend fun updateUnit(unit: String, id: Int) {
+        goalsDao.updateUnit(unit, id)
+    }
+
+    override suspend fun updateCriterion(criterion: String, id: Int) {
+        goalsDao.updateCriterion(criterion, id)
+    }
+
 
 
 }
