@@ -47,7 +47,7 @@ class BaseMenuFragment : Fragment() {
                         if (it.isEmpty()){
                             childFragmentManager
                                 .beginTransaction()
-                                .replace(R.id.fragmentContainerMenu, GoalsConstructorFragment.newInstance())
+                                .replace(R.id.fragmentContainerMenu, GoalsStartFragment.newInstance())
                                 .commit()
                         }else{
                             childFragmentManager

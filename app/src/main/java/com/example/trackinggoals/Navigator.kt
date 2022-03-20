@@ -11,8 +11,7 @@ interface Navigator {
 
     fun goBaseMenu()
 
-    fun showGoalsStepFirst(goalsId: Int)
+    fun showGoalsConstructor(goalsId: Int)
 
-    fun showGoalsStepSecond(goalsId: Int)
 
 }

@@ -82,7 +82,7 @@
                 app:layout_constraintTop_toBottomOf="@id/frameItemNote"/>
 
             <FrameLayout
-                android:id="@+id/frameGoals"
+                android:id="@+id/frameNote"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintTop_toBottomOf="@+id/frameItemNote"

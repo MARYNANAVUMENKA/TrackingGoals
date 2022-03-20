@@ -58,7 +58,7 @@ class NoteListFragment : Fragment() {
                         10->items[10]
                         else ->items[11]
                     }
-//                    binding.btnToolbarNoteList.text = "$currentMonth, $year"
+                    binding.btnToolbarNoteList.text = "$currentMonth, $year"
                     viewModel.loadListNoteWithIncoming(year,month,day)
                 }, y, m, d)
             datepickerdialog.show()

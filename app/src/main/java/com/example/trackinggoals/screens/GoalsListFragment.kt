@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.trackinggoals.databinding.FragmentGoalsListBinding
@@ -36,7 +35,7 @@ class GoalsListFragment : Fragment() {
 
         adapter = GoalsAdapter(object : GoalsActionListener {
             override fun onEditGoals(goals: Goals) {
-                navigator().showGoalsStepFirst(goals.id)
+                navigator().showGoalsConstructor(goals.id)
             }
 
             override fun onEditStatusGoals(goals: Goals) {
@@ -52,7 +51,7 @@ class GoalsListFragment : Fragment() {
         binding.floatingActionButtonGoalsList.setOnClickListener {
             viewModel.createEmptyGoals()
             viewModel.idGoals.observe(viewLifecycleOwner) {
-                navigator().showGoalsStepFirst(it)
+                navigator().showGoalsConstructor(it)
             }
         }
 

@@ -18,6 +18,8 @@ interface GoalsRepository {
 
     suspend fun updateIsActive(isActive: Boolean, id: Int)
 
+    suspend fun updateProgress(progress: Int, id: Int)
+
     suspend fun updateQuantity(quantity: Int, id: Int)
 
     suspend fun updateUnit(unit: String, id: Int)
