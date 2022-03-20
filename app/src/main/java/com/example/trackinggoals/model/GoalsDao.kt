@@ -31,6 +31,9 @@ interface GoalsDao {
     @Query("UPDATE goals SET data_execution =:dataExecution WHERE id = :id")
     fun updateDataExecution(dataExecution: String, id: Int)
 
+    @Query("UPDATE goals SET progress =:progress WHERE id = :id")
+    fun updateProgress(progress: Int, id: Int)
+
     @Query("UPDATE goals SET quantity =:quantity WHERE id = :id")
     fun updateQuantity(quantity: Int, id: Int)
 

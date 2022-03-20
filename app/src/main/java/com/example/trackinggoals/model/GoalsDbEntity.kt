@@ -19,6 +19,8 @@ data class GoalsDbEntity(
     val textGoals:String,
     @ColumnInfo(name = "data_execution")
     val dataExecution: String,
+    @ColumnInfo(name = "progress")
+    val progress:Int,
     @ColumnInfo(name = "quantity")
     val quantity:Int,
     @ColumnInfo(name = "unit")
@@ -32,6 +34,7 @@ data class GoalsDbEntity(
         photo=photo,
         textGoals=textGoals,
         dataExecution=dataExecution,
+        progress=progress,
         quantity=quantity,
         unit=unit,
         criterion=criterion

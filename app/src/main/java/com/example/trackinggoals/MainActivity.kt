@@ -3,12 +3,10 @@ package com.example.trackinggoals
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.trackinggoals.databinding.ActivityMainBinding
-import com.example.trackinggoals.model.Goals
-import com.example.trackinggoals.screens.GoalsStepFirstFragment
+import com.example.trackinggoals.screens.GoalsConstructorFragment
 import com.example.trackinggoals.model.NoteWithIncoming
 import com.example.trackinggoals.model.Repositories
 import com.example.trackinggoals.screens.BaseMenuFragment
-import com.example.trackinggoals.screens.GoalsStepSecondFragment
 import com.example.trackinggoals.screens.IncomingFragment
 
 class MainActivity : AppCompatActivity(),Navigator {
@@ -47,20 +45,14 @@ class MainActivity : AppCompatActivity(),Navigator {
             .commit()
     }
 
-    override fun showGoalsStepFirst(goalsId:Int) {
+    override fun showGoalsConstructor(goalsId:Int) {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer, GoalsStepFirstFragment.newInstance(goalsId))
+            .replace(R.id.fragmentContainer, GoalsConstructorFragment.newInstance(goalsId))
             .commit()
     }
 
-    override fun showGoalsStepSecond(goalsId: Int) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragmentContainer, GoalsStepSecondFragment.newInstance(goalsId))
-            .commit()
-    }
-    override fun goBack() {
+        override fun goBack() {
         onBackPressed()
     }
 

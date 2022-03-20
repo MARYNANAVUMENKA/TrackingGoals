@@ -19,10 +19,10 @@
     <string name="alert_dialog_action_yes">Да</string>
     <string name="alert_dialog_action_no">Нет</string>
 
-<!--    <string name="alert_dialog_next_title">Продолжить без сохранения?</string>-->
-<!--    <string name="alert_dialog_next_text">Не введен текст желания. Данные не будут сохранены.</string>-->
-<!--    <string name="alert_dialog_action_next">Продолжить</string>-->
-<!--    <string name="alert_dialog_action_next_return">Вернуться</string>-->
+    <string name="alert_dialog_complete_title">Завершить без сохранения?</string>
+    <string name="alert_dialog_complete_text">Не введен текст желания. Данные не будут сохранены.</string>
+    <string name="alert_dialog_complete_action_complete">Завершить</string>
+    <string name="alert_dialog_complete_action_return">Вернуться</string>
 
 
     <string name="january">Январь</string>
@@ -92,25 +92,26 @@
     <string name="add_goals_content_description">Add new goals</string>
     <string name="button_constructor_start">Начать</string>
     <string name="textView_constructor_title">Конструктор целей</string>
-    <string name="textView_constructor_description">Это твой мощный инструмент для достижения любых целей. За два шага создай свою цель,воплощай и следи за прогрессом!</string>
+    <string name="textView_constructor_description">Это твой мощный инструмент для достижения любых целей. Cоздай свою цель,воплощай и следи за прогрессом!</string>
 
-    <string name="textView_goalsStepFirst_first">Шаг 1</string>
-    <string name="textView_goalsStepFirst_title">Чего ты хочешь?</string>
-    <string name="textView_goalsStepFirst_description">Напиши желание которое тебя вдохновляет,и добавь картинку.Пиши, даже если пока не знаешь как этого достичь</string>
-    <string name="hint_goalsStepFirst">Сформулируй своё желание и запиши его сюда</string>
-    <string name="button_goalsStepFirst_choosePic">Выбрать картинку</string>
-    <string name="button_goalsStepFirst_next">Далее</string>
-    <string name="textView_goalsStepFirst_title_second">Когда планируешь достичь?</string>
-    <string name="textView_goalsStepFirst_description_second">Рекомендуемые сроки от 3 месяцев до 3 лет.Ведь ты хочешь этого не к старости,а сейчас?</string>
-    <string name="textView_goalsStepFirst_data">ВЫБЕРИ ДАТУ</string>
-
-    <string name="textView_goalsStepSecond_second">Шаг 2</string>
-    <string name="textView_goalsStepSecond_result">В чём измерить результат?</string>
-    <string name="textView_goalsStepSecond_result_description">Измерения нужны для отслеживания процесса.В чём можно её посчитать?</string>
-    <string name="editText_goalsStepSecond_want">СКОЛЬКО ХОЧУ</string>
-    <string name="editText_goalsStepSecond_quantity">ЕДИНИЦА ИЗМЕРЕНИЯ</string>
-    <string name="editText_goalsStepSecond_criterion">ОПИСАНИЕ КРИТЕРИЯ</string>
-    <string name="button_goalsStepSecond_complete">Завершить создание</string>
+    <string name="textView_goals_first">Конструктор целей</string>
+    <string name="textView_goals_title">Чего ты хочешь?</string>
+    <string name="textView_goals_description">Напиши желание которое тебя вдохновляет,и добавь картинку. Пиши, даже если пока не знаешь как этого достичь.</string>
+    <string name="hint_goals_quantity">100</string>
+    <string name="hint_goalsStep_open_list">Открыть список</string>
+    <string name="hint_goals_description_goals">Сформулируй своё желание и запиши его сюда...</string>
+    <string name="hint_goals_description_criterion">Прочитано, накоплено, сделано, выучено...</string>
+    <string name="button_goals_choosePic">Выбрать картинку</string>
+    <string name="button_goals_next">Завершить создание</string>
+    <string name="textView_goals_title_second">Когда планируешь достичь?</string>
+    <string name="textView_goals_description_second">Рекомендуемые сроки от 3 месяцев до 3 лет. Ведь ты хочешь этого не к старости, а сейчас?</string>
+    <string name="textView_goals_data">ВЫБЕРИ ДАТУ</string>
+    <string name="textView_goals_result">В чём измерить результат?</string>
+    <string name="textView_goals_result_description">Измерения нужны для отслеживания процесса. В чём можно её посчитать?</string>
+    <string name="editText_goals_want">СКОЛЬКО ХОЧУ</string>
+    <string name="editText_goals_quantity">ЕДИНИЦА ИЗМЕРЕНИЯ</string>
+    <string name="editText_goals_criterion">ОПИСАНИЕ КРИТЕРИЯ</string>
+    <string name="button_goals_complete">Завершить создание</string>
 
     <string name="textView_bottom_sheet_photo_load">Загрузить свою</string>
     <string name="textView_bottom_sheet_photo_create">Сделать снимок</string>

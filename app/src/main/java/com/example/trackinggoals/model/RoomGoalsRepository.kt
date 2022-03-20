@@ -24,6 +24,7 @@ class RoomGoalsRepository(
                     photo = it.photo,
                     textGoals = it.textGoals,
                     dataExecution = it.dataExecution,
+                    progress=it.progress,
                     quantity = it.quantity,
                     unit = it.unit,
                     criterion = it.criterion
@@ -40,7 +41,7 @@ class RoomGoalsRepository(
 
     override suspend fun createGoals(): Int {
         val id = UUID.randomUUID().hashCode()
-        val goalsDbEntity = GoalsDbEntity(id, true, "", "", "", 0, "", "")
+        val goalsDbEntity = GoalsDbEntity(id, true, "", "", "", 0, 0,"", "" )
         goalsDao.createGoals(goalsDbEntity)
         return id
     }
@@ -68,6 +69,10 @@ class RoomGoalsRepository(
             goalsDao.updateIsActive(true,id)
         }
 
+    }
+
+    override suspend fun updateProgress(progress: Int, id: Int) {
+        goalsDao.updateProgress(progress, id)
     }
 
     override suspend fun updateQuantity(quantity: Int, id: Int) {

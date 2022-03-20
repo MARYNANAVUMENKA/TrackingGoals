@@ -32,7 +32,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/textViewIncoming"
+                    android:id="@+id/imageViewGoalsPic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -68,6 +68,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frameImage">
+
                 <TextView
                     android:id="@+id/textViewDataTitle"
                     android:layout_width="wrap_content"
@@ -140,56 +141,56 @@
                         android:id="@+id/textViewQuantitydOf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
                         android:fontFamily="sans-serif-light"
+                        android:text="из"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/textViewQuantityTotal"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/textViewQuantityNow"
-                        android:text="из" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textViewQuantityTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
                         android:fontFamily="sans-serif-light"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/textViewQuantityUnit"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/textViewQuantitydOf"
+                        app:layout_constraintTop_toTopOf="parent"
                         tools:text="100000" />
 
                     <TextView
                         android:id="@+id/textViewQuantityUnit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
                         android:fontFamily="sans-serif-light"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/textViewQuantityPercent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/textViewQuantityTotal"
+                        app:layout_constraintTop_toTopOf="parent"
                         tools:text="Долларов" />
 
                     <TextView
                         android:id="@+id/textViewQuantityPercent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
                         android:fontFamily="sans-serif-light"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        android:layout_marginEnd="5dp"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/imagePlus"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/textViewQuantityUnit"
+                        app:layout_constraintTop_toTopOf="parent"
                         tools:text="0.3%" />
 
                     <ImageView
@@ -202,11 +203,7 @@
                         app:srcCompat="@drawable/ic_add_goals" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
             </FrameLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>
