@@ -3,11 +3,13 @@ package com.example.trackinggoals
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.trackinggoals.databinding.ActivityMainBinding
+import com.example.trackinggoals.model.Incoming
+import com.example.trackinggoals.model.NoteIncoming
 import com.example.trackinggoals.screens.GoalsConstructorFragment
-import com.example.trackinggoals.model.NoteWithIncoming
 import com.example.trackinggoals.model.Repositories
 import com.example.trackinggoals.screens.BaseMenuFragment
 import com.example.trackinggoals.screens.IncomingFragment
+import java.util.*
 
 class MainActivity : AppCompatActivity(),Navigator {
 
@@ -27,12 +29,32 @@ class MainActivity : AppCompatActivity(),Navigator {
             }
         }
 
-    override fun showNewNote(noteWithIncoming: NoteWithIncoming) {
+    override fun showIncoming(incoming: Incoming) {
         supportFragmentManager
             .beginTransaction()
             .replace(
                 R.id.fragmentContainer,
-                IncomingFragment.newInstance(noteWithIncoming.noteDbEntity.id, noteWithIncoming.noteDbEntity.currentData)
+                IncomingFragment.newInstance(incoming.idIm, incoming.idNote, incoming.currentDataIn)
+            )
+            .commit()
+    }
+
+
+    override fun showIncoming(noteIncoming: NoteIncoming) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(
+                R.id.fragmentContainer,
+                IncomingFragment.newInstance(UUID.randomUUID().hashCode(),noteIncoming.note.id,noteIncoming.note.currentData)
+            )
+            .commit()
+    }
+    override fun showNewNoteIncoming(noteIncoming: NoteIncoming) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(
+                R.id.fragmentContainer,
+                IncomingFragment.newInstance(1,noteIncoming.note.id,noteIncoming.note.currentData)
             )
             .commit()
     }

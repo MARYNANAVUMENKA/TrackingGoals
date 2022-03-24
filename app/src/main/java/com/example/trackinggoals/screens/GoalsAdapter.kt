@@ -16,6 +16,7 @@ interface GoalsActionListener {
     fun onEditGoals(goals: Goals)
     fun onEditStatusGoals(goals: Goals)
     fun onRemoveGoals(goals: Goals)
+//    fun openDialogEditProgress(goals: Goals)
 
 }
 
@@ -34,9 +35,12 @@ class GoalsAdapter(private val actionListener: GoalsActionListener) :
             R.id.imageButtonMore -> {
                 showPopupMenu(v)
             }
-//            else -> {
-//                actionListener.onEditGoals(goals)
-//            }
+            R.id.imagePlusGoals->{
+//                openDialogEditProgress(goals)
+            }
+            else -> {
+                actionListener.onEditGoals(goals)
+            }
         }
 
     }
@@ -61,6 +65,8 @@ class GoalsAdapter(private val actionListener: GoalsActionListener) :
             textViewTitleCriteria.text=goals.criterion
             textViewDataTitle.text = goals.dataExecution
             textViewQuantityTotal.text= goals.quantity.toString()
+            seekBar.progress = goals.progress
+            seekBar.max=goals.quantity
             textViewQuantityUnit.text=goals.unit
             textViewQuantityNow.text="0"
             textViewQuantityPercent.text="0%"
@@ -98,6 +104,8 @@ class GoalsAdapter(private val actionListener: GoalsActionListener) :
 
         popupMenu.show()
     }
+
+
 
 
     class Holder(

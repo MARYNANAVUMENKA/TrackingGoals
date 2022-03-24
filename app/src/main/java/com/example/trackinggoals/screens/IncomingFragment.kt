@@ -12,6 +12,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.trackinggoals.R
 import com.example.trackinggoals.databinding.FragmentNoteIncomingBinding
+import com.example.trackinggoals.model.Incoming
 import com.example.trackinggoals.model.Repositories
 import com.example.trackinggoals.navigator
 import com.example.trackinggoals.viewModelCreator
@@ -19,14 +20,19 @@ import com.example.trackinggoals.viewModelCreator
 class IncomingFragment() : Fragment() {
     private lateinit var binding: FragmentNoteIncomingBinding
     private val viewModel by viewModelCreator { IncomingViewModel(Repositories.noteRepository) }
+    private lateinit var currentIncoming: Incoming
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val incomingId = requireArguments().getInt(ARG_INCOMING_ID)
         val noteId = requireArguments().getInt(ARG_NOTE_ID)
-        val currentData = requireArguments().getString(ARG_NOTE_DATA)
-        if (currentData != null) {
-            viewModel.loadNoteWithIncoming(noteId, currentData)
+        val currentDataIn=requireArguments().getString(ARG_INCOMING_DATA)
+
+        if (currentDataIn != null) {
+            viewModel.loadIncoming(incomingId,noteId,currentDataIn)
         }
+
     }
 
     override fun onCreateView(
@@ -42,25 +48,36 @@ class IncomingFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.editTextIncoming.requestFocus()
 
-        binding.imageViewDone.setOnClickListener {
-            when (binding.editTextIncoming.text.toString()) {
-                "" -> showAlertDialogBack()
-                else -> {
-                    updateNoteWithIncoming()
-                    navigator().goBaseMenu()
-                }
-            }
+        viewModel.incoming.observe(viewLifecycleOwner){
+            currentIncoming = it
+        }
+        viewModel.currentData.observe(viewLifecycleOwner) {
+            binding.textViewData.text = it
+        }
+        viewModel.textMessage.observe(viewLifecycleOwner) {
+            binding.editTextIncoming.setText(it)
         }
 
         binding.imageViewBack.setOnClickListener {
             when (binding.editTextIncoming.text.toString()) {
                 "" -> showAlertDialogBack()
                 else -> {
-                    updateNoteWithIncoming()
                     navigator().goBaseMenu()
                 }
             }
         }
+
+        binding.imageViewDone.setOnClickListener {
+            when (binding.editTextIncoming.text.toString()) {
+                "" -> showAlertDialogBack()
+                else -> {
+                    updateIncoming()
+                    navigator().goBaseMenu()
+                }
+            }
+        }
+
+
 
         binding.imageViewDelete.setOnClickListener {
             showAlertDialogDelete()
@@ -69,29 +86,12 @@ class IncomingFragment() : Fragment() {
 //        binding.imageViewGoalsNewNote
 
 
-        viewModel.currentData.observe(viewLifecycleOwner) {
-            binding.textViewData.text = it
-        }
-        viewModel.textMessage.observe(viewLifecycleOwner) {
-            binding.editTextIncoming.setText(it)
-        }
 
     }
 
-
-    private fun updateNoteWithIncoming() {
-        val textIncoming = binding.editTextIncoming.text.toString()
-        val noteId = requireArguments().getInt(ARG_NOTE_ID)
-        val currentData = requireArguments().getString(ARG_NOTE_DATA)
-        if (noteId == 1) {
-            if (currentData != null) {
-                viewModel.saveNoteWithIncoming(textIncoming, noteId, currentData)
-            }
-        } else {
-            if (currentData != null) {
-                viewModel.editNoteWithIncoming(textIncoming, noteId, currentData)
-            }
-        }
+    private fun updateIncoming() {
+        val textMessages = binding.editTextIncoming.text.toString()
+        viewModel.updateIncoming(textMessages,currentIncoming.idIm)
     }
 
     private fun showAlertDialogBack() {
@@ -113,11 +113,11 @@ class IncomingFragment() : Fragment() {
     }
 
     private fun showAlertDialogDelete() {
-        val noteId = requireArguments().getInt(ARG_NOTE_ID)
+
         val listener = DialogInterface.OnClickListener { _, which ->
             when (which) {
                 DialogInterface.BUTTON_POSITIVE -> {
-                    viewModel.deleteNoteWithIncoming(noteId)
+                    viewModel.deleteIncoming(currentIncoming)
                     navigator().goBaseMenu()
                 }
                 DialogInterface.BUTTON_NEGATIVE -> Log.d("dialog", "Dialog dismissed")
@@ -136,11 +136,12 @@ class IncomingFragment() : Fragment() {
 
     companion object {
         private const val ARG_NOTE_ID = "ARG_NOTE_ID"
-        private const val ARG_NOTE_DATA = "ARG_NOTE_DATA"
+        private const val ARG_INCOMING_ID = "ARG_INCOMING_ID"
+        private const val ARG_INCOMING_DATA = "ARG_INCOMING_DATA"
 
-        fun newInstance(noteId: Int, currentData: String): IncomingFragment {
+        fun newInstance(incomingId: Int, noteId: Int,  currentDataIn: String): IncomingFragment {
             val fragment = IncomingFragment()
-            fragment.arguments = bundleOf(ARG_NOTE_ID to noteId, ARG_NOTE_DATA to currentData)
+            fragment.arguments = bundleOf(ARG_INCOMING_ID to incomingId, ARG_NOTE_ID to noteId,ARG_INCOMING_DATA to currentDataIn)
             return fragment
         }
     }

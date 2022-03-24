@@ -13,7 +13,13 @@ data class NoteDbEntity(
     val id: Int,
     @ColumnInfo(name = "current_data")
     val currentData: String,
-)
+) {
+    fun toNote(): Note =
+        Note(
+            id = id,
+            currentData = currentData
+        )
+}
 
 
 @Entity(
@@ -25,16 +31,24 @@ data class IncomingDbEntity(
     val idIm: Int,
     @ColumnInfo(name = "id_note")
     val idNote: Int,
+    @ColumnInfo(name = "current_data_in")
+    val currentDataIn: String,
+    @ColumnInfo(name = "id_goals")
+    val idGoals:Int,
+    @ColumnInfo(name = "quantity")
+    val quantity:String,
     @ColumnInfo(name = "text_messages")
     val textMessages: String,
 ) {
     fun toIncoming(): Incoming =
         Incoming(
-        idIm = idIm,
-        idNote = idNote,
-        textMessages = textMessages
-    )
-
+            idIm = idIm,
+            idNote = idNote,
+            currentDataIn=currentDataIn,
+            idGoals=idGoals,
+            quantity=quantity,
+            textMessages = textMessages
+        )
 }
 
 
@@ -45,7 +59,7 @@ data class NoteWithIncoming(
     @Relation(
         parentColumn = "id", entityColumn = "id_note"
     )
-    val listincomingMessages: List<IncomingDbEntity>
+    val listIncomingDbEntity: List<IncomingDbEntity>
 )
 
 

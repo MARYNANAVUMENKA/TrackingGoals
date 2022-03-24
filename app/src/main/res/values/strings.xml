@@ -79,13 +79,6 @@
         <item>@string/books</item>
     </string-array>
 
-
-
-
-
-
-
-
     <string name="text_goals_accumulated">НАКОПЛЕНО</string>
     <string name="text_goals_reaching_now">Достигаю сейчас</string>
     <string name="text_goals_achieved">Достигнутые</string>
@@ -126,6 +119,8 @@
     <string name="popupmenu_goals_accomplished">Цель достигнута</string>
     <string name="popupmenu_goals_remove">Удалить цель</string>
 
-
+    <string name="hint_custom_fragment">Введите количество</string>
+    <string name="title_custom_fragment">Сколько прибавилось или отнялось?</string>
+    <string name="custom_fragment_action_confirm">Подтвердить</string>
 
 </resources>

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.trackinggoals.databinding.FragmentNoteListBinding
 import android.view.*
 import com.example.trackinggoals.*
-import com.example.trackinggoals.model.NoteWithIncoming
+import com.example.trackinggoals.model.NoteIncoming
 import com.example.trackinggoals.model.Repositories
 import java.util.*
 
@@ -15,7 +15,6 @@ import java.util.*
 class NoteListFragment : Fragment() {
     private lateinit var binding: FragmentNoteListBinding
     private lateinit var adapter: NoteAdapter
-
 
 
     private val viewModel by viewModelCreator { NoteListViewModel(Repositories.noteRepository) }
@@ -64,17 +63,21 @@ class NoteListFragment : Fragment() {
             datepickerdialog.show()
         }
 
-        adapter = NoteAdapter(object : NoteActionListener {
-            override fun onNewNoteDetails(noteWithIncoming: NoteWithIncoming) {
-                navigator().showNewNote(noteWithIncoming)
+        adapter = NoteAdapter(navigator(), object: NoteActionListener{
+            override fun addIncomingInNote(noteIncoming: NoteIncoming) {
+                if (noteIncoming.note.id == 1) {
+                    navigator().showNewNoteIncoming(noteIncoming)
+                } else {
+                    navigator().showIncoming(noteIncoming)
+                }
             }
-
         })
-        viewModel.listNoteWithIncomingLiveData.observe(viewLifecycleOwner) {
-            adapter.notesWithIncoming = it
+        viewModel.listNoteIncomingLiveData.observe(viewLifecycleOwner) {
+            adapter.notesIncoming = it
         }
 
         val layoutManager = LinearLayoutManager(requireContext())
+
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
 

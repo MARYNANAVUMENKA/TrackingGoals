@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.trackinggoals.model.NoteIncoming
 import com.example.trackinggoals.model.NoteRepository
 import com.example.trackinggoals.model.NoteWithIncoming
 import kotlinx.coroutines.*
@@ -15,8 +16,8 @@ class NoteListViewModel(
 ) : ViewModel() {
     private val scope = CoroutineScope(Dispatchers.Main)
 
-    private val _listNoteWithIncomingLiveData = MutableLiveData<List<NoteWithIncoming>>()
-    val listNoteWithIncomingLiveData: LiveData<List<NoteWithIncoming>> = _listNoteWithIncomingLiveData
+    private val _listNoteIncomingLiveData = MutableLiveData<List<NoteIncoming>>()
+    val listNoteIncomingLiveData: LiveData<List<NoteIncoming>> = _listNoteIncomingLiveData
 
     private val _currentMonthYearLiveData = MutableLiveData<String>()
     val currentMonthYearLiveData: LiveData<String> = _currentMonthYearLiveData
@@ -34,12 +35,12 @@ class NoteListViewModel(
     fun loadListNoteWithIncoming(currentYear: Int, currentMonth: Int, currentDay: Int) {
         scope.launch {
             try {
-                val notesWithIncoming = withContext(Dispatchers.IO) {
+                val noteIncoming = withContext(Dispatchers.IO) {
                     noteRepository.getListCurrentMonthYear(currentYear, currentMonth, currentDay)
                 }
 
-                _listNoteWithIncomingLiveData.value = notesWithIncoming
-                Log.d("ttt", _listNoteWithIncomingLiveData.value.toString())
+                _listNoteIncomingLiveData.value = noteIncoming
+                Log.d("ttt", _listNoteIncomingLiveData.value.toString())
             } catch (e: Exception) {
                 e.printStackTrace()
             }

@@ -50,25 +50,19 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_begin="19dp" />
 
-            <LinearLayout
-                android:id="@+id/frameItemNote"
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerIncoming"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_incoming"
+                tools:itemCount="2">
 
-                <TextView
-                    android:id="@+id/textViewItemNoteIncoming"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:fontFamily="sans-serif-light"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-            </LinearLayout>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <View
                 android:id="@+id/bottomDivider"
@@ -79,13 +73,13 @@
                 android:layout_marginEnd="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/frameItemNote"/>
+                app:layout_constraintTop_toBottomOf="@id/recyclerIncoming"/>
 
             <FrameLayout
                 android:id="@+id/frameNote"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/frameItemNote"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerIncoming"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 >
@@ -111,6 +105,7 @@
                     app:srcCompat="@drawable/ic_add_note" />
 
             </FrameLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

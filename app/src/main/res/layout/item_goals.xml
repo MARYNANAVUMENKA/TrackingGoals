@@ -187,14 +187,14 @@
                         android:fontFamily="sans-serif-light"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        app:layout_constraintEnd_toStartOf="@+id/imagePlus"
+                        app:layout_constraintEnd_toStartOf="@+id/imagePlusGoals"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/textViewQuantityUnit"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="0.3%" />
 
                     <ImageView
-                        android:id="@+id/imagePlus"
+                        android:id="@+id/imagePlusGoals"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"

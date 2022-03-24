@@ -48,7 +48,7 @@ class RoomNoteRepository(
         currentYear: Int,
         currentMonth: Int,
         currentDay: Int
-    ): List<NoteWithIncoming> {
+    ): List<NoteIncoming> {
         val calendarCurrent = Calendar.getInstance()
         calendarCurrent.set(currentYear, currentMonth, currentDay)
         val allDays = mutableListOf<String>()
@@ -60,35 +60,71 @@ class RoomNoteRepository(
             allDays.add(data)
         }
 
-        var listNoteWithIncoming = noteDao.getNotewithIncoming().toMutableList()
-        Log.d("rrr", listNoteWithIncoming.toString())
+        var listNoteWithIncoming = noteDao.getNoteWithIncoming().toMutableList()
+        var listNoteIncoming = listNoteWithIncoming.map { noteWithIncoming ->
+            NoteIncoming(
+                note = noteWithIncoming.noteDbEntity.toNote(),
+                listIncoming = noteWithIncoming.listIncomingDbEntity.map {
+                    Incoming(
+                        idIm = it.idIm,
+                        idNote = it.idNote,
+                        currentDataIn = it.currentDataIn,
+                        idGoals = it.idGoals,
+                        quantity = it.quantity,
+                        textMessages = it.textMessages
+                    )
+                }
+            )
+        }.toMutableList()
 
-        var list = mutableListOf<NoteWithIncoming>()
+
+        Log.d("qqqqq", listNoteIncoming.toString())
+
+        var list = mutableListOf<NoteIncoming>()
         for (i in 0 until allDays.size) {
-            val noteDbEntity = NoteDbEntity(1, allDays[i])
-            val incomingDbEntity = IncomingDbEntity(1, 1, "")
-            val listIncomingDbEntity = listOf<IncomingDbEntity>(incomingDbEntity)
-            val noteWithIncoming = NoteWithIncoming(noteDbEntity, listIncomingDbEntity)
-            list.add(noteWithIncoming)
+            val note = Note(1, allDays[i])
+            val incoming = IncomingDbEntity(1, 1, allDays[i], 0, "", "").toIncoming()
+            val listIncoming = listOf<Incoming>(incoming)
+            val noteIncoming = NoteIncoming(note, listIncoming)
+            list.add(noteIncoming)
         }
 
-        list.addAll(listNoteWithIncoming)
-        for (item in listNoteWithIncoming) {
-            list.removeIf { it.noteDbEntity.currentData == item.noteDbEntity.currentData && it.noteDbEntity.id == 1 }
+        list.addAll(listNoteIncoming)
+        for (item in listNoteIncoming) {
+            list.removeIf { it.note.currentData == item.note.currentData && it.note.id == 1 }
         }
-        list.sortBy { it.noteDbEntity.currentData.substringAfter(',') }
+        list.sortBy { it.note.currentData.substringAfter(',') }
 
         Log.d("rrrrr", list.toString())
         return list
     }
 
 
-    override suspend fun getIdNote(noteId: Int, currentData: String): Incoming {
-        return when (noteId) {
-            1 -> Incoming(1, 1, "")
-            else -> noteDao.findByNoteId(noteId).toIncoming()
+    override suspend fun getIncoming(
+        incomingId: Int,
+        noteId: Int,
+        currentDataIn: String
+    ): Incoming {
+        val listincomingDbEntity = noteDao.getAllIncoming()
+        if (listincomingDbEntity.contains(noteDao.findByIncomingId(incomingId))) {
+            return noteDao.findByIncomingId(incomingId).toIncoming()
+        } else if (noteId == 1) {
+            val idNewNote=UUID.randomUUID().hashCode()
+            val noteDbEntity=NoteDbEntity(idNewNote,currentDataIn)
+            noteDao.createNote(noteDbEntity)
+            val incomingDbEntity = IncomingDbEntity(UUID.randomUUID().hashCode(), idNewNote, currentDataIn, 0, "", "")
+            noteDao.createIncoming(incomingDbEntity)
+            return incomingDbEntity.toIncoming()
+        } else {
+            val noteDbEntity = noteDao.findByData(currentDataIn)
+            val noteIdCurrent = noteDbEntity.id
+            val incomingDbEntity =
+                IncomingDbEntity(UUID.randomUUID().hashCode(), noteIdCurrent, currentDataIn, 0, "", "")
+            noteDao.createIncoming(incomingDbEntity)
+            return incomingDbEntity.toIncoming()
         }
     }
+
 
     override suspend fun getCurrentDay(noteId: Int): String {
         val currentDay = noteDao.findById(noteId).currentData
@@ -99,25 +135,27 @@ class RoomNoteRepository(
         TODO("Not yet implemented")
     }
 
-    override suspend fun saveNoteWithIncoming(text: String, noteId: Int, currentData: String) {
-        var id = UUID.randomUUID().hashCode()
-        val note = NoteDbEntity(id, currentData)
-        noteDao.createNote(note)
-        val idIm = UUID.randomUUID().hashCode()
-        val incomingDbEntity = IncomingDbEntity(idIm, id, text)
-        noteDao.createIncomingMessage(incomingDbEntity)
+    override suspend fun saveNoteWithIncoming(
+        incoming: Incoming
+    ) {
+        if (incoming.idNote==1||incoming.idIm==1){
+            val idNewNote=UUID.randomUUID().hashCode()
+            val noteDbEntity=NoteDbEntity(idNewNote,incoming.currentDataIn)
+            noteDao.createNote(noteDbEntity)
+            val incomingDbEntity=IncomingDbEntity(UUID.randomUUID().hashCode(),idNewNote,incoming.currentDataIn,incoming.idGoals,incoming.quantity,incoming.textMessages)
+            noteDao.createIncoming(incomingDbEntity)
+        }else{
+            noteDao.createIncoming(IncomingDbEntity(incoming.idIm,incoming.idNote,incoming.currentDataIn,incoming.idGoals,incoming.quantity,incoming.textMessages))
+        }
     }
 
-    override suspend fun editNoteWithIncoming(text: String, noteId: Int, currentData: String) {
-        noteDao.update(text, noteId)
+    override suspend fun updateIncoming(textMessages: String, idIm: Int) {
+        noteDao.updateTextMessage(textMessages, idIm)
     }
 
 
-    override suspend fun deleteNoteWithIncoming(noteId: Int) {
-        noteDao.deleteNoteWithIncoming(
-            noteDao.findById(noteId),
-            listOf(noteDao.findByNoteId(noteId))
-        )
+    override suspend fun deleteIncoming(incoming: Incoming) {
+        noteDao.deleteIncoming(IncomingDbEntity(incoming.idIm,incoming.idNote,incoming.currentDataIn,incoming.idGoals,incoming.quantity,incoming.textMessages))
     }
 
 }

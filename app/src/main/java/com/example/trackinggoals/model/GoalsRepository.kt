@@ -26,5 +26,4 @@ interface GoalsRepository {
 
     suspend fun updateCriterion(criterion: String, id: Int)
 
-
 }

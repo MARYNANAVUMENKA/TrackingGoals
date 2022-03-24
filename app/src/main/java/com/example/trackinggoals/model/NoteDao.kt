@@ -20,22 +20,22 @@ interface NoteDao {
     @Query("SELECT * FROM notes WHERE id = :id")
     suspend fun findById(id: Int): NoteDbEntity
 
-    @Query("SELECT * FROM incoming WHERE id_note = :idNote")
-    suspend fun findByNoteId(idNote: Int): IncomingDbEntity
+    @Query("SELECT * FROM incoming WHERE id_im = :idIm")
+    suspend fun findByIncomingId(idIm: Int): IncomingDbEntity
 
     @Insert(entity = IncomingDbEntity::class)
-    suspend fun createIncomingMessage(incomingDbEntity: IncomingDbEntity)
+    suspend fun createIncoming(incomingDbEntity: IncomingDbEntity)
 
     @Query("SELECT * FROM incoming")
     fun getAllIncoming(): List<IncomingDbEntity>
 
-    @Query("UPDATE incoming SET text_messages =:textMessages WHERE id_note = :idNote")
-    fun update(textMessages: String, idNote: Int)
+    @Query("UPDATE incoming SET text_messages =:textMessages WHERE id_im = :idIm")
+    fun updateTextMessage(textMessages: String, idIm: Int)
 
     @Transaction
     @Query("SELECT*FROM notes ")
-    fun getNotewithIncoming(): List<NoteWithIncoming>
+    fun getNoteWithIncoming(): List<NoteWithIncoming>
 
     @Delete
-    suspend fun deleteNoteWithIncoming(noteDbEntity: NoteDbEntity, list : List<IncomingDbEntity>)
+    suspend fun deleteIncoming(incomingDbEntity: IncomingDbEntity)
 }
