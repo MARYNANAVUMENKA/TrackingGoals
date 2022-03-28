@@ -33,8 +33,8 @@ data class IncomingDbEntity(
     val idNote: Int,
     @ColumnInfo(name = "current_data_in")
     val currentDataIn: String,
-    @ColumnInfo(name = "id_goals")
-    val idGoals:Int,
+    @ColumnInfo(name = "text_goals")
+    val textGoals:String,
     @ColumnInfo(name = "quantity")
     val quantity:String,
     @ColumnInfo(name = "text_messages")
@@ -45,7 +45,7 @@ data class IncomingDbEntity(
             idIm = idIm,
             idNote = idNote,
             currentDataIn=currentDataIn,
-            idGoals=idGoals,
+            textGoals=textGoals,
             quantity=quantity,
             textMessages = textMessages
         )

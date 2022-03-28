@@ -51,6 +51,7 @@
                 app:layout_constraintGuide_begin="19dp" />
 
 
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerIncoming"
                 android:layout_width="match_parent"
@@ -60,7 +61,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/item_incoming"
-                tools:itemCount="2">
+                tools:itemCount="1">
 
             </androidx.recyclerview.widget.RecyclerView>
 

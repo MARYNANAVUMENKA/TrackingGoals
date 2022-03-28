@@ -9,6 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background">#F9FBFD</color>
     <color name="background_menu">#FFFFFF</color>
+    <color name="background_card">#F1F0F0</color>
+
+
 
     <color name="color_primary">#FF2F75C5</color>
     <color name="color_primary_variant">#FF005EFF</color>

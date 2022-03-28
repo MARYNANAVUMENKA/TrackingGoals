@@ -62,8 +62,6 @@ class PhotoBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     companion object {
         const val TAG = "PhotoBottomSheetDialogFragment"
-
     }
-
 
 }

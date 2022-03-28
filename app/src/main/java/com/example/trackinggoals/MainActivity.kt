@@ -13,7 +13,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity(),Navigator {
 
-//    private val viewModel by viewModelCreator { MainActivityViewModel(Repositories.accountsRepository) }
+//    private val viewModel by viewModelCreator { MainActivityViewModel(Repositories.goalsRepository) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Repositories.init(applicationContext)

@@ -3,12 +3,13 @@ package com.example.trackinggoals.screens
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.trackinggoals.model.Incoming
-import com.example.trackinggoals.model.NoteRepository
+import com.example.trackinggoals.model.*
 import kotlinx.coroutines.*
 
 class IncomingViewModel(
-    private val noteRepository: NoteRepository
+    private val incomingRepository: IncomingRepository
+//    private val noteRepository: NoteRepository,
+//    private val goalsRepository: GoalsRepository,
 ) : ViewModel() {
 
     private val scope = CoroutineScope(Dispatchers.Main)
@@ -22,11 +23,48 @@ class IncomingViewModel(
     private val _currentData = MutableLiveData<String>()
     val currentData: LiveData<String> = _currentData
 
+    private val _listGoalsLiveData = MutableLiveData<ArrayList<String>>()
+    val listGoalsLiveData: LiveData<ArrayList<String>> = _listGoalsLiveData
+
+    private val _selectedGoals = MutableLiveData<Goals>()
+    val selectedGoals: LiveData<Goals> = _selectedGoals
+
+
+    fun loadGoals(){
+        scope.launch {
+            try {
+                val listGoals = withContext(Dispatchers.IO) {
+                    incomingRepository.getAllGoals()
+                }
+                _listGoalsLiveData.value = listGoals
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun getSelectedGoals(textGoals: String){
+
+        scope.launch {
+            try {
+                val goals = withContext(Dispatchers.IO) {
+                    incomingRepository.getGoals(textGoals)
+                }
+                _selectedGoals.value = goals
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+
     fun loadIncoming(incomingId:Int,noteId:Int,currentDataIn:String) {
         scope.launch {
             try {
                 val incomingCurrent = withContext(Dispatchers.IO) {
-                    noteRepository.getIncoming(incomingId,noteId,currentDataIn)
+                    incomingRepository.getIncoming(incomingId,noteId,currentDataIn)
                 }
                 _incoming.value = incomingCurrent
                 _textMessage.value = incomingCurrent.textMessages
@@ -39,11 +77,24 @@ class IncomingViewModel(
 
 
 
-    fun updateIncoming(textMessages: String, idIm: Int) {
+    fun updateTextIncoming(textMessages: String, idIm: Int) {
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    noteRepository.updateIncoming(textMessages, idIm)
+                    incomingRepository.updateTextIncoming(textMessages, idIm)
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun updateProgress(progress:String,idGoals:Int){
+        scope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    incomingRepository.updateProgress(progress,idGoals)
                 }
 
             } catch (e: Exception) {
@@ -56,7 +107,7 @@ class IncomingViewModel(
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    noteRepository.deleteIncoming(incoming)
+                    incomingRepository.deleteIncoming(incoming)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

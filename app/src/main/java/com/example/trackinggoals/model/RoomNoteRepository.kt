@@ -3,6 +3,7 @@ package com.example.trackinggoals.model
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
+import com.example.trackinggoals.R
 import kotlinx.coroutines.CoroutineDispatcher
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,26 +21,28 @@ class RoomNoteRepository(
     ): String {
         val calendar = Calendar.getInstance()
         calendar.set(currentYear, currentMonth, currentDay)
+        val dataCurrent = SimpleDateFormat("dd MMMM, yyyy").format(calendar.time)
 
-//        val monthNames: Array<String> = resources.getStringArray(R.array.month)
+
+//        val monthNames = resources.getStringArray(R.array.month)
 //        как получить месяц из ресурсов
 
-        val monthNames = arrayOf(
-            "Январь",
-            "Февраль",
-            "Март",
-            "Апрель",
-            "Май",
-            "Июнь",
-            "Июль",
-            "Август",
-            "Сентябрь",
-            "Октябрь",
-            "Ноябрь",
-            "Декабрь"
-        )
-        val month = monthNames[calendar[Calendar.MONTH]]
-        val dataCurrent = "$month, $currentYear"
+//        val monthNames = arrayOf(
+//            "Январь",
+//            "Февраль",
+//            "Март",
+//            "Апрель",
+//            "Май",
+//            "Июнь",
+//            "Июль",
+//            "Август",
+//            "Сентябрь",
+//            "Октябрь",
+//            "Ноябрь",
+//            "Декабрь"
+//        )
+//        val month = monthNames[calendar[Calendar.MONTH]]
+//        val dataCurrent = "$month, $currentYear"
         return dataCurrent
     }
 
@@ -59,6 +62,8 @@ class RoomNoteRepository(
                 SimpleDateFormat("EEEE, dd MMMM").format(calendar.time).capitalize()
             allDays.add(data)
         }
+        val days = allDays[0].substringAfterLast(" ")
+        Log.d("qqqqqq", days.toString())
 
         var listNoteWithIncoming = noteDao.getNoteWithIncoming().toMutableList()
         var listNoteIncoming = listNoteWithIncoming.map { noteWithIncoming ->
@@ -69,13 +74,14 @@ class RoomNoteRepository(
                         idIm = it.idIm,
                         idNote = it.idNote,
                         currentDataIn = it.currentDataIn,
-                        idGoals = it.idGoals,
+                        textGoals = it.textGoals,
                         quantity = it.quantity,
                         textMessages = it.textMessages
                     )
                 }
             )
         }.toMutableList()
+        listNoteIncoming.removeIf { !it.note.currentData.contains(days) }
 
 
         Log.d("qqqqq", listNoteIncoming.toString())
@@ -83,7 +89,7 @@ class RoomNoteRepository(
         var list = mutableListOf<NoteIncoming>()
         for (i in 0 until allDays.size) {
             val note = Note(1, allDays[i])
-            val incoming = IncomingDbEntity(1, 1, allDays[i], 0, "", "").toIncoming()
+            val incoming = IncomingDbEntity(1, 1, allDays[i], "", "", "").toIncoming()
             val listIncoming = listOf<Incoming>(incoming)
             val noteIncoming = NoteIncoming(note, listIncoming)
             list.add(noteIncoming)
@@ -112,28 +118,35 @@ class RoomNoteRepository(
             val idNewNote=UUID.randomUUID().hashCode()
             val noteDbEntity=NoteDbEntity(idNewNote,currentDataIn)
             noteDao.createNote(noteDbEntity)
-            val incomingDbEntity = IncomingDbEntity(UUID.randomUUID().hashCode(), idNewNote, currentDataIn, 0, "", "")
+            val incomingDbEntity = IncomingDbEntity(UUID.randomUUID().hashCode(), idNewNote, currentDataIn, "", "", "")
             noteDao.createIncoming(incomingDbEntity)
             return incomingDbEntity.toIncoming()
         } else {
             val noteDbEntity = noteDao.findByData(currentDataIn)
             val noteIdCurrent = noteDbEntity.id
             val incomingDbEntity =
-                IncomingDbEntity(UUID.randomUUID().hashCode(), noteIdCurrent, currentDataIn, 0, "", "")
+                IncomingDbEntity(UUID.randomUUID().hashCode(), noteIdCurrent, currentDataIn, "", "", "")
             noteDao.createIncoming(incomingDbEntity)
             return incomingDbEntity.toIncoming()
         }
     }
 
 
-    override suspend fun getCurrentDay(noteId: Int): String {
-        val currentDay = noteDao.findById(noteId).currentData
-        return currentDay
+    override suspend fun getCurrentDay(): Note {
+        val calendar = Calendar.getInstance()
+        val currentYear = calendar.get(Calendar.YEAR)
+        val currentMonth = calendar.get(Calendar.MONTH)
+        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+        calendar.set(currentYear, currentMonth, currentDay)
+        val data = SimpleDateFormat("EEEE, dd MMMM").format(calendar.time).capitalize()
+        val list=noteDao.getAllNotes()
+        if (list.contains(noteDao.findByData(data))){
+            return noteDao.findByData(data).toNote()
+        }else{
+            return NoteDbEntity(1,data).toNote()
+        }
     }
 
-    override suspend fun getlistNoteWithIncoming(): List<NoteWithIncoming> {
-        TODO("Not yet implemented")
-    }
 
     override suspend fun saveNoteWithIncoming(
         incoming: Incoming
@@ -142,11 +155,25 @@ class RoomNoteRepository(
             val idNewNote=UUID.randomUUID().hashCode()
             val noteDbEntity=NoteDbEntity(idNewNote,incoming.currentDataIn)
             noteDao.createNote(noteDbEntity)
-            val incomingDbEntity=IncomingDbEntity(UUID.randomUUID().hashCode(),idNewNote,incoming.currentDataIn,incoming.idGoals,incoming.quantity,incoming.textMessages)
+            val incomingDbEntity=IncomingDbEntity(UUID.randomUUID().hashCode(),idNewNote,incoming.currentDataIn,incoming.textGoals,incoming.quantity,incoming.textMessages)
             noteDao.createIncoming(incomingDbEntity)
         }else{
-            noteDao.createIncoming(IncomingDbEntity(incoming.idIm,incoming.idNote,incoming.currentDataIn,incoming.idGoals,incoming.quantity,incoming.textMessages))
+            noteDao.createIncoming(IncomingDbEntity(incoming.idIm,incoming.idNote,incoming.currentDataIn,incoming.textGoals,incoming.quantity,incoming.textMessages))
         }
+    }
+
+
+    override suspend fun saveNoteWithIncomingFromGoals(progress:String,textGoals: String,note: Note){
+        if (note.id==1){
+            val idNewNote=UUID.randomUUID().hashCode()
+            val noteDbEntity=NoteDbEntity(idNewNote,note.currentData)
+            noteDao.createNote(noteDbEntity)
+            val incomingDbEntity=IncomingDbEntity(UUID.randomUUID().hashCode(),idNewNote,note.currentData,textGoals,progress,"Новый результат по цели \"$textGoals\"")
+            noteDao.createIncoming(incomingDbEntity)
+        }else{
+            noteDao.createIncoming(IncomingDbEntity(UUID.randomUUID().hashCode(),note.id,note.currentData,textGoals,progress,"Новый результат по цели \"$textGoals\""))
+        }
+
     }
 
     override suspend fun updateIncoming(textMessages: String, idIm: Int) {
@@ -155,7 +182,7 @@ class RoomNoteRepository(
 
 
     override suspend fun deleteIncoming(incoming: Incoming) {
-        noteDao.deleteIncoming(IncomingDbEntity(incoming.idIm,incoming.idNote,incoming.currentDataIn,incoming.idGoals,incoming.quantity,incoming.textMessages))
+        noteDao.deleteIncoming(IncomingDbEntity(incoming.idIm,incoming.idNote,incoming.currentDataIn,incoming.textGoals,incoming.quantity,incoming.textMessages))
     }
 
 }

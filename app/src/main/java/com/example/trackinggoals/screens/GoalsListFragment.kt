@@ -1,6 +1,7 @@
 package com.example.trackinggoals.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,8 @@ class GoalsListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         adapter = GoalsAdapter(object : GoalsActionListener {
             override fun onEditGoals(goals: Goals) {
                 navigator().showGoalsConstructor(goals.id)
@@ -47,6 +50,12 @@ class GoalsListFragment : Fragment() {
                 viewModel.removeGoals(goals.id)
 
             }
+
+            override fun openDialogEditProgress(goals: Goals) {
+                showCustomInputDialogFragment(KEY_FIRST_REQUEST_KEY)
+                setupCustomInputDialogFragmentListeners(goals)
+            }
+
         })
         binding.floatingActionButtonGoalsList.setOnClickListener {
             viewModel.createEmptyGoals()
@@ -66,7 +75,23 @@ class GoalsListFragment : Fragment() {
 
     }
 
+    private fun showCustomInputDialogFragment(requestKey: String) {
+        CustomInputDialogFragment.show(parentFragmentManager, requestKey)
+    }
+
+    private fun setupCustomInputDialogFragmentListeners(goals: Goals) {
+        val listener: CustomInputDialogListener = { requestKey, progress ->
+            when (requestKey) {
+                KEY_FIRST_REQUEST_KEY -> viewModel.updateProgress(progress,goals.id)
+            }
+        }
+        CustomInputDialogFragment.setupListener(parentFragmentManager, this, KEY_FIRST_REQUEST_KEY, listener)
+
+    }
+
     companion object {
+        @JvmStatic private val KEY_FIRST_REQUEST_KEY = "KEY_FIRST_REQUEST_KEY"
+
         fun newInstance(): GoalsListFragment {
             return GoalsListFragment()
         }

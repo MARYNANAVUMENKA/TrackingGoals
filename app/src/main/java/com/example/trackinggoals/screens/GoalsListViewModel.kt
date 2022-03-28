@@ -88,6 +88,24 @@ class GoalsListViewModel(
         }
     }
 
+    fun updateProgress(progress:String,id: Int){
+        scope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    goalsRepository.updateProgress(progress, id)
+                }
+                val listGoals = withContext(Dispatchers.IO) {
+                    goalsRepository.getListGoals()
+
+                }
+                _listGoalsLiveData.value = listGoals
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
+    }
+
     override fun onCleared() {
         scope.cancel()
         super.onCleared()

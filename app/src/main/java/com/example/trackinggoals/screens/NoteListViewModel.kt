@@ -32,6 +32,8 @@ class NoteListViewModel(
         loadCurrentMonthYear(currentYear, currentMonth, currentDay)
     }
 
+
+
     fun loadListNoteWithIncoming(currentYear: Int, currentMonth: Int, currentDay: Int) {
         scope.launch {
             try {
@@ -63,6 +65,7 @@ class NoteListViewModel(
             }
         }
     }
+
     override fun onCleared() {
         scope.cancel()
         super.onCleared()

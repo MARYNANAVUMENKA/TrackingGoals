@@ -20,7 +20,7 @@
     <string name="alert_dialog_action_no">Нет</string>
 
     <string name="alert_dialog_complete_title">Завершить без сохранения?</string>
-    <string name="alert_dialog_complete_text">Не введен текст желания. Данные не будут сохранены.</string>
+    <string name="alert_dialog_complete_text">Не введен текст желания и количество. Данные не будут сохранены.</string>
     <string name="alert_dialog_complete_action_complete">Завершить</string>
     <string name="alert_dialog_complete_action_return">Вернуться</string>
 
@@ -92,7 +92,7 @@
     <string name="textView_goals_description">Напиши желание которое тебя вдохновляет,и добавь картинку. Пиши, даже если пока не знаешь как этого достичь.</string>
     <string name="hint_goals_quantity">100</string>
     <string name="hint_goalsStep_open_list">Открыть список</string>
-    <string name="hint_goals_description_goals">Сформулируй своё желание и запиши его сюда...</string>
+    <string name="hint_goals_description_goals">Сформулируй своё желание и запиши его...</string>
     <string name="hint_goals_description_criterion">Прочитано, накоплено, сделано, выучено...</string>
     <string name="button_goals_choosePic">Выбрать картинку</string>
     <string name="button_goals_next">Завершить создание</string>
@@ -122,5 +122,12 @@
     <string name="hint_custom_fragment">Введите количество</string>
     <string name="title_custom_fragment">Сколько прибавилось или отнялось?</string>
     <string name="custom_fragment_action_confirm">Подтвердить</string>
+
+    <string name="empty_value">Вы не ввели текст</string>
+    <string name="invalid_value">Введите + или - перед числом</string>
+
+
+    <string name="textView_incoming_title">Входящие</string>
+    <string name="textView_incoming_goals">Относится к цели:</string>
 
 </resources>

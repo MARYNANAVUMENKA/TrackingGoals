@@ -8,7 +8,6 @@ import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trackinggoals.R
 import com.example.trackinggoals.databinding.ItemGoalsBinding
-import com.example.trackinggoals.databinding.ItemNoteBinding
 import com.example.trackinggoals.model.Goals
 
 interface GoalsActionListener {
@@ -16,7 +15,7 @@ interface GoalsActionListener {
     fun onEditGoals(goals: Goals)
     fun onEditStatusGoals(goals: Goals)
     fun onRemoveGoals(goals: Goals)
-//    fun openDialogEditProgress(goals: Goals)
+    fun openDialogEditProgress(goals: Goals)
 
 }
 
@@ -36,10 +35,11 @@ class GoalsAdapter(private val actionListener: GoalsActionListener) :
                 showPopupMenu(v)
             }
             R.id.imagePlusGoals->{
-//                openDialogEditProgress(goals)
+                actionListener.openDialogEditProgress(goals)
             }
             else -> {
-                actionListener.onEditGoals(goals)
+                actionListener.openDialogEditProgress(goals)
+//                actionListener.onEditGoals(goals)
             }
         }
 
@@ -52,6 +52,7 @@ class GoalsAdapter(private val actionListener: GoalsActionListener) :
 
         binding.root.setOnClickListener(this)
         binding.imageButtonMore.setOnClickListener(this)
+        binding.imagePlusGoals.setOnClickListener(this)
         return Holder(binding)
     }
 
@@ -61,18 +62,21 @@ class GoalsAdapter(private val actionListener: GoalsActionListener) :
         with(holder.binding) {
             holder.itemView.tag = goals
             imageButtonMore.tag = goals
+            imagePlusGoals.tag=goals
             textViewDescription.text=goals.textGoals
             textViewTitleCriteria.text=goals.criterion
             textViewDataTitle.text = goals.dataExecution
             textViewQuantityTotal.text= goals.quantity.toString()
-            seekBar.progress = goals.progress
-            seekBar.max=goals.quantity
+            slider.valueFrom= 0.0F
+            slider.value= goals.progress.toFloat()
+            slider.valueTo= goals.quantity.toFloat()
             textViewQuantityUnit.text=goals.unit
-            textViewQuantityNow.text="0"
+            textViewQuantityNow.text= goals.progress.toString()
             textViewQuantityPercent.text="0%"
 
         }
     }
+
 
     override fun getItemCount(): Int = goals.size
 

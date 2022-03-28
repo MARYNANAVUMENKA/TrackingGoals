@@ -19,6 +19,9 @@ interface GoalsDao {
     @Query("SELECT * FROM goals WHERE id = :id")
     suspend fun findById(id: Int): GoalsDbEntity
 
+    @Query("SELECT * FROM goals WHERE text_goals = :textGoals")
+    suspend fun findByTextGoals(textGoals: String): GoalsDbEntity
+
     @Query("UPDATE goals SET is_active =:isActive WHERE id = :id")
     fun updateIsActive(isActive: Boolean, id: Int)
 

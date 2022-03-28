@@ -6,6 +6,8 @@ interface GoalsRepository {
 
     suspend fun getIdGoals(id:Int): Goals
 
+    suspend fun getTextGoals(textGoals: String):Goals
+
     suspend fun createGoals():Int
 
     suspend fun removeGoals(id:Int)
@@ -18,7 +20,7 @@ interface GoalsRepository {
 
     suspend fun updateIsActive(isActive: Boolean, id: Int)
 
-    suspend fun updateProgress(progress: Int, id: Int)
+    suspend fun updateProgress(progress: String, id: Int)
 
     suspend fun updateQuantity(quantity: Int, id: Int)
 

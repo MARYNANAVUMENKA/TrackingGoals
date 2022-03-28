@@ -24,6 +24,9 @@ object Repositories {
     val goalsRepository: GoalsRepository by lazy {
         RoomGoalsRepository(noteRepository,database.getGoalsDao(), ioDispatcher)
     }
+    val incomingRepository : IncomingRepository by lazy {
+        RoomIncomingRepository(noteRepository,goalsRepository)
+    }
 
 
     fun init(context: Context) {

@@ -48,10 +48,16 @@ class NoteAdapter(private val navigator: Navigator,private val noteActionListene
                 }
             }
         })
-        val layoutManager = LinearLayoutManager(parent.context)
-        binding.recyclerIncoming.layoutManager = layoutManager
+//        val layoutManager = LinearLayoutManager(parent.context)
 
+        val layoutManager = object : LinearLayoutManager(parent.context) {
+            override fun canScrollVertically(): Boolean {
+                return false
+            }
+        }
+        binding.recyclerIncoming.layoutManager = layoutManager
         binding.root.setOnClickListener(this)
+
         return Holder(binding)
     }
 

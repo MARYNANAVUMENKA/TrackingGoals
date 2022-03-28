@@ -54,6 +54,7 @@ class IncomingAdapter(private val navigator: Navigator,private val actionListene
         with(holder.binding){
             holder.itemView.tag = incoming
             textViewItemIncoming.text = incoming.textMessages
+            textViewItemIncomingQuantity.text=incoming.quantity
         }
     }
 

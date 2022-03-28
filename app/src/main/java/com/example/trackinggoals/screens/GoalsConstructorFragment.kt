@@ -120,7 +120,7 @@ class GoalsConstructorFragment : Fragment() {
 
         binding.buttonGoalsFinishEdit.setOnClickListener {
             val goalsId = requireArguments().getInt(ARG_GOALS_ID)
-            if (binding.editTextInputTextGoals.text.toString()==""||binding.editTextInputTextGoals.text.isNullOrEmpty()){
+            if (binding.editTextInputTextGoals.text.toString()==""||binding.editTextInputTextGoals.text.isNullOrEmpty()||binding.editTextGoalsWant.text.toString()=="0"||binding.editTextGoalsWant.text.isNullOrEmpty()){
                 showAlertDialogConstructor()
             }else{
                 viewModel.updateTextGoals(binding.editTextInputTextGoals.text.toString(), goalsId)

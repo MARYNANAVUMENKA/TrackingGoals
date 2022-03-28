@@ -107,19 +107,28 @@
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
-                <SeekBar
-                    android:id="@+id/seekBar"
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/slider"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="110dp"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_marginBottom="12dp"
+                    android:clickable="false"
+                    android:enabled="false"
+                    app:trackHeight="15dp"
+                    app:trackColorActive="@color/color_primary_variant"
+                    app:thumbColor="@color/color_secondary_variant"
+                    app:thumbRadius="0dp"
+                    android:longClickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="140dp"
+                    android:layout_marginTop="165dp"
                     android:layout_marginBottom="12dp">
 
                     <TextView

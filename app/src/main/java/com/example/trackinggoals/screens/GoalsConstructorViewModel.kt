@@ -89,7 +89,7 @@ class GoalsConstructorViewModel(
         }
     }
 
-    fun updateProgressGoals(progress:Int,id:Int){
+    fun updateProgressGoals(progress:String,id:Int){
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {

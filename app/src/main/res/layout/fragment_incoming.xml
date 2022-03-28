@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/frameTopIncoming"
+        android:layout_width="0dp"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/background_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+
+            android:id="@+id/imageViewBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/background_menu"
+            app:srcCompat="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/textViewData"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="center"
+            android:background="@color/background_menu"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text="Воскресенье, 31 декабря" />
+
+        <ImageButton
+            android:id="@+id/imageViewDone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="15dp"
+            android:background="@color/background_menu"
+            app:srcCompat="@drawable/ic_done" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/external"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="13dp"
+        android:background="@color/background_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/frameTopIncoming">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="13dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/textView_incoming_title"
+                android:textColor="@color/text_grey_light"
+                android:textSize="16sp" />
+
+
+            <EditText
+                android:id="@+id/editTextIncoming"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="13dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginEnd="13dp"
+                android:background="@android:color/transparent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="top"
+                android:hint="@string/editText_incoming"
+                android:inputType="textMultiLine"
+                android:minLines="13"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Новый результат" />
+
+            <ImageButton
+                android:id="@+id/imageViewDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/background_menu"
+                android:layout_gravity="end"
+                android:layout_marginEnd="13dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageViewGoals"
+                app:srcCompat="@drawable/ic_delete" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/textView_incoming_goals"
+                android:textColor="@color/text_grey_light"
+                android:textSize="16sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardInner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="9dp"
+                android:checkable="true"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageButton
+                    android:id="@+id/imageViewPic"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:background="?android:selectableItemBackground"
+                    android:scaleType="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageViewGoals"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_menu_goals" />
+
+                <TextView
+                    android:id="@+id/textViewIncomingTextGoals"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="start"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:text="Машина" />
+
+                <TextView
+                    android:id="@+id/textViewIncomingQuantityGoals"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="start"
+                    android:textColor="@color/color_primary"
+                    android:textSize="14sp"
+                    tools:text="+200 Долларов" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!--        <ImageButton-->
+            <!--            android:id="@+id/imageViewPic"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:background="?android:selectableItemBackground"-->
+            <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--            app:layout_constraintEnd_toStartOf="@+id/imageViewGoals"-->
+            <!--            app:layout_constraintHorizontal_bias="0.5"-->
+            <!--            app:layout_constraintHorizontal_chainStyle="spread_inside"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:srcCompat="@drawable/ic_add_photo" />-->
+
+            <!--        <ImageButton-->
+            <!--            android:id="@+id/imageViewGoals"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginEnd="300dp"-->
+            <!--            android:background="?android:selectableItemBackground"-->
+            <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--            app:layout_constraintEnd_toStartOf="@+id/imageViewDelete"-->
+            <!--            app:layout_constraintHorizontal_bias="0.5"-->
+            <!--            app:layout_constraintStart_toEndOf="@+id/imageViewPic"-->
+            <!--            app:srcCompat="@drawable/ic_menu_goals" />-->
+
+
+            <!--        <ImageButton-->
+            <!--            android:id="@+id/imageViewDelete"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:background="?android:selectableItemBackground"-->
+            <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintHorizontal_bias="0.5"-->
+            <!--            app:layout_constraintStart_toEndOf="@+id/imageViewGoals"-->
+            <!--            app:srcCompat="@drawable/ic_delete" />-->
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

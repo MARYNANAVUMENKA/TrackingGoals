@@ -39,6 +39,10 @@ class RoomGoalsRepository(
         return goalsDao.findById(id).toGoals()
     }
 
+    override suspend fun getTextGoals(textGoals: String): Goals {
+        return goalsDao.findByTextGoals(textGoals).toGoals()
+    }
+
     override suspend fun createGoals(): Int {
         val id = UUID.randomUUID().hashCode()
         val goalsDbEntity = GoalsDbEntity(id, true, "", "", "", 0, 0,"", "" )
@@ -71,8 +75,22 @@ class RoomGoalsRepository(
 
     }
 
-    override suspend fun updateProgress(progress: Int, id: Int) {
-        goalsDao.updateProgress(progress, id)
+    override suspend fun updateProgress(progress: String, id: Int) {
+        val change = progress.substring(1).toInt()
+        val goalsDbEntity=goalsDao.findById(id)
+        val currentProgress=goalsDbEntity.progress
+        val textGoalsDbEntity=goalsDbEntity.textGoals
+
+        val note = noteRepository.getCurrentDay()
+
+        if (progress.contains("-")){
+            goalsDao.updateProgress(currentProgress-change, id)
+            noteRepository.saveNoteWithIncomingFromGoals(progress,textGoalsDbEntity,note)
+        }else{
+            goalsDao.updateProgress(currentProgress+change, id)
+            noteRepository.saveNoteWithIncomingFromGoals(progress,textGoalsDbEntity,note)
+        }
+
     }
 
     override suspend fun updateQuantity(quantity: Int, id: Int) {
