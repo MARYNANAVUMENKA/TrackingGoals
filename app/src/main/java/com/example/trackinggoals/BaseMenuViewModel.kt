@@ -1,4 +1,4 @@
-package com.example.trackinggoals.screens
+package com.example.trackinggoals
 
 import android.util.Log
 import androidx.lifecycle.LiveData

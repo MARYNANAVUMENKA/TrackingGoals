@@ -63,6 +63,12 @@ class IncomingFragment() : Fragment() {
         viewModel.textMessage.observe(viewLifecycleOwner) {
             binding.editTextIncoming.setText(it)
         }
+        viewModel.textGoals.observe(viewLifecycleOwner){
+            binding.textViewIncomingTextGoals.text=it
+        }
+        viewModel.quantity.observe(viewLifecycleOwner){
+            binding.textViewIncomingQuantityGoals.text=it
+        }
 
         binding.imageViewBack.setOnClickListener {
             when (binding.editTextIncoming.text.toString()) {
@@ -83,8 +89,6 @@ class IncomingFragment() : Fragment() {
             }
         }
 
-
-
         binding.imageViewDelete.setOnClickListener {
             showAlertDialogDelete()
         }
@@ -93,8 +97,6 @@ class IncomingFragment() : Fragment() {
                 showGoalsBottomSheetDialogFragment(KEY_FIRST_GOALS_REQUEST_KEY, it)
 
             }
-
-
         }
     }
     private fun showKeyboard(view: View) {

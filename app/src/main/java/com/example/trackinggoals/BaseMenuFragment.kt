@@ -1,4 +1,4 @@
-package com.example.trackinggoals.screens
+package com.example.trackinggoals
 
 import android.os.Bundle
 import android.util.Log
@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.trackinggoals.R
 import com.example.trackinggoals.databinding.FragmentBaseMenuBinding
 import com.example.trackinggoals.model.Repositories
-import com.example.trackinggoals.viewModelCreator
+import com.example.trackinggoals.screens.GoalsListFragment
+import com.example.trackinggoals.screens.GoalsStartFragment
+import com.example.trackinggoals.screens.NoteListFragment
 
 class BaseMenuFragment : Fragment() {
     private lateinit var binding: FragmentBaseMenuBinding
@@ -47,12 +48,16 @@ class BaseMenuFragment : Fragment() {
                         if (it.isEmpty()){
                             childFragmentManager
                                 .beginTransaction()
-                                .replace(R.id.fragmentContainerMenu, GoalsStartFragment.newInstance())
+                                .replace(R.id.fragmentContainerMenu,
+                                    GoalsStartFragment.newInstance()
+                                )
                                 .commit()
                         }else{
                             childFragmentManager
                                 .beginTransaction()
-                                .replace(R.id.fragmentContainerMenu, GoalsListFragment.newInstance())
+                                .replace(R.id.fragmentContainerMenu,
+                                    GoalsListFragment.newInstance()
+                                )
                                 .commit()
                         }
                     }

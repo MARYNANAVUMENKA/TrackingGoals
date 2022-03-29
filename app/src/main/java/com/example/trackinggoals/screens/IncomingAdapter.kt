@@ -21,8 +21,6 @@ interface IncomingActionListener {
 class IncomingAdapter(private val navigator: Navigator,private val actionListenerIncoming: IncomingActionListener) :
     RecyclerView.Adapter<IncomingAdapter.Holder>(),View.OnClickListener {
 
-
-
     var listIncoming: List<Incoming> = emptyList()
         set(value) {
             field = value
@@ -31,16 +29,6 @@ class IncomingAdapter(private val navigator: Navigator,private val actionListene
     override fun onClick(v: View?) {
         val incoming= v?.tag as Incoming
         actionListenerIncoming.onIncomingDetails(incoming)
-
-
-//        when (v.id) {
-//            R.id.floatingActionButtonGoalsList -> {
-//                actionListenerIncoming.onNewIncoming(incoming)
-//            }
-//            else -> {
-//                actionListenerIncoming.onIncomingDetails(incoming)
-//            }
-//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IncomingAdapter.Holder {
@@ -53,9 +41,17 @@ class IncomingAdapter(private val navigator: Navigator,private val actionListene
         val incoming = listIncoming[position]
         with(holder.binding){
             holder.itemView.tag = incoming
-            textViewItemIncoming.text = incoming.textMessages
-            textViewItemIncomingQuantity.text=incoming.quantity
+            textViewItemIncomingNewRezult.text = incoming.textMessages
+
         }
+    }
+
+    override fun getItemId(position: Int): Long {
+        return super.getItemId(position)
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
     }
 
     override fun getItemCount(): Int = listIncoming.size

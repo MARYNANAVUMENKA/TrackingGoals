@@ -1,23 +1,26 @@
 package com.example.trackinggoals.screens
 
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trackinggoals.Navigator
-import com.example.trackinggoals.R
 import com.example.trackinggoals.databinding.ItemNoteBinding
 import com.example.trackinggoals.model.*
+import androidx.recyclerview.widget.LinearLayoutManager
+
 
 interface NoteActionListener {
     fun addIncomingInNote(noteIncoming: NoteIncoming)
 }
 
-class NoteAdapter(private val navigator: Navigator,private val noteActionListener: NoteActionListener) : RecyclerView.Adapter<NoteAdapter.Holder>(),View.OnClickListener {
+class NoteAdapter(
+    private val navigator: Navigator,
+    private val noteActionListener: NoteActionListener
+) : RecyclerView.Adapter<NoteAdapter.Holder>(), View.OnClickListener {
 
-    private lateinit var adapterIncoming:IncomingAdapter
+    private lateinit var adapterIncoming: IncomingAdapter
 
     var notesIncoming: List<NoteIncoming> = emptyList()
         set(value) {
@@ -29,36 +32,28 @@ class NoteAdapter(private val navigator: Navigator,private val noteActionListene
         val noteIncoming = v.tag as NoteIncoming
         noteActionListener.addIncomingInNote(noteIncoming)
 
-//        when (v.id) {
-//            R.id.imagePlusItemNote -> {
-//                noteActionListener.addIncomingInNote(noteIncoming)
-//            }
-//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemNoteBinding.inflate(inflater, parent, false)
-
-        adapterIncoming = IncomingAdapter(navigator,object : IncomingActionListener {
+        adapterIncoming = IncomingAdapter(navigator, object : IncomingActionListener {
             override fun onIncomingDetails(incoming: Incoming) {
-                if (incoming.idIm!==1){
+                if (incoming.idIm !== 1) {
                     navigator.showIncoming(incoming)
                 }
             }
         })
-//        val layoutManager = LinearLayoutManager(parent.context)
-
         val layoutManager = object : LinearLayoutManager(parent.context) {
             override fun canScrollVertically(): Boolean {
                 return false
             }
         }
         binding.recyclerIncoming.layoutManager = layoutManager
+        val holder = Holder(binding)
+        holder.setIsRecyclable(false)
         binding.root.setOnClickListener(this)
-
-        return Holder(binding)
+        return holder
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
@@ -70,7 +65,19 @@ class NoteAdapter(private val navigator: Navigator,private val noteActionListene
             textViewItemNoteDayWeek.text = noteIncoming.note.currentData
             adapterIncoming.listIncoming = noteIncoming.listIncoming
             recyclerIncoming.adapter = adapterIncoming
+
+            if (noteIncoming.listIncoming.isEmpty()) {
+                recyclerIncoming.layoutParams = RecyclerView.LayoutParams(378, 250)
+            }
         }
+    }
+
+    override fun getItemId(position: Int): Long {
+        return super.getItemId(position)
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
     }
 
     override fun getItemCount(): Int = notesIncoming.size

@@ -7,7 +7,6 @@ import com.example.trackinggoals.model.Incoming
 import com.example.trackinggoals.model.NoteIncoming
 import com.example.trackinggoals.screens.GoalsConstructorFragment
 import com.example.trackinggoals.model.Repositories
-import com.example.trackinggoals.screens.BaseMenuFragment
 import com.example.trackinggoals.screens.IncomingFragment
 import java.util.*
 

@@ -35,7 +35,6 @@ class GoalsListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
         adapter = GoalsAdapter(object : GoalsActionListener {
             override fun onEditGoals(goals: Goals) {
                 navigator().showGoalsConstructor(goals.id)
@@ -82,15 +81,21 @@ class GoalsListFragment : Fragment() {
     private fun setupCustomInputDialogFragmentListeners(goals: Goals) {
         val listener: CustomInputDialogListener = { requestKey, progress ->
             when (requestKey) {
-                KEY_FIRST_REQUEST_KEY -> viewModel.updateProgress(progress,goals.id)
+                KEY_FIRST_REQUEST_KEY -> viewModel.updateProgress(progress, goals.id)
             }
         }
-        CustomInputDialogFragment.setupListener(parentFragmentManager, this, KEY_FIRST_REQUEST_KEY, listener)
+        CustomInputDialogFragment.setupListener(
+            parentFragmentManager,
+            this,
+            KEY_FIRST_REQUEST_KEY,
+            listener
+        )
 
     }
 
     companion object {
-        @JvmStatic private val KEY_FIRST_REQUEST_KEY = "KEY_FIRST_REQUEST_KEY"
+        @JvmStatic
+        private val KEY_FIRST_REQUEST_KEY = "KEY_FIRST_REQUEST_KEY"
 
         fun newInstance(): GoalsListFragment {
             return GoalsListFragment()

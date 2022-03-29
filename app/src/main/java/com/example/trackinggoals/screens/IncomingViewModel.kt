@@ -8,8 +8,6 @@ import kotlinx.coroutines.*
 
 class IncomingViewModel(
     private val incomingRepository: IncomingRepository
-//    private val noteRepository: NoteRepository,
-//    private val goalsRepository: GoalsRepository,
 ) : ViewModel() {
 
     private val scope = CoroutineScope(Dispatchers.Main)
@@ -20,8 +18,15 @@ class IncomingViewModel(
     private val _textMessage = MutableLiveData<String>()
     val textMessage: LiveData<String> = _textMessage
 
+    private val _quantity = MutableLiveData<String>()
+    val quantity: LiveData<String> = _quantity
+
+    private val _textGoals = MutableLiveData<String>()
+    val textGoals: LiveData<String> = _textGoals
+
     private val _currentData = MutableLiveData<String>()
     val currentData: LiveData<String> = _currentData
+
 
     private val _listGoalsLiveData = MutableLiveData<ArrayList<String>>()
     val listGoalsLiveData: LiveData<ArrayList<String>> = _listGoalsLiveData
@@ -59,7 +64,6 @@ class IncomingViewModel(
         }
     }
 
-
     fun loadIncoming(incomingId:Int,noteId:Int,currentDataIn:String) {
         scope.launch {
             try {
@@ -69,6 +73,8 @@ class IncomingViewModel(
                 _incoming.value = incomingCurrent
                 _textMessage.value = incomingCurrent.textMessages
                 _currentData.value = incomingCurrent.currentDataIn
+                _textGoals.value=incomingCurrent.textGoals
+                _quantity.value=incomingCurrent.quantity
             } catch (e: Exception) {
                 e.printStackTrace()
             }
