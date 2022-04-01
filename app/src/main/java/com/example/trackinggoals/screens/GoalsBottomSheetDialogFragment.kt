@@ -40,7 +40,7 @@ class GoalsBottomSheetDialogFragment: BottomSheetDialogFragment() {
 //        val items = resources.getStringArray(R.array.unit)
 //        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
         val items= listGoals
-        val adapter=ArrayAdapter(requireContext(), R.layout.list_item, items)
+        val adapter=ArrayAdapter(requireContext(), R.layout.list_item_goals, items)
         binding.listView.setAdapter(adapter)
         binding.listView.setOnItemClickListener { parent, view, position, id ->
             val item = parent.getItemAtPosition(position).toString()

@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentResultListener
 import androidx.lifecycle.LifecycleOwner
 import com.example.trackinggoals.R
 import com.example.trackinggoals.databinding.InputDialogBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 typealias CustomInputDialogListener = (requestKey: String, progress: String) -> Unit
@@ -30,7 +31,7 @@ class CustomInputDialogFragment : DialogFragment() {
         val dialogBinding = InputDialogBinding.inflate(layoutInflater)
 //        dialogBinding.progressInputEditText.setText(progress.toString())
 
-        val dialog = AlertDialog.Builder(requireContext())
+        val dialog = MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.title_custom_fragment)
                 .setView(dialogBinding.root)
                 .setPositiveButton(R.string.custom_fragment_action_confirm, null)

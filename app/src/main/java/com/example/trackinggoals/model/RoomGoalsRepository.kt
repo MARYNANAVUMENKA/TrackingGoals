@@ -85,12 +85,30 @@ class RoomGoalsRepository(
 
         if (progress.contains("-")){
             goalsDao.updateProgress(currentProgress-change, id)
+
             noteRepository.saveNoteWithIncomingFromGoals(progress,textGoalsDbEntity,note)
         }else{
             goalsDao.updateProgress(currentProgress+change, id)
             noteRepository.saveNoteWithIncomingFromGoals(progress,textGoalsDbEntity,note)
         }
 
+    }
+
+    override suspend fun updateProgressWithoutIncoming(progress: String, id: Int) {
+        val change = progress.substring(1).toInt()
+        val goalsDbEntity=goalsDao.findById(id)
+        val currentProgress=goalsDbEntity.progress
+        val textGoalsDbEntity=goalsDbEntity.textGoals
+
+        val note = noteRepository.getCurrentDay()
+
+        if (progress.contains("-")){
+            goalsDao.updateProgress(currentProgress-change, id)
+
+        }else{
+            goalsDao.updateProgress(currentProgress+change, id)
+
+        }
     }
 
     override suspend fun updateQuantity(quantity: Int, id: Int) {

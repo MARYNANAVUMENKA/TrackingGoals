@@ -19,6 +19,7 @@ import com.example.trackinggoals.model.Incoming
 import com.example.trackinggoals.model.Repositories
 import com.example.trackinggoals.navigator
 import com.example.trackinggoals.viewModelCreator
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class IncomingFragment() : Fragment() {
     private lateinit var binding: FragmentIncomingBinding
@@ -158,6 +159,7 @@ class IncomingFragment() : Fragment() {
         viewModel.updateTextIncoming(textMessages,currentIncoming.idIm)
     }
 
+
     private fun showAlertDialogBack() {
 
         val listener = DialogInterface.OnClickListener { _, which ->
@@ -166,7 +168,7 @@ class IncomingFragment() : Fragment() {
                 DialogInterface.BUTTON_NEGATIVE -> Log.d("dialog", "Dialog dismissed")
             }
         }
-        val dialog = AlertDialog.Builder(requireContext())
+        val dialog = MaterialAlertDialogBuilder(requireContext())
             .setCancelable(true)
             .setTitle(R.string.alert_dialog_exit_title)
             .setMessage(R.string.alert_dialog_exit_text)
@@ -187,7 +189,7 @@ class IncomingFragment() : Fragment() {
                 DialogInterface.BUTTON_NEGATIVE -> Log.d("dialog", "Dialog dismissed")
             }
         }
-        val dialog = AlertDialog.Builder(requireContext())
+        val dialog = MaterialAlertDialogBuilder(requireContext())
             .setCancelable(true)
             .setTitle(R.string.alert_dialog_delete_title)
             .setMessage(R.string.alert_dialog_delete_text)

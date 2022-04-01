@@ -67,7 +67,7 @@ class NoteAdapter(
             recyclerIncoming.adapter = adapterIncoming
 
             if (noteIncoming.listIncoming.isEmpty()) {
-                recyclerIncoming.layoutParams = RecyclerView.LayoutParams(378, 250)
+                recyclerIncoming.layoutParams = RecyclerView.LayoutParams(378, 230)
             }
         }
     }

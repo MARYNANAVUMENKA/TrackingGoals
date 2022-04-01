@@ -107,7 +107,8 @@
                         <ImageView
                             android:id="@+id/imageViewGoalsPicture"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"/>
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/buttonGoalsChoosePic"

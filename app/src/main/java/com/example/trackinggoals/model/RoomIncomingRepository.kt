@@ -21,7 +21,7 @@ class RoomIncomingRepository(
     }
 
     override suspend fun updateProgress(progress: String, idGoals: Int) {
-        goalsRepository.updateProgress(progress,idGoals)
+        goalsRepository.updateProgressWithoutIncoming(progress,idGoals)
     }
 
     override suspend fun deleteIncoming(incoming: Incoming) {

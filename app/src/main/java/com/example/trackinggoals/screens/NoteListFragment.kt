@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.trackinggoals.databinding.FragmentNoteListBinding
 import android.view.*
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.trackinggoals.*
 import com.example.trackinggoals.model.NoteIncoming
 import com.example.trackinggoals.model.Repositories

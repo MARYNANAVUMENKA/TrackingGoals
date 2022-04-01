@@ -106,9 +106,17 @@
     <string name="editText_goals_criterion">ОПИСАНИЕ КРИТЕРИЯ</string>
     <string name="button_goals_complete">Завершить создание</string>
 
-    <string name="textView_bottom_sheet_photo_load">Загрузить свою</string>
-    <string name="textView_bottom_sheet_photo_create">Сделать снимок</string>
-    <string name="textView_bottom_sheet_photo_cancel">Отмена</string>
+    <string name="photo_choose">Выбрать из предложенных</string>
+    <string name="photo_load">Загрузить свою</string>
+    <string name="photo_create">Сделать снимок</string>
+
+
+    <string-array name="picture">
+        <item>@string/photo_choose</item>
+        <item>@string/photo_load</item>
+        <item>@string/photo_create</item>
+    </string-array>
+
 
     <string name="textView_bottom_sheet_goals_edit">Редактировать</string>
     <string name="textView_bottom_sheet_goals_accomplished">Цель достигнута</string>

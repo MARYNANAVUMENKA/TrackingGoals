@@ -1,14 +1,17 @@
 package com.example.trackinggoals.screens
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.trackinggoals.R
 import com.example.trackinggoals.databinding.ItemGoalsBinding
 import com.example.trackinggoals.model.Goals
+import java.io.File
 
 interface GoalsActionListener {
 
@@ -72,7 +75,21 @@ class GoalsAdapter(private val actionListener: GoalsActionListener) :
             slider.valueTo= goals.quantity.toFloat()
             textViewQuantityUnit.text=goals.unit
             textViewQuantityNow.text= goals.progress.toString()
-            textViewQuantityPercent.text="0%"
+            val percent=(goals.progress*100)/goals.quantity
+            textViewQuantityPercent.text="($percent %)"
+            if (goals.photo.substringBefore(':')=="https"){
+                Glide.with(imageViewGoalsPic.context)
+                    .load(goals.photo)
+                    .centerCrop()
+                    .into(imageViewGoalsPic)
+            }else {
+                val file = readFile(imageViewGoalsPic.context, goals.photo)
+                Glide.with(imageViewGoalsPic.context)
+                    .asBitmap()
+                    .load(file)
+                    .centerCrop()
+                    .into(imageViewGoalsPic)
+            }
 
         }
     }
@@ -107,6 +124,9 @@ class GoalsAdapter(private val actionListener: GoalsActionListener) :
         }
 
         popupMenu.show()
+    }
+    fun readFile(context: Context, fileName: String?): File? {
+        return File(context.getFilesDir(), fileName)
     }
 
 
