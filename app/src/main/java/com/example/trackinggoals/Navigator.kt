@@ -1,7 +1,7 @@
 package com.example.trackinggoals
 
-import com.example.trackinggoals.model.Incoming
-import com.example.trackinggoals.model.NoteIncoming
+import com.example.trackinggoals.model.notes.entities.Incoming
+import com.example.trackinggoals.model.notes.entities.NoteIncoming
 
 interface Navigator {
 
@@ -16,6 +16,5 @@ interface Navigator {
     fun goBaseMenu()
 
     fun showGoalsConstructor(goalsId: Int)
-
 
 }

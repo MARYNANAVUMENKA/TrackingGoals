@@ -3,16 +3,15 @@ package com.example.trackinggoals
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.trackinggoals.databinding.ActivityMainBinding
-import com.example.trackinggoals.model.Incoming
-import com.example.trackinggoals.model.NoteIncoming
-import com.example.trackinggoals.screens.GoalsConstructorFragment
+import com.example.trackinggoals.model.notes.entities.Incoming
+import com.example.trackinggoals.model.notes.entities.NoteIncoming
+import com.example.trackinggoals.screens.goals.constructor.GoalsConstructorFragment
 import com.example.trackinggoals.model.Repositories
-import com.example.trackinggoals.screens.IncomingFragment
+import com.example.trackinggoals.screens.incoming.IncomingFragment
+import com.example.trackinggoals.screens.menu.BaseMenuFragment
 import java.util.*
 
 class MainActivity : AppCompatActivity(),Navigator {
-
-//    private val viewModel by viewModelCreator { MainActivityViewModel(Repositories.goalsRepository) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Repositories.init(applicationContext)
@@ -38,7 +37,6 @@ class MainActivity : AppCompatActivity(),Navigator {
             .commit()
     }
 
-
     override fun showIncoming(noteIncoming: NoteIncoming) {
         supportFragmentManager
             .beginTransaction()
@@ -57,7 +55,6 @@ class MainActivity : AppCompatActivity(),Navigator {
             )
             .commit()
     }
-
 
     override fun goBaseMenu() {
         supportFragmentManager
