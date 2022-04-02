@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +33,8 @@
                 <ImageView
                     android:id="@+id/imageViewGoalsPic"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    tools:ignore="ContentDescription" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/imageButtonMore"
@@ -45,7 +45,8 @@
                     android:layout_marginEnd="16dp"
                     app:backgroundTint="?android:attr/windowBackground"
                     app:fabCustomSize="35dp"
-                    app:srcCompat="@drawable/ic_more_horiz" />
+                    app:srcCompat="@drawable/ic_more_horiz"
+                    tools:ignore="ContentDescription" />
 
             </FrameLayout>
 
@@ -77,7 +78,6 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="12dp"
                     android:fontFamily="sans-serif-light"
-                    android:text="@string/text_goals_accumulated"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     tools:text="14 февраля, 2021" />
@@ -103,23 +103,31 @@
                     android:layout_marginTop="80dp"
                     android:layout_marginBottom="12dp"
                     android:fontFamily="sans-serif-light"
-                    android:text="@string/text_goals_accumulated"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
-                <SeekBar
-                    android:id="@+id/seekBar"
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/slider"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="110dp"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_marginBottom="12dp"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:longClickable="false"
+                    app:thumbColor="@color/color_secondary_variant"
+                    app:thumbRadius="0dp"
+                    app:trackColorActive="@color/color_primary_variant"
+                    app:trackHeight="15dp" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="140dp"
+                    android:layout_marginTop="165dp"
                     android:layout_marginBottom="12dp">
 
                     <TextView
@@ -130,7 +138,7 @@
                         android:fontFamily="sans-serif-light"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        app:layout_constraintEnd_toStartOf="@+id/textViewQuantitydOf"
+                        app:layout_constraintEnd_toStartOf="@+id/textViewQuantityFrom"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toStartOf="parent"
@@ -138,12 +146,12 @@
                         tools:text="297" />
 
                     <TextView
-                        android:id="@+id/textViewQuantitydOf"
+                        android:id="@+id/textViewQuantityFrom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="из"
+                        android:text="@string/textView_Goals_Quantity_Of"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         app:layout_constraintEnd_toStartOf="@+id/textViewQuantityTotal"
@@ -161,7 +169,7 @@
                         android:textSize="12sp"
                         app:layout_constraintEnd_toStartOf="@+id/textViewQuantityUnit"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/textViewQuantitydOf"
+                        app:layout_constraintStart_toEndOf="@+id/textViewQuantityFrom"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="100000" />
 
@@ -187,20 +195,21 @@
                         android:fontFamily="sans-serif-light"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        app:layout_constraintEnd_toStartOf="@+id/imagePlus"
+                        app:layout_constraintEnd_toStartOf="@+id/imagePlusGoals"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/textViewQuantityUnit"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="0.3%" />
 
                     <ImageView
-                        android:id="@+id/imagePlus"
+                        android:id="@+id/imagePlusGoals"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_add_goals" />
+                        app:srcCompat="@drawable/ic_add_goals"
+                        tools:ignore="ContentDescription" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </FrameLayout>

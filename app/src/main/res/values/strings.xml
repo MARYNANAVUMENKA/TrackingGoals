@@ -1,42 +1,41 @@
 <resources>
     <string name="app_name">TrackingGoals</string>
-    <!--fragment_base_menu-->
-    <string name="menu_diary">Дневник</string>
-    <string name="menu_goals">Цели</string>
-    <string name="menu_menu">Меню</string>
-    <!--    item_note-->
-    <string name="textView_note">Новая заметка</string>
-    <!--    fragment_note_incoming-->
-    <string name="editText_incoming">Твой вывод,воспоминание за день,ключевое событие или заметка</string>
-    <!--    alert_dialog-->
-    <string name="alert_dialog_exit_title">Выйти без сохранения?</string>
-    <string name="alert_dialog_exit_text">Не введен текст.Остальные данные не будут сохранены.</string>
-    <string name="alert_dialog_action_exit">Выйти</string>
-    <string name="alert_dialog_action_return">Вернуться</string>
 
-    <string name="alert_dialog_delete_title">Удалить заметку</string>
-    <string name="alert_dialog_delete_text">Подтверди удаление заметки.Восстановить её будет невозможно</string>
-    <string name="alert_dialog_action_yes">Да</string>
-    <string name="alert_dialog_action_no">Нет</string>
+    <string name="menu_diary">Diary</string>
+    <string name="menu_goals">Goals</string>
+    <string name="menu_menu">Menu</string>
 
-    <string name="alert_dialog_complete_title">Завершить без сохранения?</string>
-    <string name="alert_dialog_complete_text">Не введен текст желания. Данные не будут сохранены.</string>
-    <string name="alert_dialog_complete_action_complete">Завершить</string>
-    <string name="alert_dialog_complete_action_return">Вернуться</string>
+    <string name="textView_note">New note</string>
 
+    <string name="editText_incoming">The idea,thought,key event,etc</string>
 
-    <string name="january">Январь</string>
-    <string name="february">Февраль</string>
-    <string name="march">Март</string>
-    <string name="april">Апрель</string>
-    <string name="may">Май</string>
-    <string name="june">Июнь</string>
-    <string name="july">Июль</string>
-    <string name="august">Август</string>
-    <string name="september">Сентябрь</string>
-    <string name="october">Октябрь</string>
-    <string name="november">Ноябрь</string>
-    <string name="december">Декабрь</string>
+    <string name="alert_dialog_exit_title">Quit without saving?</string>
+    <string name="alert_dialog_exit_text">There is no text to save.You will loose your other data.</string>
+    <string name="alert_dialog_action_exit">Quit</string>
+    <string name="alert_dialog_action_return">Go back</string>
+
+    <string name="alert_dialog_delete_title">Remove the note?</string>
+    <string name="alert_dialog_delete_text">Are you sure?You won`t be able to restore it.</string>
+    <string name="alert_dialog_action_yes">Yes</string>
+    <string name="alert_dialog_action_no">No</string>
+
+    <string name="alert_dialog_complete_title">Complete without saving?</string>
+    <string name="alert_dialog_complete_text">Wish text and quantity are not entered. The data will not be saved.</string>
+    <string name="alert_dialog_complete_action_complete">Complete</string>
+    <string name="alert_dialog_complete_action_return">Go back</string>
+
+    <string name="january">January</string>
+    <string name="february">February</string>
+    <string name="march">March</string>
+    <string name="april">April</string>
+    <string name="may">May</string>
+    <string name="june">June</string>
+    <string name="july">July</string>
+    <string name="august">August</string>
+    <string name="september">September</string>
+    <string name="october">October</string>
+    <string name="november">November</string>
+    <string name="december">December</string>
 
     <string-array name="month">
         <item>@string/january</item>
@@ -53,17 +52,17 @@
         <item>@string/december</item>
     </string-array>
 
-    <string name="rub">Рублей</string>
-    <string name="dollar">Долларов</string>
-    <string name="client">Клиентов</string>
-    <string name="users">Пользователей</string>
-    <string name="subscribers">Подписчиков</string>
-    <string name="orders">Заказов</string>
-    <string name="units">Штук</string>
-    <string name="times">Раз</string>
-    <string name="days">Дней</string>
-    <string name="kilogram">Килограмм</string>
-    <string name="books">Книг</string>
+    <string name="rub">rub</string>
+    <string name="dollar">dollars</string>
+    <string name="client">clients</string>
+    <string name="users">users</string>
+    <string name="subscribers">subscribers</string>
+    <string name="orders">orders</string>
+    <string name="units">units</string>
+    <string name="times">times</string>
+    <string name="days">days</string>
+    <string name="kilogram">kilogram</string>
+    <string name="books">books</string>
 
     <string-array name="unit">
         <item>@string/rub</item>
@@ -79,53 +78,62 @@
         <item>@string/books</item>
     </string-array>
 
-
-
-
-
-
-
-
-    <string name="text_goals_accumulated">НАКОПЛЕНО</string>
-    <string name="text_goals_reaching_now">Достигаю сейчас</string>
-    <string name="text_goals_achieved">Достигнутые</string>
+    <string name="text_goals_reaching_now">Active</string>
+    <string name="text_goals_achieved">Achieved</string>
     <string name="add_goals_content_description">Add new goals</string>
-    <string name="button_constructor_start">Начать</string>
-    <string name="textView_constructor_title">Конструктор целей</string>
-    <string name="textView_constructor_description">Это твой мощный инструмент для достижения любых целей. Cоздай свою цель,воплощай и следи за прогрессом!</string>
+    <string name="button_constructor_start">Begin</string>
+    <string name="textView_constructor_title">Goal creator</string>
+    <string name="textView_constructor_description">This is your powerful tool for achieving any goal. Create your goal, realize it and monitor your progress!</string>
 
-    <string name="textView_goals_first">Конструктор целей</string>
-    <string name="textView_goals_title">Чего ты хочешь?</string>
-    <string name="textView_goals_description">Напиши желание которое тебя вдохновляет,и добавь картинку. Пиши, даже если пока не знаешь как этого достичь.</string>
+    <string name="textView_goals_first">Goal creator</string>
+    <string name="textView_goals_title">What do you want?</string>
+    <string name="textView_goals_description">Write a wish that inspires you, and add a picture. Write, even if you don`t know how to achieve it yet.</string>
     <string name="hint_goals_quantity">100</string>
-    <string name="hint_goalsStep_open_list">Открыть список</string>
-    <string name="hint_goals_description_goals">Сформулируй своё желание и запиши его сюда...</string>
-    <string name="hint_goals_description_criterion">Прочитано, накоплено, сделано, выучено...</string>
-    <string name="button_goals_choosePic">Выбрать картинку</string>
-    <string name="button_goals_next">Завершить создание</string>
-    <string name="textView_goals_title_second">Когда планируешь достичь?</string>
-    <string name="textView_goals_description_second">Рекомендуемые сроки от 3 месяцев до 3 лет. Ведь ты хочешь этого не к старости, а сейчас?</string>
-    <string name="textView_goals_data">ВЫБЕРИ ДАТУ</string>
-    <string name="textView_goals_result">В чём измерить результат?</string>
-    <string name="textView_goals_result_description">Измерения нужны для отслеживания процесса. В чём можно её посчитать?</string>
-    <string name="editText_goals_want">СКОЛЬКО ХОЧУ</string>
-    <string name="editText_goals_quantity">ЕДИНИЦА ИЗМЕРЕНИЯ</string>
-    <string name="editText_goals_criterion">ОПИСАНИЕ КРИТЕРИЯ</string>
-    <string name="button_goals_complete">Завершить создание</string>
+    <string name="hint_goalsStep_open_list">Open list</string>
+    <string name="hint_goals_description_goals">Formulate your wish and write it down</string>
+    <string name="hint_goals_description_criterion">Read, accumulated, done, learned</string>
+    <string name="button_goals_choosePic">Choose a picture</string>
+    <string name="button_goals_next">Finish creation</string>
+    <string name="textView_goals_title_second">When do you expect to achieve it</string>
+    <string name="textView_goals_description_second">The recommended time frame is 3 months to 3 years. After all, you don`t want it by old age, but now, do you?</string>
+    <string name="textView_goals_data">CHOOSE A DATE</string>
+    <string name="textView_goals_result">How can you measure the result?</string>
+    <string name="textView_goals_result_description">Measurements are needed to track the process. In what can it be counted?</string>
+    <string name="editText_goals_want">HOW MUCH I WANT</string>
+    <string name="editText_goals_quantity">UNIT OF MEASURE</string>
+    <string name="editText_goals_criterion">DESCRIPTION OF CRITERIA</string>
 
-    <string name="textView_bottom_sheet_photo_load">Загрузить свою</string>
-    <string name="textView_bottom_sheet_photo_create">Сделать снимок</string>
-    <string name="textView_bottom_sheet_photo_cancel">Отмена</string>
+    <string name="photo_choose">Choose from</string>
+    <string name="photo_load">Uploads yours</string>
+    <string name="photo_create">Make a picture</string>
+
+    <string-array name="picture">
+        <item>@string/photo_choose</item>
+        <item>@string/photo_load</item>
+        <item>@string/photo_create</item>
+    </string-array>
+
 
     <string name="textView_bottom_sheet_goals_edit">Редактировать</string>
     <string name="textView_bottom_sheet_goals_accomplished">Цель достигнута</string>
     <string name="textView_bottom_sheet_goals_remove">Удалить цель</string>
-    <string name="textView_bottom_sheet_goals_cancel">Отмена</string>
-
-    <string name="popupmenu_goals_edit">Редактировать</string>
-    <string name="popupmenu_goals_accomplished">Цель достигнута</string>
-    <string name="popupmenu_goals_remove">Удалить цель</string>
 
 
+    <string name="popupmenu_goals_edit">Edit goals</string>
+    <string name="popupmenu_goals_accomplished">The goals is accomplished</string>
+    <string name="popupmenu_goals_remove">Remove the goal</string>
+
+    <string name="hint_custom_fragment">Enter the quantity</string>
+    <string name="title_custom_fragment">How much was added or subtracted?</string>
+    <string name="custom_fragment_action_confirm">confirm</string>
+
+    <string name="empty_value">You did not enter the text</string>
+    <string name="invalid_value">Enter + or - in front of the number</string>
+
+
+    <string name="textView_incoming_title">Incoming</string>
+    <string name="textView_incoming_goals">Related to the goal:</string>
+    <string name="textView_Goals_Quantity_Now_Null">0</string>
+    <string name="textView_Goals_Quantity_Of">из</string>
 
 </resources>

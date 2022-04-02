@@ -1,0 +1,143 @@
+<resources>
+    <string name="app_name">TrackingGoals</string>
+
+    <string name="menu_diary">Дневник</string>
+    <string name="menu_goals">Цели</string>
+    <string name="menu_menu">Меню</string>
+
+    <string name="textView_note">Новая заметка</string>
+
+    <string name="editText_incoming">Твой вывод,воспоминание за день,ключевое событие или заметка</string>
+
+    <string name="alert_dialog_exit_title">Выйти без сохранения?</string>
+    <string name="alert_dialog_exit_text">Не введен текст.Остальные данные не будут сохранены.</string>
+    <string name="alert_dialog_action_exit">Выйти</string>
+    <string name="alert_dialog_action_return">Вернуться</string>
+
+    <string name="alert_dialog_delete_title">Удалить заметку</string>
+    <string name="alert_dialog_delete_text">Подтверди удаление заметки.Восстановить её будет невозможно</string>
+    <string name="alert_dialog_action_yes">Да</string>
+    <string name="alert_dialog_action_no">Нет</string>
+
+    <string name="alert_dialog_complete_title">Завершить без сохранения?</string>
+    <string name="alert_dialog_complete_text">Не введен текст желания и количество. Данные не будут сохранены.</string>
+    <string name="alert_dialog_complete_action_complete">Завершить</string>
+    <string name="alert_dialog_complete_action_return">Вернуться</string>
+
+
+    <string name="january">Январь</string>
+    <string name="february">Февраль</string>
+    <string name="march">Март</string>
+    <string name="april">Апрель</string>
+    <string name="may">Май</string>
+    <string name="june">Июнь</string>
+    <string name="july">Июль</string>
+    <string name="august">Август</string>
+    <string name="september">Сентябрь</string>
+    <string name="october">Октябрь</string>
+    <string name="november">Ноябрь</string>
+    <string name="december">Декабрь</string>
+
+    <string-array name="month">
+        <item>@string/january</item>
+        <item>@string/february</item>
+        <item>@string/march</item>
+        <item>@string/april</item>
+        <item>@string/may</item>
+        <item>@string/june</item>
+        <item>@string/july</item>
+        <item>@string/august</item>
+        <item>@string/september</item>
+        <item>@string/october</item>
+        <item>@string/november</item>
+        <item>@string/december</item>
+    </string-array>
+
+    <string name="rub">Рублей</string>
+    <string name="dollar">Долларов</string>
+    <string name="client">Клиентов</string>
+    <string name="users">Пользователей</string>
+    <string name="subscribers">Подписчиков</string>
+    <string name="orders">Заказов</string>
+    <string name="units">Штук</string>
+    <string name="times">Раз</string>
+    <string name="days">Дней</string>
+    <string name="kilogram">Килограмм</string>
+    <string name="books">Книг</string>
+
+    <string-array name="unit">
+        <item>@string/rub</item>
+        <item>@string/dollar</item>
+        <item>@string/client</item>
+        <item>@string/users</item>
+        <item>@string/subscribers</item>
+        <item>@string/orders</item>
+        <item>@string/units</item>
+        <item>@string/times</item>
+        <item>@string/days</item>
+        <item>@string/kilogram</item>
+        <item>@string/books</item>
+    </string-array>
+
+    <string name="text_goals_accumulated">НАКОПЛЕНО</string>
+    <string name="text_goals_reaching_now">Достигаю сейчас</string>
+    <string name="text_goals_achieved">Достигнутые</string>
+    <string name="add_goals_content_description">Add new goals</string>
+    <string name="button_constructor_start">Начать</string>
+    <string name="textView_constructor_title">Конструктор целей</string>
+    <string name="textView_constructor_description">Это твой мощный инструмент для достижения любых целей. Создай свою цель,воплощай и следи за прогрессом!</string>
+
+    <string name="textView_goals_first">Конструктор целей</string>
+    <string name="textView_goals_title">Чего ты хочешь?</string>
+    <string name="textView_goals_description">Напиши желание которое тебя вдохновляет,и добавь картинку. Пиши, даже если пока не знаешь как этого достичь.</string>
+    <string name="hint_goals_quantity">100</string>
+    <string name="hint_goalsStep_open_list">Открыть список</string>
+    <string name="hint_goals_description_goals">Сформулируй своё желание и запиши его</string>
+    <string name="hint_goals_description_criterion">Прочитано, накоплено, сделано, выучено</string>
+    <string name="button_goals_choosePic">Выбрать картинку</string>
+    <string name="button_goals_next">Завершить создание</string>
+    <string name="textView_goals_title_second">Когда планируешь достичь?</string>
+    <string name="textView_goals_description_second">Рекомендуемые сроки от 3 месяцев до 3 лет. Ведь ты хочешь этого не к старости, а сейчас?</string>
+    <string name="textView_goals_data">ВЫБЕРИ ДАТУ</string>
+    <string name="textView_goals_result">В чём измерить результат?</string>
+    <string name="textView_goals_result_description">Измерения нужны для отслеживания процесса. В чём можно её посчитать?</string>
+    <string name="editText_goals_want">СКОЛЬКО ХОЧУ</string>
+    <string name="editText_goals_quantity">ЕДИНИЦА ИЗМЕРЕНИЯ</string>
+    <string name="editText_goals_criterion">ОПИСАНИЕ КРИТЕРИЯ</string>
+    <string name="button_goals_complete">Завершить создание</string>
+
+    <string name="photo_choose">Выбрать из предложенных</string>
+    <string name="photo_load">Загрузить свою</string>
+    <string name="photo_create">Сделать снимок</string>
+
+
+    <string-array name="picture">
+        <item>@string/photo_choose</item>
+        <item>@string/photo_load</item>
+        <item>@string/photo_create</item>
+    </string-array>
+
+
+    <string name="textView_bottom_sheet_goals_edit">Редактировать</string>
+    <string name="textView_bottom_sheet_goals_accomplished">Цель достигнута</string>
+    <string name="textView_bottom_sheet_goals_remove">Удалить цель</string>
+
+
+    <string name="popupmenu_goals_edit">Редактировать</string>
+    <string name="popupmenu_goals_accomplished">Цель достигнута</string>
+    <string name="popupmenu_goals_remove">Удалить цель</string>
+
+    <string name="hint_custom_fragment">Введите количество</string>
+    <string name="title_custom_fragment">Сколько прибавилось или отнялось?</string>
+    <string name="custom_fragment_action_confirm">Подтвердить</string>
+
+    <string name="empty_value">Вы не ввели текст</string>
+    <string name="invalid_value">Введите + или - перед числом</string>
+
+
+    <string name="textView_incoming_title">Входящие</string>
+    <string name="textView_incoming_goals">Относится к цели:</string>
+    <string name="textView_Goals_Quantity_Now_Null">0</string>
+    <string name="textView_Goals_Quantity_Of">из</string>
+
+</resources>
