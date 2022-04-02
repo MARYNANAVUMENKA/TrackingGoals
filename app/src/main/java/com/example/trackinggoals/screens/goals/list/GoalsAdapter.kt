@@ -70,7 +70,7 @@ class GoalsAdapter(private val actionListener: GoalsActionListener) :
             textViewTitleCriteria.text = goals.criterion
             textViewDataTitle.text = goals.dataExecution
             textViewQuantityTotal.text = goals.quantity.toString()
-            if (goals.quantity != 0 && goals.progress.toFloat() < goals.quantity.toFloat()) {
+            if (goals.quantity != 0 && goals.progress.toFloat() < goals.quantity.toFloat()&&goals.progress.toFloat()>0.0F) {
                 slider.valueFrom = 0.0F
                 slider.value = goals.progress.toFloat()
                 slider.valueTo = goals.quantity.toFloat()
@@ -83,6 +83,9 @@ class GoalsAdapter(private val actionListener: GoalsActionListener) :
                 slider.value = goals.quantity.toFloat()
                 slider.valueTo = goals.quantity.toFloat()
             } else if (goals.quantity == 0) {
+                slider.valueFrom = 0.0F
+                slider.valueTo = 0.1F
+            }else if (goals.progress.toFloat() < goals.quantity.toFloat()&&goals.progress.toFloat()<0){
                 slider.valueFrom = 0.0F
                 slider.valueTo = 0.1F
             }
