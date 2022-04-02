@@ -32,6 +32,13 @@ interface NoteDao {
     @Query("UPDATE incoming SET text_messages =:textMessages WHERE id_im = :idIm")
     fun updateTextMessage(textMessages: String, idIm: Int)
 
+    @Query("UPDATE incoming SET text_goals =:textGoals WHERE id_im = :idIm")
+    fun updateTextGoals(textGoals: String, idIm: Int)
+
+    @Query("UPDATE incoming SET quantity =:quantity WHERE id_im = :idIm")
+    fun updateQuantity(quantity: String, idIm: Int)
+
+
     @Transaction
     @Query("SELECT*FROM notes ")
     fun getNoteWithIncoming(): List<NoteWithIncoming>

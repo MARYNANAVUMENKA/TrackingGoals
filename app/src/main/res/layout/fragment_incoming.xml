@@ -24,7 +24,8 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
             android:background="@color/background_menu"
-            app:srcCompat="@drawable/ic_arrow_back" />
+            app:srcCompat="@drawable/ic_arrow_back"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textViewData"
@@ -47,7 +48,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="15dp"
             android:background="@color/background_menu"
-            app:srcCompat="@drawable/ic_done" />
+            app:srcCompat="@drawable/ic_done"
+            tools:ignore="ContentDescription" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -81,8 +83,8 @@
                 android:id="@+id/editTextIncoming"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="13dp"
                 android:layout_marginStart="13dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginEnd="13dp"
                 android:background="@android:color/transparent"
                 android:focusable="true"
@@ -90,6 +92,8 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="top"
                 android:hint="@string/editText_incoming"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
                 android:inputType="textMultiLine"
                 android:minLines="13"
                 android:textSize="14sp"
@@ -103,14 +107,15 @@
                 android:id="@+id/imageViewDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/background_menu"
                 android:layout_gravity="end"
                 android:layout_marginEnd="13dp"
+                android:background="@color/background_menu"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageViewGoals"
-                app:srcCompat="@drawable/ic_delete" />
+                app:srcCompat="@drawable/ic_delete"
+                tools:ignore="ContentDescription" />
 
 
             <TextView
@@ -126,11 +131,11 @@
                 android:id="@+id/cardInner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
-                app:cardElevation="9dp"
                 android:checkable="true"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                app:cardElevation="9dp"
+                app:cardUseCompatPadding="true">
 
                 <ImageButton
                     android:id="@+id/imageViewPic"
@@ -144,7 +149,8 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/ic_menu_goals" />
+                    app:srcCompat="@drawable/ic_menu_goals"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/textViewIncomingTextGoals"
@@ -176,42 +182,6 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-
-            <!--        <ImageButton-->
-            <!--            android:id="@+id/imageViewPic"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:background="?android:selectableItemBackground"-->
-            <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--            app:layout_constraintEnd_toStartOf="@+id/imageViewGoals"-->
-            <!--            app:layout_constraintHorizontal_bias="0.5"-->
-            <!--            app:layout_constraintHorizontal_chainStyle="spread_inside"-->
-            <!--            app:layout_constraintStart_toStartOf="parent"-->
-            <!--            app:srcCompat="@drawable/ic_add_photo" />-->
-
-            <!--        <ImageButton-->
-            <!--            android:id="@+id/imageViewGoals"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:layout_marginEnd="300dp"-->
-            <!--            android:background="?android:selectableItemBackground"-->
-            <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--            app:layout_constraintEnd_toStartOf="@+id/imageViewDelete"-->
-            <!--            app:layout_constraintHorizontal_bias="0.5"-->
-            <!--            app:layout_constraintStart_toEndOf="@+id/imageViewPic"-->
-            <!--            app:srcCompat="@drawable/ic_menu_goals" />-->
-
-
-            <!--        <ImageButton-->
-            <!--            android:id="@+id/imageViewDelete"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:background="?android:selectableItemBackground"-->
-            <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--            app:layout_constraintEnd_toEndOf="parent"-->
-            <!--            app:layout_constraintHorizontal_bias="0.5"-->
-            <!--            app:layout_constraintStart_toEndOf="@+id/imageViewGoals"-->
-            <!--            app:srcCompat="@drawable/ic_delete" />-->
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

@@ -63,19 +63,21 @@ class GoalsConstructorFragment : Fragment() {
             binding.editTextInputTextGoals.setText(it)
         }
         viewModel.photo.observe(viewLifecycleOwner) {
-
-            if (it.substringBefore(':')=="https"){
-                Glide.with(requireContext())
-                    .load(it)
-                    .centerCrop()
-                    .into(binding.imageViewGoalsPicture)
-            }else {
-                val file = readFile(requireContext(), it)
-                Glide.with(requireContext())
-                    .asBitmap()
-                    .load(file)
-                    .centerCrop()
-                    .into(binding.imageViewGoalsPicture)
+            if (it!="") {
+                binding.buttonGoalsChoosePic.visibility = View.INVISIBLE
+                if (it.substringBefore(':') == "https") {
+                    Glide.with(requireContext())
+                        .load(it)
+                        .centerCrop()
+                        .into(binding.imageViewGoalsPicture)
+                } else {
+                    val file = readFile(requireContext(), it)
+                    Glide.with(requireContext())
+                        .asBitmap()
+                        .load(file)
+                        .centerCrop()
+                        .into(binding.imageViewGoalsPicture)
+                }
             }
         }
 
@@ -95,10 +97,9 @@ class GoalsConstructorFragment : Fragment() {
 
         viewModel.quantity.observe(viewLifecycleOwner) {
             binding.textViewGoalsQuantityTotal.text = it.toString()
-            if (it!==0){
+            if (it!=0){
                 binding.editTextGoalsWant.setText(it.toString())
             }
-
         }
         viewModel.criterion.observe(viewLifecycleOwner) {
             binding.editTextGoalsCriterion.setText(it)
@@ -161,7 +162,7 @@ class GoalsConstructorFragment : Fragment() {
 
         }
 
-        binding.imageButtomBackGoals.setOnClickListener {
+        binding.imageButtonBackGoals.setOnClickListener {
             if (binding.editTextInputTextGoals.text.toString() == "" || binding.editTextInputTextGoals.text.isNullOrEmpty()) {
                 showAlertDialogConstructor()
             } else {
@@ -194,19 +195,24 @@ class GoalsConstructorFragment : Fragment() {
     private fun showPictureChoiceFragment(requestKey: String) {
         parentFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer, PictureChoiceFragment.newInstance(requestKey,requireArguments().getInt(ARG_GOALS_ID)))
+            .addToBackStack(null)
+            .add(R.id.fragmentContainer, PictureChoiceFragment.newInstance(requestKey,requireArguments().getInt(ARG_GOALS_ID)))
             .commit()
     }
 
     private fun setupPictureChoiceFragmentListeners() {
+        val goalsId = requireArguments().getInt(ARG_GOALS_ID)
         val listener: PictureChoiceFragmentListener = { requestKey, pathImage ->
             when (requestKey) {
                 KEY_FIRST_PICTURE_REQUEST_KEY -> {
-                    viewModel.updatePhototGoals(pathImage, requireArguments().getInt(ARG_GOALS_ID))
-                    Glide.with(requireContext())
-                        .load(pathImage)
-                        .centerCrop()
-                        .into(binding.imageViewGoalsPicture)
+                    if (pathImage.isNotEmpty()&&pathImage!=""){
+                        viewModel.updatePhototGoals(pathImage, goalsId)
+                        binding.buttonGoalsChoosePic.visibility = View.INVISIBLE
+                        Glide.with(requireContext())
+                            .load(pathImage)
+                            .centerCrop()
+                            .into(binding.imageViewGoalsPicture)
+                    }
                 }
             }
         }
@@ -303,6 +309,7 @@ class GoalsConstructorFragment : Fragment() {
                         if (savePhotoToInternalStorage(nameFile, selectedBitmap)) {
                             viewModel.updatePhototGoals("$nameFile.jpg", goalsId)
                         }
+                        binding.buttonGoalsChoosePic.visibility = View.INVISIBLE
                         binding.imageViewGoalsPicture.setImageBitmap(selectedBitmap)
                     }else if(requestCode == 4){
                         val selectedBtm = data?.extras?.get("data") as Bitmap
@@ -311,6 +318,7 @@ class GoalsConstructorFragment : Fragment() {
                         if (savePhotoToInternalStorage(nameFile, selectedBtm)) {
                             viewModel.updatePhototGoals("$nameFile.jpg", goalsId)
                         }
+                        binding.buttonGoalsChoosePic.visibility = View.INVISIBLE
                         binding.imageViewGoalsPicture.setImageBitmap(selectedBtm)
                     }
                 } else {
@@ -322,6 +330,7 @@ class GoalsConstructorFragment : Fragment() {
                         if (savePhotoToInternalStorage(nameFile, selectedBitmap)) {
                             viewModel.updatePhototGoals("$nameFile.jpg", goalsId)
                         }
+                        binding.buttonGoalsChoosePic.visibility = View.INVISIBLE
                         binding.imageViewGoalsPicture.setImageBitmap(selectedBitmap)
                     }else if(requestCode == 4){
                         val selectedBtm = data?.extras?.get("data") as Bitmap
@@ -330,6 +339,7 @@ class GoalsConstructorFragment : Fragment() {
                         if (savePhotoToInternalStorage(nameFile, selectedBtm)) {
                             viewModel.updatePhototGoals("$nameFile.jpg", goalsId)
                         }
+                        binding.buttonGoalsChoosePic.visibility = View.INVISIBLE
                         binding.imageViewGoalsPicture.setImageBitmap(selectedBtm)
                     }
                 }

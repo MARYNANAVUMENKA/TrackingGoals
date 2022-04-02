@@ -1,7 +1,6 @@
 package com.example.trackinggoals.model
 
 import java.util.ArrayList
-import kotlin.math.tanh
 
 class RoomIncomingRepository(
     private val noteRepository: NoteRepository,
@@ -21,7 +20,15 @@ class RoomIncomingRepository(
     }
 
     override suspend fun updateProgress(progress: String, idGoals: Int) {
-        goalsRepository.updateProgressWithoutIncoming(progress,idGoals)
+        goalsRepository.updateProgressWithoutNewResult(progress,idGoals)
+    }
+
+    override suspend fun updateTextGoals(textGoals: String, idIm: Int) {
+        noteRepository.updateTextGoals(textGoals, idIm)
+    }
+
+    override suspend fun updateQuantity(quantity: String, idIm: Int) {
+        noteRepository.updateQuantity(quantity, idIm)
     }
 
     override suspend fun deleteIncoming(incoming: Incoming) {

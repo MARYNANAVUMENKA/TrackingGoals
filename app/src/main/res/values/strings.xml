@@ -137,5 +137,7 @@
 
     <string name="textView_incoming_title">Входящие</string>
     <string name="textView_incoming_goals">Относится к цели:</string>
+    <string name="textView_Goals_Quantity_Now_Null">0</string>
+    <string name="textView_Goals_Quantity_Of">из</string>
 
 </resources>

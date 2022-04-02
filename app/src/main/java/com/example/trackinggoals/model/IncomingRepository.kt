@@ -10,6 +10,10 @@ interface IncomingRepository {
 
     suspend fun updateProgress(progress:String,idGoals:Int)
 
+    suspend fun updateTextGoals(textGoals: String, idIm: Int)
+
+    suspend fun updateQuantity(quantity: String, idIm: Int)
+
     suspend fun deleteIncoming(incoming: Incoming)
 
     suspend fun getAllGoals():ArrayList<String>

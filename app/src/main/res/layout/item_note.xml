@@ -14,8 +14,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-medium"
         android:textColor="@color/black"
-        android:textSize="16sp"
-        tools:text="Cуббота, 1 января" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textViewItemNoteToday"
@@ -25,8 +24,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-medium"
         android:textColor="@color/text_blue"
-        android:textSize="16sp"
-        tools:text="Cегодня" />
+        android:textSize="16sp" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -91,7 +89,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerIncoming"
-                app:srcCompat="@drawable/ic_add_note" />
+                app:srcCompat="@drawable/ic_add_note"
+                tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

@@ -109,6 +109,33 @@ class IncomingViewModel(
         }
     }
 
+    fun updateQuantity(progress:String,idIm: Int){
+        scope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    incomingRepository.updateQuantity(progress,idIm)
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun updateTextGoals(textGoals: String,idIm: Int){
+        scope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    incomingRepository.updateTextGoals(textGoals, idIm)
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+
     fun deleteIncoming(incoming: Incoming) {
         scope.launch {
             try {

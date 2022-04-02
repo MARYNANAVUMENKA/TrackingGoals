@@ -28,22 +28,14 @@ class PictureAdapter(
 
     override fun onClick(v: View) {
         val pictureValues = v.tag as PictureValues
-
-        when (v.id) {
-            R.id.imageButtonDone -> {
-                pictureActionListener.selectPicture(pictureValues)
-            }
-            else -> {
-                pictureActionListener.selectPicture(pictureValues)
-            }
-        }
+        pictureActionListener.selectPicture(pictureValues)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PictureViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemPictureBinding.inflate(inflater, parent, false)
         binding.root.setOnClickListener(this)
-        binding.imageButtonDone.setOnClickListener(this)
+//        binding.imageButtonDone.setOnClickListener(this)
 
         return PictureViewHolder(binding)
     }
@@ -53,7 +45,7 @@ class PictureAdapter(
 
         with(holder.binding) {
             holder.itemView.tag = pictureValue
-            imageButtonDone.tag=pictureValue
+//            imageButtonDone.tag=pictureValue
             Glide.with(imageWithGlide.context)
                 .load(pictureValue.path)
                 .centerCrop()

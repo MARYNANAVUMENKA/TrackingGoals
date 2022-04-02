@@ -41,7 +41,7 @@ class IncomingAdapter(private val navigator: Navigator,private val actionListene
         val incoming = listIncoming[position]
         with(holder.binding){
             holder.itemView.tag = incoming
-            textViewItemIncomingNewRezult.text = incoming.textMessages
+            textViewItemIncomingNewResult.text = incoming.textMessages
             textViewItemIncomingProgress.text=incoming.quantity
 
         }

@@ -70,13 +70,32 @@ class GoalsAdapter(private val actionListener: GoalsActionListener) :
             textViewTitleCriteria.text=goals.criterion
             textViewDataTitle.text = goals.dataExecution
             textViewQuantityTotal.text= goals.quantity.toString()
-            slider.valueFrom= 0.0F
-            slider.value= goals.progress.toFloat()
-            slider.valueTo= goals.quantity.toFloat()
+            if (goals.quantity!=0&&goals.progress.toFloat()<goals.quantity.toFloat()){
+                slider.valueFrom= 0.0F
+                slider.value= goals.progress.toFloat()
+                slider.valueTo= goals.quantity.toFloat()
+            }else if (goals.progress.toFloat()>goals.quantity.toFloat()){
+                slider.valueFrom= 0.0F
+                slider.value= goals.progress.toFloat()
+                slider.valueTo= goals.progress.toFloat()
+            }else if(goals.progress.toFloat()==goals.quantity.toFloat()){
+                slider.valueFrom= 0.0F
+                slider.value= goals.quantity.toFloat()
+                slider.valueTo= goals.quantity.toFloat()
+            }else if (goals.quantity==0){
+                slider.valueFrom= 0.0F
+                slider.valueTo= 0.1F
+            }
+
             textViewQuantityUnit.text=goals.unit
             textViewQuantityNow.text= goals.progress.toString()
-            val percent=(goals.progress*100)/goals.quantity
-            textViewQuantityPercent.text="($percent %)"
+            if (goals.quantity==0){
+                textViewQuantityPercent.text="(0 %)"
+            }else{
+                val percent=(goals.progress*100)/goals.quantity
+                textViewQuantityPercent.text="($percent %)"
+            }
+
             if (goals.photo.substringBefore(':')=="https"){
                 Glide.with(imageViewGoalsPic.context)
                     .load(goals.photo)

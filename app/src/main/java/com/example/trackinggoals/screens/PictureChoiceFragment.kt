@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentResultListener
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.trackinggoals.databinding.PictureChoiceFragmentBinding
+import com.example.trackinggoals.databinding.FragmentPictureChoiceBinding
 
 import com.example.trackinggoals.navigator
 
@@ -20,7 +20,7 @@ import com.example.trackinggoals.navigator
 typealias PictureChoiceFragmentListener = (requestKey: String, progress: String) -> Unit
 
 class PictureChoiceFragment : Fragment() {
-    private lateinit var binding: PictureChoiceFragmentBinding
+    private lateinit var binding: FragmentPictureChoiceBinding
     private lateinit var adapter: PictureAdapter
 
     private val requestKey: String
@@ -35,7 +35,7 @@ class PictureChoiceFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = PictureChoiceFragmentBinding.inflate(inflater, container, false)
+        binding = FragmentPictureChoiceBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -54,7 +54,7 @@ class PictureChoiceFragment : Fragment() {
                 parentFragmentManager.setFragmentResult(requestKey, bundleOf(
                     PictureChoiceFragment.KEY_PICTURE_RESPONSE to pictureValues.path)
                 )
-                navigator().showGoalsConstructor(goalsId)
+                navigator().goBack()
             }
         })
         adapter.picturesValues = listPictureValues

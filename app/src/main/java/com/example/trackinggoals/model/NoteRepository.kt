@@ -16,5 +16,9 @@ interface NoteRepository {
 
     suspend fun updateIncoming(textMessages: String, idIm: Int)
 
+    suspend fun updateTextGoals(textGoals: String, idIm: Int)
+
+    suspend fun updateQuantity(quantity: String, idIm: Int)
+
     suspend fun deleteIncoming(incoming: Incoming)
 }

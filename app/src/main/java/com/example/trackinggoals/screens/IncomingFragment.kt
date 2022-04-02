@@ -53,6 +53,7 @@ class IncomingFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.editTextIncoming.requestFocus()
         showKeyboard(binding.editTextIncoming)
+
         setupGoalsBottomSheetDialogFragmentListeners()
 
         viewModel.incoming.observe(viewLifecycleOwner){
@@ -130,7 +131,6 @@ class IncomingFragment() : Fragment() {
             viewModel.selectedGoals.observe(viewLifecycleOwner){
                 binding.textViewIncomingTextGoals.text = it.textGoals
                 setupCustomInputDialogFragmentListeners(it)
-
             }
         }
         GoalsBottomSheetDialogFragment.setupListener(parentFragmentManager, this, KEY_FIRST_GOALS_REQUEST_KEY, listener)
@@ -145,7 +145,6 @@ class IncomingFragment() : Fragment() {
         val listener: CustomInputDialogListener = { requestKey, progress ->
             when (requestKey) {
                 KEY_INPUT_REQUEST_KEY -> {
-                    viewModel.updateProgress(progress,goals.id)
                     binding.textViewIncomingQuantityGoals.text = progress
                 }
             }
@@ -157,6 +156,21 @@ class IncomingFragment() : Fragment() {
     private fun updateIncoming() {
         val textMessages = binding.editTextIncoming.text.toString()
         viewModel.updateTextIncoming(textMessages,currentIncoming.idIm)
+
+        val textGoals=binding.textViewIncomingTextGoals.text.toString()
+        val quantity=binding.textViewIncomingQuantityGoals.text.toString()
+
+        if (binding.textViewIncomingTextGoals.toString().isNotEmpty()){
+            viewModel.updateTextGoals(textGoals,currentIncoming.idIm)
+        }
+        if (binding.textViewIncomingQuantityGoals.toString().isNotEmpty()){
+            viewModel.updateQuantity(quantity,currentIncoming.idIm)
+        }
+        if (binding.textViewIncomingTextGoals.toString().isNotEmpty()&&binding.textViewIncomingQuantityGoals.toString().isNotEmpty()) {
+            viewModel.selectedGoals.observe(viewLifecycleOwner) {
+                viewModel.updateProgress(quantity, it.id)
+            }
+        }
     }
 
 

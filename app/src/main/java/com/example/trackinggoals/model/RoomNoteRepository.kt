@@ -180,6 +180,14 @@ class RoomNoteRepository(
         noteDao.updateTextMessage(textMessages, idIm)
     }
 
+    override suspend fun updateTextGoals(textGoals: String, idIm: Int) {
+        noteDao.updateTextGoals(textGoals, idIm)
+    }
+
+    override suspend fun updateQuantity(quantity: String, idIm: Int) {
+       noteDao.updateQuantity(quantity, idIm)
+    }
+
 
     override suspend fun deleteIncoming(incoming: Incoming) {
         noteDao.deleteIncoming(IncomingDbEntity(incoming.idIm,incoming.idNote,incoming.currentDataIn,incoming.textGoals,incoming.quantity,incoming.textMessages))

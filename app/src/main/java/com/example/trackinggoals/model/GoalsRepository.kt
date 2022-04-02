@@ -22,7 +22,7 @@ interface GoalsRepository {
 
     suspend fun updateProgress(progress: String, id: Int)
 
-    suspend fun updateProgressWithoutIncoming(progress: String, id: Int)
+    suspend fun updateProgressWithoutNewResult(progress: String, id: Int)
 
     suspend fun updateQuantity(quantity: Int, id: Int)
 

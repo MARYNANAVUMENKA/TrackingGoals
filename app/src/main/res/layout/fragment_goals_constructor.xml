@@ -13,13 +13,14 @@
         android:background="@color/background_menu">
 
         <ImageButton
-            android:id="@+id/imageButtomBackGoals"
+            android:id="@+id/imageButtonBackGoals"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="20dp"
             android:background="@color/background_menu"
-            app:srcCompat="@drawable/ic_arrow_back" />
+            app:srcCompat="@drawable/ic_arrow_back"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textViewGoalsTitleToolbar"
@@ -108,17 +109,19 @@
                             android:id="@+id/imageViewGoalsPicture"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:scaleType="centerCrop"/>
+                            android:scaleType="centerCrop"
+                            tools:ignore="ContentDescription" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/buttonGoalsChoosePic"
                             style="?attr/materialButtonOutlinedStyle"
+                            android:clickable="false"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:backgroundTint="@color/background"
                             android:fontFamily="sans-serif-medium"
-                            android:padding="15dp"
+                            android:padding="10dp"
                             android:text="@string/button_goals_choosePic"
                             android:textAllCaps="false"
                             android:textColor="@color/text_blue"
@@ -169,10 +172,12 @@
                             android:focusableInTouchMode="true"
                             android:fontFamily="sans-serif-medium"
                             android:hint="@string/hint_goals_description_goals"
-                            android:inputType="text"
+                            android:inputType="textMultiLine"
+                            android:imeOptions="actionGo"
                             android:lines="2"
-                            android:maxLines="1"
-                            android:textSize="16sp" />
+                            android:maxLines="2"
+                            android:textSize="18sp"
+                            android:importantForAutofill="no" />
 
                         <TextView
                             android:id="@+id/textViewTitleGoalsCriteria"
@@ -203,22 +208,22 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="5dp"
                                 android:fontFamily="sans-serif-light"
-                                android:text="0"
+                                android:text="@string/textView_Goals_Quantity_Now_Null"
                                 android:textColor="@color/black"
                                 android:textSize="12sp"
-                                app:layout_constraintEnd_toStartOf="@+id/textViewGoalsQuantitydOf"
+                                app:layout_constraintEnd_toStartOf="@+id/textViewGoalsQuantityOf"
                                 app:layout_constraintHorizontal_bias="0.0"
                                 app:layout_constraintHorizontal_chainStyle="packed"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                android:id="@+id/textViewGoalsQuantitydOf"
+                                android:id="@+id/textViewGoalsQuantityOf"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="5dp"
                                 android:fontFamily="sans-serif-light"
-                                android:text="из"
+                                android:text="@string/textView_Goals_Quantity_Of"
                                 android:textColor="@color/black"
                                 android:textSize="12sp"
                                 app:layout_constraintEnd_toStartOf="@+id/textViewGoalsQuantityTotal"
@@ -232,12 +237,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="5dp"
                                 android:fontFamily="sans-serif-light"
-                                android:text="0"
+                                android:text="@string/textView_Goals_Quantity_Now_Null"
                                 android:textColor="@color/black"
                                 android:textSize="12sp"
                                 app:layout_constraintEnd_toStartOf="@+id/textViewGoalsQuantityUnit"
                                 app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/textViewGoalsQuantitydOf"
+                                app:layout_constraintStart_toEndOf="@+id/textViewGoalsQuantityOf"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
