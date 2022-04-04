@@ -59,6 +59,9 @@ class GoalsListFragment : Fragment() {
             }
         }
         viewModel.listGoalsLiveData.observe(viewLifecycleOwner) {
+            if (it.isEmpty()){
+                navigator().goBaseMenu()
+            }
             adapter.goals = it
         }
         val layoutManager = LinearLayoutManager(requireContext())

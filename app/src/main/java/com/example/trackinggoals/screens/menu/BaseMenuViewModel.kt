@@ -19,7 +19,7 @@ class BaseMenuViewModel(
         loadListGoals()
     }
 
-    private fun loadListGoals() {
+    fun loadListGoals() {
         scope.launch {
             try {
                 val listGoals = withContext(Dispatchers.IO) {

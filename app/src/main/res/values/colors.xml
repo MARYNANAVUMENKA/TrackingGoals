@@ -21,6 +21,7 @@
     <color name="text_blue">#005EFF</color>
     <color name="text_grey">#606060</color>
     <color name="text_grey_light">#777777</color>
+    <color name="text_grey_hint_light">#9C9B9B</color>
     <color name="grey_light">#A5A4A4</color>
     <color name="menu_checked">#2F75C5</color>
     <color name="menu_unchecked">#AFB4BA</color>

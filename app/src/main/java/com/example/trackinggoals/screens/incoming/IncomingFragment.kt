@@ -74,6 +74,7 @@ class IncomingFragment : Fragment() {
             binding.textViewIncomingQuantityGoals.text = it
         }
         binding.imageViewBack.setOnClickListener {
+            hideKeyboard(binding.imageViewBack)
             when (binding.editTextIncoming.text.toString()) {
                 "" -> showAlertDialogBack()
                 else -> {
@@ -82,6 +83,7 @@ class IncomingFragment : Fragment() {
             }
         }
         binding.imageViewDone.setOnClickListener {
+            hideKeyboard(binding.imageViewDone)
             when (binding.editTextIncoming.text.toString()) {
                 "" -> showAlertDialogBack()
                 else -> {
@@ -91,6 +93,7 @@ class IncomingFragment : Fragment() {
             }
         }
         binding.imageViewDelete.setOnClickListener {
+            hideKeyboard(binding.imageViewDelete)
             showAlertDialogDelete()
         }
         binding.cardInner.setOnClickListener {
@@ -110,6 +113,10 @@ class IncomingFragment : Fragment() {
     private fun getInputMethodManager(view: View): InputMethodManager {
         val context = view.context
         return context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    }
+
+    private fun hideKeyboard(view: View) {
+        getInputMethodManager(view).hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun showGoalsBottomSheetDialogFragment(

@@ -12,6 +12,7 @@ import com.example.trackinggoals.model.notes.entities.Incoming
 import com.example.trackinggoals.model.notes.entities.NoteIncoming
 import com.example.trackinggoals.screens.incoming.IncomingActionListener
 import com.example.trackinggoals.screens.incoming.IncomingAdapter
+import kotlin.properties.Delegates
 
 
 interface NoteActionListener {
@@ -24,6 +25,7 @@ class NoteAdapter(
 ) : RecyclerView.Adapter<NoteAdapter.Holder>(), View.OnClickListener {
 
     private lateinit var adapterIncoming: IncomingAdapter
+
 
     var notesIncoming: List<NoteIncoming> = emptyList()
         set(value) {
@@ -42,7 +44,7 @@ class NoteAdapter(
         val binding = ItemNoteBinding.inflate(inflater, parent, false)
         adapterIncoming = IncomingAdapter(navigator, object : IncomingActionListener {
             override fun onIncomingDetails(incoming: Incoming) {
-                if (incoming.idIm !== 1) {
+                if (incoming.idIm != 1) {
                     navigator.showIncoming(incoming)
                 }
             }
@@ -68,12 +70,12 @@ class NoteAdapter(
             textViewItemNoteDayWeek.text = noteIncoming.note.currentData
             adapterIncoming.listIncoming = noteIncoming.listIncoming
             recyclerIncoming.adapter = adapterIncoming
-
             if (noteIncoming.listIncoming.isEmpty()) {
                 recyclerIncoming.layoutParams = RecyclerView.LayoutParams(378, 230)
             }
         }
     }
+
 
     override fun getItemId(position: Int): Long {
         return super.getItemId(position)
@@ -85,8 +87,19 @@ class NoteAdapter(
 
     override fun getItemCount(): Int = notesIncoming.size
 
+    fun getItemCurrentDay(currentData: String): Int {
+        var index = 0
+        for (noteIncoming in notesIncoming) {
+            if (noteIncoming.note.currentData == currentData) {
+                index = notesIncoming.indexOf(noteIncoming)
+            }
+        }
+        return index
+    }
+
 
     class Holder(
         val binding: ItemNoteBinding
     ) : RecyclerView.ViewHolder(binding.root)
+
 }

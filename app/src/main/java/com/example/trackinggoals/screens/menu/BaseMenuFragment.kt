@@ -24,15 +24,36 @@ class BaseMenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBaseMenuBinding.inflate(inflater, container, false)
-        childFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragmentContainerMenu, NoteListFragment.newInstance())
-            .commit()
+        viewModel.listGoalsLiveData.observe(viewLifecycleOwner) {
+            if (it.isEmpty()) {
+                childFragmentManager
+                    .beginTransaction()
+                    .replace(
+                        R.id.fragmentContainerMenu,
+                        GoalsStartFragment.newInstance()
+                    )
+                    .commit()
+            } else {
+                childFragmentManager
+                    .beginTransaction()
+                    .replace(
+                        R.id.fragmentContainerMenu,
+                        GoalsListFragment.newInstance()
+                    )
+                    .commit()
+            }
+        }
+//            childFragmentManager
+//                .beginTransaction()
+//                .replace(R.id.fragmentContainerMenu, NoteListFragment.newInstance())
+//                .commit()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.bottomNavigationView.selectedItemId=R.id.menuGoals
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menuDiary -> {
@@ -42,7 +63,7 @@ class BaseMenuFragment : Fragment() {
                         .commit()
                 }
                 R.id.menuGoals -> {
-
+                    viewModel.loadListGoals()
                     viewModel.listGoalsLiveData.observe(viewLifecycleOwner) {
                         if (it.isEmpty()) {
                             childFragmentManager
