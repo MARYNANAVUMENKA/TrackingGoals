@@ -17,6 +17,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
@@ -59,6 +60,8 @@ class GoalsConstructorFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.editTextInputTextGoals.requestFocus()
+        showKeyboard(binding.editTextInputTextGoals)
         setupSingleChoiceDialogFragmentListener()
         setupPictureChoiceFragmentListeners()
 
@@ -86,28 +89,21 @@ class GoalsConstructorFragment : Fragment() {
 
         viewModel.dataExecution.observe(viewLifecycleOwner) {
             binding.buttonGoalsChooseDat.text = it
-            binding.textViewDataTitleGoals.text = it
-
         }
         viewModel.unit.observe(viewLifecycleOwner) {
             binding.autoCompleteTextGoalsUnit.clearListSelection()
-            binding.autoCompleteTextGoalsUnit.hint = it
-            binding.textViewGoalsQuantityUnit.text = it
+            binding.autoCompleteTextGoalsUnit.setText(it)
         }
         viewModel.progress.observe(viewLifecycleOwner) {
-            binding.textViewGoalsQuantityNow.text = it.toString()
-            binding.seekBarGoalsConstructor.progress = it
         }
 
         viewModel.quantity.observe(viewLifecycleOwner) {
-            binding.textViewGoalsQuantityTotal.text = it.toString()
             if (it != 0) {
                 binding.editTextGoalsWant.setText(it.toString())
             }
         }
         viewModel.criterion.observe(viewLifecycleOwner) {
             binding.editTextGoalsCriterion.setText(it)
-            binding.textViewTitleGoalsCriteria.text = it.uppercase(Locale.getDefault())
         }
 
         binding.imageViewGoalsPicture.setOnClickListener {
@@ -136,9 +132,7 @@ class GoalsConstructorFragment : Fragment() {
         binding.autoCompleteTextGoalsUnit.setAdapter(adapter)
 
         binding.autoCompleteTextGoalsUnit.setOnItemClickListener { parent, _, position, _ ->
-
             val item = parent.getItemAtPosition(position).toString()
-            binding.textViewGoalsQuantityUnit.text = item
         }
 
         binding.buttonGoalsFinishEdit.setOnClickListener {
@@ -380,6 +374,21 @@ class GoalsConstructorFragment : Fragment() {
             .setNegativeButton(R.string.alert_dialog_complete_action_return, listener)
             .create()
         dialog.show()
+    }
+
+    private fun showKeyboard(view: View) {
+        view.post {
+            getInputMethodManager(view).showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+        }
+    }
+
+    private fun hideKeyboard(view: View) {
+        getInputMethodManager(view).hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    private fun getInputMethodManager(view: View): InputMethodManager {
+        val context = view.context
+        return context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     }
 
 

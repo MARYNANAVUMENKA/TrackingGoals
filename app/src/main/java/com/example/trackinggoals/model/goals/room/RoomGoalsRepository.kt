@@ -1,5 +1,7 @@
 package com.example.trackinggoals.model.goals.room
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.trackinggoals.model.goals.room.entities.GoalsDbEntity
 import com.example.trackinggoals.model.notes.NoteRepository
 import com.example.trackinggoals.model.goals.GoalsRepository
@@ -12,6 +14,7 @@ class RoomGoalsRepository(
     private val goalsDao: GoalsDao,
 ) : GoalsRepository {
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override suspend fun getListGoals(): List<Goals> {
         val listGoalsDbEntity = goalsDao.getAllGoals()
         if (listGoalsDbEntity.isNullOrEmpty()) {
@@ -29,7 +32,8 @@ class RoomGoalsRepository(
                     unit = it.unit,
                     criterion = it.criterion
                 )
-            }
+            }.toMutableList()
+            listGoals.removeIf { it.textGoals=="" }
             return listGoals
         }
     }

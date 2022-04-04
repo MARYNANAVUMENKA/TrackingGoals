@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.trackinggoals.model.notes.entities.NoteIncoming
 import com.example.trackinggoals.model.notes.NoteRepository
+import com.example.trackinggoals.model.notes.entities.Note
 import kotlinx.coroutines.*
 import java.util.*
 
@@ -21,6 +22,8 @@ class NoteListViewModel(
     private val _currentMonthYearLiveData = MutableLiveData<String>()
     val currentMonthYearLiveData: LiveData<String> = _currentMonthYearLiveData
 
+    private val _currentDayLiveData = MutableLiveData<Note>()
+    val currentDayLiveData: LiveData<Note> = _currentDayLiveData
 
     init {
         val calendar = Calendar.getInstance()
@@ -29,9 +32,8 @@ class NoteListViewModel(
         val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
         loadListNoteWithIncoming(currentYear, currentMonth, currentDay)
         loadCurrentMonthYear(currentYear, currentMonth, currentDay)
+        loadCurrentDay()
     }
-
-
 
     fun loadListNoteWithIncoming(currentYear: Int, currentMonth: Int, currentDay: Int) {
         scope.launch {
@@ -63,6 +65,20 @@ class NoteListViewModel(
             }
         }
     }
+
+    fun loadCurrentDay() {
+        scope.launch {
+            try {
+                val currentDay = withContext(Dispatchers.IO) {
+                    noteRepository.getCurrentDay()
+                }
+                _currentDayLiveData.value = currentDay
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
 
     override fun onCleared() {
         scope.cancel()
