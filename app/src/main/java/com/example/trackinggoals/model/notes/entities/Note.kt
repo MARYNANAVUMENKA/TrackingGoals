@@ -3,6 +3,7 @@ package com.example.trackinggoals.model.notes.entities
 data class Note(
     val id: Int,
     val currentData: String,
+    var isToday:Boolean
 )
 
 data class Incoming(

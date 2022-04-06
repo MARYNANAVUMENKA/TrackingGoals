@@ -69,6 +69,9 @@ class NoteAdapter(
             imagePlusItemNote.tag = noteIncoming
             textViewItemNoteDayWeek.text = noteIncoming.note.currentData
             adapterIncoming.listIncoming = noteIncoming.listIncoming
+            if (noteIncoming.note.isToday){
+                textViewItemNoteToday.text="Cегодня"
+            }
             recyclerIncoming.adapter = adapterIncoming
             if (noteIncoming.listIncoming.isEmpty()) {
                 recyclerIncoming.layoutParams = RecyclerView.LayoutParams(378, 230)
@@ -96,6 +99,7 @@ class NoteAdapter(
         }
         return index
     }
+
 
 
     class Holder(

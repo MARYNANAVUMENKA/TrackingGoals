@@ -4,7 +4,9 @@ import com.example.trackinggoals.model.goals.entities.Goals
 
 interface GoalsRepository {
 
-    suspend fun getListGoals(): List<Goals>
+    suspend fun getListActiveGoals(): List<Goals>
+
+    suspend fun getListAchievedGoals(): List<Goals>
 
     suspend fun getIdGoals(id:Int): Goals
 

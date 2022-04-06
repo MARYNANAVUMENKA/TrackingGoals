@@ -50,7 +50,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:itemCount="2"
+                tools:itemCount="1"
                 tools:listitem="@layout/item_incoming">
 
             </androidx.recyclerview.widget.RecyclerView>

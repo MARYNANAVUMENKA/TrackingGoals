@@ -15,7 +15,7 @@ class RoomGoalsRepository(
 ) : GoalsRepository {
 
     @RequiresApi(Build.VERSION_CODES.N)
-    override suspend fun getListGoals(): List<Goals> {
+    override suspend fun getListActiveGoals(): List<Goals> {
         val listGoalsDbEntity = goalsDao.getAllGoals()
         if (listGoalsDbEntity.isNullOrEmpty()) {
             return emptyList()
@@ -23,7 +23,7 @@ class RoomGoalsRepository(
             val listGoals = listGoalsDbEntity.map {
                 Goals(
                     id = it.id,
-                    isActive = true,
+                    isActive = it.isActive,
                     photo = it.photo,
                     textGoals = it.textGoals,
                     dataExecution = it.dataExecution,
@@ -33,7 +33,31 @@ class RoomGoalsRepository(
                     criterion = it.criterion
                 )
             }.toMutableList()
-            listGoals.removeIf { it.textGoals=="" }
+            listGoals.removeIf { it.textGoals==""||!it.isActive }
+            return listGoals
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override suspend fun getListAchievedGoals(): List<Goals> {
+        val listGoalsDbEntity = goalsDao.getAllGoals()
+        if (listGoalsDbEntity.isNullOrEmpty()) {
+            return emptyList()
+        } else {
+            val listGoals = listGoalsDbEntity.map {
+                Goals(
+                    id = it.id,
+                    isActive = it.isActive,
+                    photo = it.photo,
+                    textGoals = it.textGoals,
+                    dataExecution = it.dataExecution,
+                    progress = it.progress,
+                    quantity = it.quantity,
+                    unit = it.unit,
+                    criterion = it.criterion
+                )
+            }.toMutableList()
+            listGoals.removeIf { it.textGoals==""||it.isActive }
             return listGoals
         }
     }

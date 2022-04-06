@@ -1,4 +1,4 @@
-package com.example.trackinggoals.screens.goals.list
+package com.example.trackinggoals.screens.goals.list.achieved
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,26 +7,26 @@ import com.example.trackinggoals.model.goals.entities.Goals
 import com.example.trackinggoals.model.goals.GoalsRepository
 import kotlinx.coroutines.*
 
-class GoalsListViewModel(
+class GoalsListAchievedViewModel(
     private var goalsRepository: GoalsRepository
 ) : ViewModel() {
     private val scope = CoroutineScope(Dispatchers.Main)
 
-    private val _idGoals = MutableLiveData<Int>()
-    val idGoals: LiveData<Int> = _idGoals
+    private val _idGoalsLiveData = MutableLiveData<Int>()
+    val idGoalsLiveData: LiveData<Int> = _idGoalsLiveData
 
     private val _listGoalsLiveData = MutableLiveData<List<Goals>>()
     val listGoalsLiveData: LiveData<List<Goals>> = _listGoalsLiveData
 
     init {
-        loadListGoals()
+        getListActiveGoals()
     }
 
-    private fun loadListGoals() {
+    private fun getListActiveGoals() {
         scope.launch {
             try {
                 val listGoals = withContext(Dispatchers.IO) {
-                    goalsRepository.getListGoals()
+                    goalsRepository.getListAchievedGoals()
                 }
                 _listGoalsLiveData.value = listGoals
             } catch (e: Exception) {
@@ -41,10 +41,7 @@ class GoalsListViewModel(
                 withContext(Dispatchers.IO) {
                     goalsRepository.updateIsActive(isActive, id)
                 }
-                val listGoals = withContext(Dispatchers.IO) {
-                    goalsRepository.getListGoals()
-                }
-                _listGoalsLiveData.value = listGoals
+                getListActiveGoals()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -57,10 +54,7 @@ class GoalsListViewModel(
                 withContext(Dispatchers.IO) {
                     goalsRepository.removeGoals(id)
                 }
-                val listGoals = withContext(Dispatchers.IO) {
-                    goalsRepository.getListGoals()
-                }
-                _listGoalsLiveData.value = listGoals
+                getListActiveGoals()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -73,7 +67,7 @@ class GoalsListViewModel(
                 val id = withContext(Dispatchers.IO) {
                     goalsRepository.createGoals()
                 }
-                _idGoals.value = id
+                _idGoalsLiveData.value = id
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -86,10 +80,7 @@ class GoalsListViewModel(
                 withContext(Dispatchers.IO) {
                     goalsRepository.updateProgress(progress, id)
                 }
-                val listGoals = withContext(Dispatchers.IO) {
-                    goalsRepository.getListGoals()
-                }
-                _listGoalsLiveData.value = listGoals
+                getListActiveGoals()
             } catch (e: Exception) {
                 e.printStackTrace()
             }

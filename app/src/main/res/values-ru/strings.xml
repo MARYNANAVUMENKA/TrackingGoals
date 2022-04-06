@@ -124,7 +124,7 @@
 
 
     <string name="popupmenu_goals_edit">Редактировать</string>
-    <string name="popupmenu_goals_accomplished">Цель достигнута</string>
+    <string name="popupmenu_goals_accomplished">Изменить статус выполнения цели</string>
     <string name="popupmenu_goals_remove">Удалить цель</string>
 
     <string name="hint_custom_fragment">Введите количество</string>

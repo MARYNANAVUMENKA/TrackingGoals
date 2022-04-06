@@ -1,4 +1,4 @@
-package com.example.trackinggoals.screens.goals.list
+package com.example.trackinggoals.screens.goals.list.achieved
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,12 +12,14 @@ import com.example.trackinggoals.model.Repositories
 import com.example.trackinggoals.navigator
 import com.example.trackinggoals.screens.CustomInputDialogFragment
 import com.example.trackinggoals.screens.CustomInputDialogListener
+import com.example.trackinggoals.screens.goals.list.GoalsActionListener
+import com.example.trackinggoals.screens.goals.list.GoalsAdapter
 import com.example.trackinggoals.viewModelCreator
 
-class GoalsListFragment : Fragment() {
+class GoalsListAchievedFragment : Fragment() {
     private lateinit var binding: FragmentGoalsListBinding
     private lateinit var adapter: GoalsAdapter
-    private val viewModel by viewModelCreator { GoalsListViewModel(Repositories.goalsRepository) }
+    private val viewModel by viewModelCreator { GoalsListAchievedViewModel(Repositories.goalsRepository) }
 
 
     override fun onCreateView(
@@ -39,7 +41,6 @@ class GoalsListFragment : Fragment() {
 
             override fun onEditStatusGoals(goals: Goals) {
                 viewModel.editStatusGoals(goals.isActive, goals.id)
-
             }
 
             override fun onRemoveGoals(goals: Goals) {
@@ -54,7 +55,7 @@ class GoalsListFragment : Fragment() {
         })
         binding.floatingActionButtonGoalsList.setOnClickListener {
             viewModel.createEmptyGoals()
-            viewModel.idGoals.observe(viewLifecycleOwner) {
+            viewModel.idGoalsLiveData.observe(viewLifecycleOwner) {
                 navigator().showGoalsConstructor(it)
             }
         }
@@ -92,8 +93,8 @@ class GoalsListFragment : Fragment() {
         @JvmStatic
         private val KEY_FIRST_REQUEST_KEY = "KEY_FIRST_REQUEST_KEY"
 
-        fun newInstance(): GoalsListFragment {
-            return GoalsListFragment()
+        fun newInstance(): GoalsListAchievedFragment {
+            return GoalsListAchievedFragment()
         }
     }
 }

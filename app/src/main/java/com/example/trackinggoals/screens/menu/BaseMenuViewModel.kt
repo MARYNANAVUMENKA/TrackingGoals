@@ -23,7 +23,7 @@ class BaseMenuViewModel(
         scope.launch {
             try {
                 val listGoals = withContext(Dispatchers.IO) {
-                    goalsRepository.getListGoals()
+                    goalsRepository.getListActiveGoals()
                 }
                 _listGoalsLiveData.value = listGoals
             } catch (e: Exception) {

@@ -171,7 +171,7 @@
                             android:fontFamily="sans-serif-medium"
                             android:hint="@string/hint_goals_description_goals"
                             android:inputType="textMultiLine|textCapWords"
-                            android:imeOptions="actionNext"
+                            android:imeOptions="actionDone"
                             android:lines="2"
                             android:minLines="2"
                             android:maxLines="2"

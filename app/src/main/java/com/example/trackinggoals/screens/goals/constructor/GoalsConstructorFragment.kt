@@ -60,8 +60,12 @@ class GoalsConstructorFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.editTextInputTextGoals.requestFocus()
-        showKeyboard(binding.editTextInputTextGoals)
+//        binding.editTextInputTextGoals.requestFocus()
+//        showKeyboard(binding.editTextInputTextGoals)
+//        binding.buttonGoalsFinishEdit.isEnabled = false
+//        binding.buttonGoalsFinishEdit.setBackgroundColor(ContextCompat.getColor(requireContext(),
+//            R.color.menu_unchecked
+//        ))
         setupSingleChoiceDialogFragmentListener()
         setupPictureChoiceFragmentListeners()
 
@@ -134,6 +138,12 @@ class GoalsConstructorFragment : Fragment() {
         binding.autoCompleteTextGoalsUnit.setOnItemClickListener { parent, _, position, _ ->
             val item = parent.getItemAtPosition(position).toString()
         }
+//        if (binding.editTextGoalsWant.text.toString()!=""){
+//            binding.buttonGoalsFinishEdit.isEnabled = true
+//            binding.buttonGoalsFinishEdit.setBackgroundColor(ContextCompat.getColor(requireContext(),
+//                R.color.text_blue
+//            ))
+//        }
 
         binding.buttonGoalsFinishEdit.setOnClickListener {
             val goalsId = requireArguments().getInt(ARG_GOALS_ID)

@@ -17,4 +17,5 @@ interface Navigator {
 
     fun showGoalsConstructor(goalsId: Int)
 
+
 }

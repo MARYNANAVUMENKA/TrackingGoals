@@ -120,7 +120,7 @@
 
 
     <string name="popupmenu_goals_edit">Edit goals</string>
-    <string name="popupmenu_goals_accomplished">The goals is accomplished</string>
+    <string name="popupmenu_goals_accomplished">Change the status of execution goals</string>
     <string name="popupmenu_goals_remove">Remove the goal</string>
 
     <string name="hint_custom_fragment">Enter the quantity</string>

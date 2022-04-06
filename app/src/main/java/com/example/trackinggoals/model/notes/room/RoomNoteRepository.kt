@@ -34,6 +34,8 @@ class RoomNoteRepository(
     ): List<NoteIncoming> {
         val calendarCurrent = Calendar.getInstance()
         calendarCurrent.set(currentYear, currentMonth, currentDay)
+        val dataCurrentDay = SimpleDateFormat("EEEE, dd MMMM").format( calendarCurrent.time).capitalize()
+
         val allDays = mutableListOf<String>()
         for (i in 1..calendarCurrent.getActualMaximum(Calendar.DAY_OF_MONTH)) {
             val calendar = Calendar.getInstance()
@@ -62,7 +64,7 @@ class RoomNoteRepository(
         listNoteIncoming.removeIf { !it.note.currentData.contains(days) }
         var list = mutableListOf<NoteIncoming>()
         for (i in 0 until allDays.size) {
-            val note = Note(1, allDays[i])
+            val note = Note(1, allDays[i],false)
             val incoming = IncomingDbEntity(1, 1, allDays[i], "", "", "").toIncoming()
             val listIncoming = listOf(incoming)
             val noteIncoming = NoteIncoming(note, listIncoming)
@@ -73,6 +75,9 @@ class RoomNoteRepository(
             list.removeIf { it.note.currentData == item.note.currentData && it.note.id == 1 }
         }
         list.sortBy { it.note.currentData.substringAfter(',') }
+        if (getCurrentDay().currentData==dataCurrentDay){
+            list?.firstOrNull { it.note.currentData==dataCurrentDay}?.note!!.isToday=true
+        }
         return list
     }
 
@@ -88,7 +93,7 @@ class RoomNoteRepository(
             }
             noteId == 1 -> {
                 val idNewNote = UUID.randomUUID().hashCode()
-                val noteDbEntity = NoteDbEntity(idNewNote, currentDataIn)
+                val noteDbEntity = NoteDbEntity(idNewNote, currentDataIn,false)
                 noteDao.createNote(noteDbEntity)
                 val incomingDbEntity =
                     IncomingDbEntity(
@@ -131,7 +136,7 @@ class RoomNoteRepository(
         return if (list.contains(noteDao.findByData(data))) {
             noteDao.findByData(data).toNote()
         } else {
-            NoteDbEntity(1, data).toNote()
+            NoteDbEntity(1, data,false).toNote()
         }
     }
 
@@ -140,7 +145,7 @@ class RoomNoteRepository(
     ) {
         if (incoming.idNote == 1 || incoming.idIm == 1) {
             val idNewNote = UUID.randomUUID().hashCode()
-            val noteDbEntity = NoteDbEntity(idNewNote, incoming.currentDataIn)
+            val noteDbEntity = NoteDbEntity(idNewNote, incoming.currentDataIn,false)
             noteDao.createNote(noteDbEntity)
             val incomingDbEntity = IncomingDbEntity(
                 UUID.randomUUID().hashCode(),
@@ -172,7 +177,7 @@ class RoomNoteRepository(
     ) {
         if (note.id == 1) {
             val idNewNote = UUID.randomUUID().hashCode()
-            val noteDbEntity = NoteDbEntity(idNewNote, note.currentData)
+            val noteDbEntity = NoteDbEntity(idNewNote, note.currentData,false)
             noteDao.createNote(noteDbEntity)
             val incomingDbEntity = IncomingDbEntity(
                 UUID.randomUUID().hashCode(),

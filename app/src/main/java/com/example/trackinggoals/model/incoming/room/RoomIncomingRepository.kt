@@ -41,7 +41,7 @@ class RoomIncomingRepository(
     }
 
     override suspend fun getAllGoals(): ArrayList<String> {
-        val listGoals = goalsRepository.getListGoals()
+        val listGoals = goalsRepository.getListActiveGoals()
         return if (listGoals.isNotEmpty()) {
             listGoals.map { goals: Goals -> goals.textGoals } as ArrayList<String>
         } else {

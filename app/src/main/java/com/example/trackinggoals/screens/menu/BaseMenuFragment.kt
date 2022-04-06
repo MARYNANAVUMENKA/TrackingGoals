@@ -8,7 +8,8 @@ import androidx.fragment.app.Fragment
 import com.example.trackinggoals.R
 import com.example.trackinggoals.databinding.FragmentBaseMenuBinding
 import com.example.trackinggoals.model.Repositories
-import com.example.trackinggoals.screens.goals.list.GoalsListFragment
+import com.example.trackinggoals.screens.goals.list.achieved.GoalsListAchievedFragment
+import com.example.trackinggoals.screens.goals.list.active.GoalsListActiveFragment
 import com.example.trackinggoals.screens.goals.start.GoalsStartFragment
 import com.example.trackinggoals.screens.note.NoteListFragment
 import com.example.trackinggoals.viewModelCreator
@@ -24,29 +25,31 @@ class BaseMenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBaseMenuBinding.inflate(inflater, container, false)
-        viewModel.listGoalsLiveData.observe(viewLifecycleOwner) {
-            if (it.isEmpty()) {
-                childFragmentManager
-                    .beginTransaction()
-                    .replace(
-                        R.id.fragmentContainerMenu,
-                        GoalsStartFragment.newInstance()
-                    )
-                    .commit()
-            } else {
-                childFragmentManager
-                    .beginTransaction()
-                    .replace(
-                        R.id.fragmentContainerMenu,
-                        GoalsListFragment.newInstance()
-                    )
-                    .commit()
-            }
-        }
-//            childFragmentManager
-//                .beginTransaction()
-//                .replace(R.id.fragmentContainerMenu, NoteListFragment.newInstance())
-//                .commit()
+//        viewModel.listGoalsLiveData.observe(viewLifecycleOwner) {
+//            if (it.isEmpty()) {
+//                childFragmentManager
+//                    .beginTransaction()
+//                    .replace(
+//                        R.id.fragmentContainerMenu,
+//                        GoalsStartFragment.newInstance()
+//                    )
+//                    .commit()
+//            } else {
+//                childFragmentManager
+//                    .beginTransaction()
+//                    .replace(
+//                        R.id.fragmentContainerMenu,
+//                        GoalsListActiveFragment.newInstance()
+//                    )
+//                    .commit()
+//            }
+//        }
+
+
+            childFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragmentContainerMenu, NoteListFragment.newInstance())
+                .commit()
         return binding.root
     }
 
@@ -78,14 +81,22 @@ class BaseMenuFragment : Fragment() {
                                 .beginTransaction()
                                 .replace(
                                     R.id.fragmentContainerMenu,
-                                    GoalsListFragment.newInstance()
+                                    GoalsListActiveFragment.newInstance()
                                 )
                                 .commit()
                         }
                     }
 
                 }
-                R.id.menuMenu -> {}
+                R.id.menuMenu -> {
+                    childFragmentManager
+                        .beginTransaction()
+                        .replace(
+                            R.id.fragmentContainerMenu,
+                            GoalsListAchievedFragment.newInstance()
+                        )
+                        .commit()
+                }
             }
             true
         }

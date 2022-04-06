@@ -15,11 +15,14 @@ data class NoteDbEntity(
     val id: Int,
     @ColumnInfo(name = "current_data")
     val currentData: String,
+    @ColumnInfo(name = "is_today")
+    val isToday: Boolean,
 ) {
     fun toNote(): Note =
         Note(
             id = id,
-            currentData = currentData
+            currentData = currentData,
+            isToday = isToday
         )
 }
 

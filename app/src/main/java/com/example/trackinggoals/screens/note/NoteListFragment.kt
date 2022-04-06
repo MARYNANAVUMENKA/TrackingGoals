@@ -57,6 +57,7 @@ class NoteListFragment : Fragment() {
             binding.recyclerView.scrollToPosition(position)
             viewModel.currentDayLiveData.observe(viewLifecycleOwner) {
                 position = adapter.getItemCurrentDay(it.currentData)
+                val id =adapter.getItemId(position)
             }
             binding.recyclerView.scrollToPosition(position)
         }
