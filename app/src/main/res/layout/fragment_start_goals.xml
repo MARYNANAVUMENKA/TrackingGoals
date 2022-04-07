@@ -36,6 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/background_menu"
+                    android:clickable="false"
                     android:fontFamily="sans-serif-black"
                     android:includeFontPadding="false"
                     android:paddingLeft="0dp"
@@ -44,7 +45,7 @@
                     android:paddingBottom="0dp"
                     android:text="@string/text_goals_reaching_now"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_toolbar"
                     android:textSize="22sp" />
 
                 <ImageView
@@ -56,43 +57,55 @@
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
+        <ImageView
+            android:id="@+id/imageViewStart"
+            android:layout_width="350dp"
+            android:layout_height="250dp"
+            android:background="@drawable/rounded"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/textViewConstructorGoalsTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarConstructorGoals"
+            app:layout_constraintVertical_bias="0.120000005"
+            app:layout_constraintVertical_chainStyle="packed" />
+
         <TextView
             android:id="@+id/textViewConstructorGoalsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/textView_constructor_title"
-            android:textColor="@color/black"
+            android:textColor="@color/text_blue"
             android:textSize="26sp"
+            app:layout_constraintBottom_toTopOf="@+id/textViewConstructorGoalsDescription"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarConstructorGoals"
-            tools:layout_editor_absoluteX="88dp" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewStart" />
 
         <TextView
             android:id="@+id/textViewConstructorGoalsDescription"
             style="@style/TextViewDescription"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:gravity="center"
             android:lines="4"
             android:minLines="4"
             android:text="@string/textView_constructor_description"
             android:textSize="16sp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonConstructorGoalsStart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewConstructorGoalsTitle" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonConstructorGoalsStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
             android:backgroundTint="@color/text_blue"
             android:fontFamily="sans-serif-medium"
+            android:padding="15dp"
             android:paddingStart="60dp"
             android:paddingTop="15dp"
             android:paddingEnd="60dp"
@@ -101,6 +114,8 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="14sp"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewConstructorGoalsDescription" />

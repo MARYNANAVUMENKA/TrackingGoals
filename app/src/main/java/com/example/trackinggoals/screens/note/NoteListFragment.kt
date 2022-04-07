@@ -35,9 +35,9 @@ class NoteListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.currentMonthYearLiveData.observe(viewLifecycleOwner) {
-            binding.btnToolbarNoteList.text = it
-        }
+//        viewModel.currentMonthYearLiveData.observe(viewLifecycleOwner) {
+//            binding.btnToolbarNoteList.text = it
+//        }
 
         binding.btnToolbarNoteList.setOnClickListener {
             createDataPicker()

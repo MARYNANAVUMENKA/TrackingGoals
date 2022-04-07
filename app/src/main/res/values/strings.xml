@@ -103,6 +103,7 @@
     <string name="editText_goals_quantity">UNIT OF MEASURE</string>
     <string name="editText_goals_criterion">DESCRIPTION OF CRITERIA</string>
 
+
     <string name="photo_choose">Choose from</string>
     <string name="photo_load">Uploads yours</string>
     <string name="photo_create">Make a picture</string>
@@ -134,6 +135,7 @@
     <string name="textView_incoming_title">Incoming</string>
     <string name="textView_incoming_goals">Related to the goal:</string>
     <string name="textView_Goals_Quantity_Now_Null">0</string>
-    <string name="textView_Goals_Quantity_Of">из</string>
+    <string name="textView_Goals_Quantity_Of">from</string>
+    <string name="btn_toolbar_note_list">Select date</string>
 
 </resources>

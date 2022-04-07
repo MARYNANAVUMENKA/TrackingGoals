@@ -33,14 +33,14 @@
                 android:paddingRight="0dp"
                 android:paddingBottom="0dp"
                 android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="22sp"
+                android:textColor="@color/text_toolbar"
+                android:textSize="20sp"
                 android:text="@string/text_goals_reaching_now" />
             <ImageView
                 android:id="@+id/imageViewToolbarGoalsList"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_drop_down"
+                app:srcCompat="@drawable/ic_drop_down_white"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>

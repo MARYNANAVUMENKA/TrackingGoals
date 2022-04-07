@@ -32,7 +32,7 @@
             android:gravity="center"
             android:text="@string/textView_goals_first"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/text_toolbar"
             android:textSize="20sp" />
     </androidx.appcompat.widget.Toolbar>
 
@@ -83,10 +83,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="@color/background"
+                android:backgroundTint="@color/background_card"
                 app:cardCornerRadius="11dp"
                 app:cardElevation="4dp"
-                app:cardUseCompatPadding="true"
+
                 app:layout_constraintEnd_toEndOf="@id/guidelineEndStepFirst"
                 app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
                 app:layout_constraintTop_toBottomOf="@+id/textViewGoalsDescription">
@@ -108,7 +108,7 @@
                         <ImageView
                             android:id="@+id/imageViewGoalsPicture"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="185dp"
                             android:scaleType="centerCrop"
                             tools:ignore="ContentDescription" />
 
@@ -119,7 +119,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:backgroundTint="@color/background"
+                            android:backgroundTint="@color/background_card"
                             android:fontFamily="sans-serif-medium"
                             android:padding="10dp"
                             android:text="@string/button_goals_choosePic"
@@ -145,135 +145,29 @@
                     <FrameLayout
                         android:id="@+id/frameGoalsInside"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="5dp"
+                        android:layout_height="wrap_content"
+
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/frameImageGoalsConstructor">
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/textViewDataTitleGoals"-->
-<!--                            style="@style/TextViewTitleSmall"-->
-<!--                            android:layout_marginStart="16dp"-->
-<!--                            android:layout_marginTop="12dp"-->
-<!--                            android:layout_marginBottom="12dp"-->
-<!--                            android:textSize="14sp"-->
-<!--                            tools:text="12 МАРТА, 2022" />-->
 
                         <EditText
                             android:id="@+id/editTextInputTextGoals"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
                             android:layout_marginStart="16dp"
-                            android:layout_marginTop="25dp"
-                            android:layout_marginBottom="12dp"
-                            android:background="@color/background"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/background_card"
                             android:fontFamily="sans-serif-medium"
                             android:hint="@string/hint_goals_description_goals"
                             android:inputType="textMultiLine|textCapWords"
                             android:imeOptions="actionDone"
-                            android:lines="2"
-                            android:minLines="2"
-                            android:maxLines="2"
-                            android:textSize="18sp"
+                            android:textSize="20sp"
                             android:importantForAutofill="no" />
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/textViewTitleGoalsCriteria"-->
-<!--                            style="@style/TextViewTitleSmall"-->
-<!--                            android:layout_marginStart="16dp"-->
-<!--                            android:layout_marginTop="85dp"-->
-<!--                            android:layout_marginBottom="12dp"-->
-<!--                            tools:text="НАКОПЛЕНО" />-->
-
-<!--                        <SeekBar-->
-<!--                            android:id="@+id/seekBarGoalsConstructor"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="8dp"-->
-<!--                            android:layout_marginTop="110dp"-->
-<!--                            android:layout_marginBottom="12dp" />-->
-
-<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="16dp"-->
-<!--                            android:layout_marginTop="135dp"-->
-<!--                            android:layout_marginBottom="12dp">-->
-
-<!--                            <TextView-->
-<!--                                android:id="@+id/textViewGoalsQuantityNow"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginEnd="5dp"-->
-<!--                                android:fontFamily="sans-serif-light"-->
-<!--                                android:text="@string/textView_Goals_Quantity_Now_Null"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="12sp"-->
-<!--                                app:layout_constraintEnd_toStartOf="@+id/textViewGoalsQuantityOf"-->
-<!--                                app:layout_constraintHorizontal_bias="0.0"-->
-<!--                                app:layout_constraintHorizontal_chainStyle="packed"-->
-<!--                                app:layout_constraintStart_toStartOf="parent"-->
-<!--                                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--                            <TextView-->
-<!--                                android:id="@+id/textViewGoalsQuantityOf"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginEnd="5dp"-->
-<!--                                android:fontFamily="sans-serif-light"-->
-<!--                                android:text="@string/textView_Goals_Quantity_Of"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="12sp"-->
-<!--                                app:layout_constraintEnd_toStartOf="@+id/textViewGoalsQuantityTotal"-->
-<!--                                app:layout_constraintHorizontal_bias="0.5"-->
-<!--                                app:layout_constraintStart_toEndOf="@+id/textViewGoalsQuantityNow"-->
-<!--                                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--                            <TextView-->
-<!--                                android:id="@+id/textViewGoalsQuantityTotal"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginEnd="5dp"-->
-<!--                                android:fontFamily="sans-serif-light"-->
-<!--                                android:text="@string/textView_Goals_Quantity_Now_Null"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="12sp"-->
-<!--                                app:layout_constraintEnd_toStartOf="@+id/textViewGoalsQuantityUnit"-->
-<!--                                app:layout_constraintHorizontal_bias="0.5"-->
-<!--                                app:layout_constraintStart_toEndOf="@+id/textViewGoalsQuantityOf"-->
-<!--                                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--                            <TextView-->
-<!--                                android:id="@+id/textViewGoalsQuantityUnit"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginEnd="5dp"-->
-<!--                                android:fontFamily="sans-serif-light"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="12sp"-->
-<!--                                app:layout_constraintEnd_toStartOf="@+id/textViewGoalsQuantityPercent"-->
-<!--                                app:layout_constraintHorizontal_bias="0.5"-->
-<!--                                app:layout_constraintStart_toEndOf="@+id/textViewGoalsQuantityTotal"-->
-<!--                                app:layout_constraintTop_toTopOf="parent"-->
-<!--                                tools:text="долларов" />-->
-
-<!--                            <TextView-->
-<!--                                android:id="@+id/textViewGoalsQuantityPercent"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginEnd="5dp"-->
-<!--                                android:fontFamily="sans-serif-light"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="12sp"-->
-<!--                                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                                app:layout_constraintHorizontal_bias="0.5"-->
-<!--                                app:layout_constraintStart_toEndOf="@+id/textViewGoalsQuantityUnit"-->
-<!--                                app:layout_constraintTop_toTopOf="parent"-->
-<!--                                tools:text="0%" />-->
-
-
-<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
                     </FrameLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -315,7 +209,7 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="8dp"
-                android:backgroundTint="@color/background"
+                android:backgroundTint="@color/background_card"
                 android:fontFamily="sans-serif-medium"
                 android:textAlignment="textStart"
                 android:textColor="@color/text_grey"
@@ -364,6 +258,7 @@
                 android:theme="@style/TextInputLayoutAppearance"
                 app:boxStrokeColor="@color/text_blue"
                 app:hintEnabled="false"
+                app:boxBackgroundColor="@color/background_card"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEndStepFirst"
                 app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
                 app:layout_constraintTop_toBottomOf="@+id/textViewGoalsWant"
@@ -401,6 +296,7 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextInputLayoutAppearance"
                 app:boxStrokeColor="@color/text_blue"
+                app:boxBackgroundColor="@color/background_card"
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEndStepFirst"
                 app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
@@ -438,6 +334,7 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextInputLayoutAppearance"
                 app:boxStrokeColor="@color/text_blue"
+                app:boxBackgroundColor="@color/background_card"
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEndStepFirst"
                 app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"
@@ -463,13 +360,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
+                android:text="@string/button_goals_next"
                 android:backgroundTint="@color/text_blue"
                 android:fontFamily="sans-serif-medium"
                 android:padding="15dp"
-                android:text="@string/button_goals_next"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="14sp"
+                app:cornerRadius="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEndStepFirst"
                 app:layout_constraintStart_toStartOf="@id/guidelineStartStepFirst"

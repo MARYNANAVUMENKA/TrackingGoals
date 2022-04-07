@@ -37,6 +37,7 @@ import com.example.trackinggoals.screens.goals.picture.PictureChoiceFragmentList
 import java.io.*
 
 
+
 class GoalsConstructorFragment : Fragment() {
     private lateinit var binding: FragmentGoalsConstructorBinding
     private lateinit var selectedImage: Uri
@@ -73,8 +74,15 @@ class GoalsConstructorFragment : Fragment() {
             binding.editTextInputTextGoals.setText(it)
         }
         viewModel.photo.observe(viewLifecycleOwner) {
-            if (it != "") {
+            if (it==""){
+                binding.imageViewGoalsPicture.alpha = 0.7F
+                Glide.with(requireContext())
+                    .load(DEFAULT_PICTURE)
+                    .centerCrop()
+                    .into(binding.imageViewGoalsPicture)
+            }else {
                 binding.buttonGoalsChoosePic.visibility = View.INVISIBLE
+                binding.imageViewGoalsPicture.alpha = 1F
                 if (it.substringBefore(':') == "https") {
                     Glide.with(requireContext())
                         .load(it)
@@ -219,6 +227,7 @@ class GoalsConstructorFragment : Fragment() {
                     if (pathImage.isNotEmpty() && pathImage != "") {
                         viewModel.updatePhotoGoals(pathImage, goalsId)
                         binding.buttonGoalsChoosePic.visibility = View.INVISIBLE
+                        binding.imageViewGoalsPicture.alpha = 1F
                         Glide.with(requireContext())
                             .load(pathImage)
                             .centerCrop()
@@ -404,6 +413,8 @@ class GoalsConstructorFragment : Fragment() {
 
     companion object {
         private const val ARG_GOALS_ID = "ARG_GOALS_ID"
+
+        private const val DEFAULT_PICTURE = "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
 
         @JvmStatic
         private val KEY_ACTION_RESPONSE_CHOOSE = "KEY_ACTION_RESPONSE_CHOOSE"

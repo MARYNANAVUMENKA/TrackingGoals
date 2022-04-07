@@ -9,6 +9,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
@@ -79,7 +80,7 @@
                     android:layout_marginBottom="12dp"
                     android:fontFamily="sans-serif-light"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
+                    android:textSize="13sp"
                     tools:text="14 февраля, 2021" />
 
                 <TextView
@@ -92,7 +93,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:maxLines="2"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     tools:text="Новая машина" />
 
                 <TextView
@@ -118,9 +119,9 @@
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:longClickable="false"
-                    app:thumbColor="@color/color_secondary_variant"
+                    app:thumbColor="@color/color_secondary"
                     app:thumbRadius="0dp"
-                    app:trackColorActive="@color/color_primary_variant"
+                    app:trackColorActive="@color/color_secondary"
                     app:trackHeight="15dp" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -137,7 +138,7 @@
                         android:layout_marginEnd="5dp"
                         android:fontFamily="sans-serif-light"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         app:layout_constraintEnd_toStartOf="@+id/textViewQuantityFrom"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintHorizontal_chainStyle="packed"
@@ -153,7 +154,7 @@
                         android:fontFamily="sans-serif-light"
                         android:text="@string/textView_Goals_Quantity_Of"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         app:layout_constraintEnd_toStartOf="@+id/textViewQuantityTotal"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/textViewQuantityNow"
@@ -166,7 +167,7 @@
                         android:layout_marginEnd="5dp"
                         android:fontFamily="sans-serif-light"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         app:layout_constraintEnd_toStartOf="@+id/textViewQuantityUnit"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/textViewQuantityFrom"
@@ -180,7 +181,7 @@
                         android:layout_marginEnd="5dp"
                         android:fontFamily="sans-serif-light"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         app:layout_constraintEnd_toStartOf="@+id/textViewQuantityPercent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/textViewQuantityTotal"
@@ -194,7 +195,7 @@
                         android:layout_marginEnd="5dp"
                         android:fontFamily="sans-serif-light"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         app:layout_constraintEnd_toStartOf="@+id/imagePlusGoals"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/textViewQuantityUnit"

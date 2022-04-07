@@ -7,22 +7,23 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background">#F9FBFD</color>
-    <color name="background_menu">#FFFFFF</color>
-    <color name="background_card">#F1F0F0</color>
+    <color name="background">#464646</color>
+    <color name="background_menu">#3C3C3C</color>
+    <color name="background_card">#FFFFFFFF</color>
 
 
+    <color name="color_primary">#00C4FF</color>
+    <color name="color_primary_variant">#00C4FF</color>
+    <color name="color_secondary">#00C4FF</color>
+    <color name="color_secondary_variant">#00C4FF</color>
 
-    <color name="color_primary">#FF2F75C5</color>
-    <color name="color_primary_variant">#FF005EFF</color>
-    <color name="color_secondary">#FF2F75C5</color>
-    <color name="color_secondary_variant">#FF005EFF</color>
-
-    <color name="text_blue">#005EFF</color>
+    <color name="text_blue">#00C4FF</color>
+    <color name="text_orange">#FF6D00</color>
     <color name="text_grey">#606060</color>
     <color name="text_grey_light">#777777</color>
     <color name="text_grey_hint_light">#9C9B9B</color>
     <color name="grey_light">#A5A4A4</color>
-    <color name="menu_checked">#2F75C5</color>
-    <color name="menu_unchecked">#AFB4BA</color>
+    <color name="menu_checked">#00C4FF</color>
+    <color name="menu_unchecked">#FFFFFFFF</color>
+    <color name="text_toolbar">#FFFFFFFF</color>
 </resources>
