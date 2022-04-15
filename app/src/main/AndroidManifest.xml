@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrackingGoals">
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
@@ -26,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".screens.main.MainActivity" />
     </application>
 
 </manifest>

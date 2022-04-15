@@ -5,11 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="start"
     android:padding="20dp"
-    android:fontFamily="sans-serif-light"
+    android:fontFamily="sans-serif-medium"
     android:gravity="center"
     android:lines="1"
     android:maxLines="1"
     android:textColor="@color/black"
-    android:textSize="18sp"
-    tools:text="Машина">
+    android:textSize="20sp">
+
 </TextView>

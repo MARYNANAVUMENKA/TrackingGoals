@@ -1,25 +1,26 @@
 package com.example.trackinggoals.screens.incoming
 
-
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.example.trackinggoals.R
 import com.example.trackinggoals.databinding.FragmentIncomingBinding
+import com.example.trackinggoals.findTopNavController
 import com.example.trackinggoals.model.notes.entities.Incoming
 import com.example.trackinggoals.model.Repositories
-import com.example.trackinggoals.navigator
-import com.example.trackinggoals.screens.CustomInputDialogFragment
-import com.example.trackinggoals.screens.CustomInputDialogListener
-import com.example.trackinggoals.screens.goals.dialogs.GoalsBottomSheetDialogFragment
-import com.example.trackinggoals.screens.goals.dialogs.GoalsBottomSheetDialogFragmentListener
+import com.example.trackinggoals.screens.dialogs.CustomInputDialogFragment
+import com.example.trackinggoals.screens.dialogs.CustomInputDialogListener
+import com.example.trackinggoals.screens.dialogs.GoalsBottomSheetDialogFragment
+import com.example.trackinggoals.screens.dialogs.GoalsBottomSheetDialogFragmentListener
 import com.example.trackinggoals.viewModelCreator
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -27,19 +28,15 @@ class IncomingFragment : Fragment() {
     private lateinit var binding: FragmentIncomingBinding
     private val viewModel by viewModelCreator { IncomingViewModel(Repositories.incomingRepository) }
     private lateinit var currentIncoming: Incoming
+    private var textIncoming = ""
+
+    private val args by navArgs<IncomingFragmentArgs>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val incomingId = requireArguments().getInt(ARG_INCOMING_ID)
-        val noteId = requireArguments().getInt(ARG_NOTE_ID)
-        val currentDataIn = requireArguments().getString(ARG_INCOMING_DATA)
-
-        if (currentDataIn != null) {
-            viewModel.loadIncoming(incomingId, noteId, currentDataIn)
-        }
+        viewModel.loadIncoming(getIncomingId(), getNoteId(), getCurrentDataIn())
         viewModel.loadGoals()
-
     }
 
     override fun onCreateView(
@@ -53,10 +50,31 @@ class IncomingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.editTextIncoming.requestFocus()
-        showKeyboard(binding.editTextIncoming)
+
+        if (binding.editTextIncoming.isFocused) {
+            showKeyboard(binding.editTextIncoming)
+        }
         setupGoalsBottomSheetDialogFragmentListeners()
         setupCustomInputDialogFragmentListeners()
+
+        binding.editTextIncoming.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (binding.editTextIncoming.text.toString().isNotEmpty()) {
+                    binding.imageViewDone.setImageResource(R.drawable.ic_done_focused)
+                    binding.imageViewDone.isFocusable = true
+                } else {
+                    binding.imageViewDone.setImageResource(R.drawable.ic_done)
+                    binding.imageViewDone.isFocusable = false
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
 
         viewModel.incoming.observe(viewLifecycleOwner) {
             currentIncoming = it
@@ -66,43 +84,58 @@ class IncomingFragment : Fragment() {
         }
         viewModel.textMessage.observe(viewLifecycleOwner) {
             binding.editTextIncoming.setText(it)
+            textIncoming = it
         }
         viewModel.textGoals.observe(viewLifecycleOwner) {
+            if (it != "") {
+                binding.cardInner.isClickable = false
+            }
             binding.textViewIncomingTextGoals.text = it
         }
         viewModel.quantity.observe(viewLifecycleOwner) {
+            if (it != "") {
+                binding.cardInner.isClickable = false
+            }
             binding.textViewIncomingQuantityGoals.text = it
         }
+
         binding.imageViewBack.setOnClickListener {
             hideKeyboard(binding.imageViewBack)
             when (binding.editTextIncoming.text.toString()) {
                 "" -> showAlertDialogBack()
                 else -> {
-                    navigator().goBaseMenu()
+                    findTopNavController().popBackStack()
                 }
             }
         }
         binding.imageViewDone.setOnClickListener {
             hideKeyboard(binding.imageViewDone)
-            when (binding.editTextIncoming.text.toString()) {
-                "" -> showAlertDialogBack()
-                else -> {
-                    updateIncoming()
-                    navigator().goBaseMenu()
-                }
+            if (binding.imageViewDone.isFocusable) {
+                updateIncoming()
+                findTopNavController().popBackStack()
+            } else {
+                showAlertDialogBack()
             }
         }
+
         binding.imageViewDelete.setOnClickListener {
             hideKeyboard(binding.imageViewDelete)
             showAlertDialogDelete()
         }
+
         binding.cardInner.setOnClickListener {
             viewModel.listGoalsLiveData.observe(viewLifecycleOwner) {
                 showGoalsBottomSheetDialogFragment(KEY_FIRST_GOALS_REQUEST_KEY, it)
-
             }
         }
     }
+
+
+    private fun getIncomingId(): Int = args.incomingId
+
+    private fun getNoteId(): Int = args.noteId
+
+    private fun getCurrentDataIn(): String = args.currentDataIn
 
     private fun showKeyboard(view: View) {
         view.post {
@@ -186,7 +219,11 @@ class IncomingFragment : Fragment() {
                 .isNotEmpty() && binding.textViewIncomingQuantityGoals.toString().isNotEmpty()
         ) {
             viewModel.selectedGoals.observe(viewLifecycleOwner) {
-                viewModel.updateProgress(quantity, it.id)
+                viewModel.updateProgress(
+                    quantity,
+                    it.id,
+                    resources.getString(R.string.text_new_result)
+                )
             }
         }
     }
@@ -196,7 +233,15 @@ class IncomingFragment : Fragment() {
 
         val listener = DialogInterface.OnClickListener { _, which ->
             when (which) {
-                DialogInterface.BUTTON_POSITIVE -> navigator().goBaseMenu()
+                DialogInterface.BUTTON_POSITIVE -> {
+                    if (textIncoming == "") {
+                        viewModel.deleteIncoming(currentIncoming)
+                        findTopNavController().popBackStack()
+                    } else {
+                        findTopNavController().popBackStack()
+                    }
+//                    navigateToNoteList()
+                }
                 DialogInterface.BUTTON_NEGATIVE -> Log.d("dialog", "Dialog dismissed")
             }
         }
@@ -216,7 +261,13 @@ class IncomingFragment : Fragment() {
             when (which) {
                 DialogInterface.BUTTON_POSITIVE -> {
                     viewModel.deleteIncoming(currentIncoming)
-                    navigator().goBaseMenu()
+                    findTopNavController().popBackStack()
+//                    findTopNavController().navigate(R.id.tabsFragment, null, navOptions {
+//                        popUpTo(R.id.tabsFragment) {
+//                            inclusive = true
+//                        }
+//                    })
+//                    navigateToNoteList()
                 }
                 DialogInterface.BUTTON_NEGATIVE -> Log.d("dialog", "Dialog dismissed")
             }
@@ -231,24 +282,13 @@ class IncomingFragment : Fragment() {
         dialog.show()
     }
 
-
     companion object {
-        private const val ARG_NOTE_ID = "ARG_NOTE_ID"
-        private const val ARG_INCOMING_ID = "ARG_INCOMING_ID"
-        private const val ARG_INCOMING_DATA = "ARG_INCOMING_DATA"
 
         @JvmStatic
         private val KEY_FIRST_GOALS_REQUEST_KEY = "KEY_FIRST_GOALS_REQUEST_KEY"
+
         @JvmStatic
         private val KEY_INPUT_REQUEST_KEY = "KEY_INPUT_REQUEST_KEY"
 
-        fun newInstance(incomingId: Int, noteId: Int, currentDataIn: String): IncomingFragment {
-            val fragment = IncomingFragment()
-            fragment.arguments = bundleOf(
-                ARG_INCOMING_ID to incomingId, ARG_NOTE_ID to noteId,
-                ARG_INCOMING_DATA to currentDataIn
-            )
-            return fragment
-        }
     }
 }

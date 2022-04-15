@@ -24,8 +24,8 @@ class RoomIncomingRepository(
         noteRepository.updateIncoming(textMessages, idIm)
     }
 
-    override suspend fun updateProgress(progress: String, idGoals: Int) {
-        goalsRepository.updateProgressWithoutNewResult(progress, idGoals)
+    override suspend fun updateProgress(progress: String, idGoals: Int, text: String) {
+        goalsRepository.updateProgressWithoutNewResult(progress, idGoals, text)
     }
 
     override suspend fun updateTextGoals(textGoals: String, idIm: Int) {

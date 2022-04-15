@@ -3,7 +3,7 @@
 
     <string name="menu_diary">Дневник</string>
     <string name="menu_goals">Цели</string>
-    <string name="menu_menu">Меню</string>
+    <string name="menu_motivation">Мотивация</string>
 
     <string name="textView_note">Новая заметка</string>
 
@@ -85,7 +85,7 @@
     <string name="add_goals_content_description">Add new goals</string>
     <string name="button_constructor_start">Начать</string>
     <string name="textView_constructor_title">Конструктор целей</string>
-    <string name="textView_constructor_description">Это твой мощный инструмент для достижения любых целей. Создай свою цель,воплощай и следи за прогрессом!</string>
+    <string name="textView_constructor_description">Это твой мощный инструмент для достижения любых целей. Создай свою цель, воплощай и следи за прогрессом!</string>
 
     <string name="textView_goals_first">Конструктор целей</string>
     <string name="textView_goals_title">Чего ты хочешь?</string>
@@ -114,7 +114,6 @@
     <string-array name="picture">
         <item>@string/photo_choose</item>
         <item>@string/photo_load</item>
-        <item>@string/photo_create</item>
     </string-array>
 
 
@@ -140,5 +139,10 @@
     <string name="textView_Goals_Quantity_Now_Null">0</string>
     <string name="textView_Goals_Quantity_Of">из</string>
     <string name="btn_toolbar_note_list">Выбрать дату</string>
+    <string name="please_wait">please_wait</string>
+    <string name="textView_motivation">Следующая аффирмация будет завтра</string>
+
+    <string name="text_new_result">Новый результат по цели</string>
+    <string name="text_today">Сегодня</string>
 
 </resources>

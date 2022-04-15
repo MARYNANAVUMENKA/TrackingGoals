@@ -14,17 +14,14 @@
         <!-- Customize your theme here. -->
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog.Centered</item>
     </style>
-    <style name="FullScreenAlert" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="backgroundColor">#ffffff</item>
-        <item name="android:windowBackground">#ffffff</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">false</item>
+    <style name="Style.App.circleImageView" parent="">
+        <item name="shapeAppearance">@style/ShapeAppearanceOverlay.App.circleImageView</item>
     </style>
+
+    <style name="ShapeAppearanceOverlay.App.circleImageView" parent="">
+        <item name="cornerSize">4%</item>
+    </style>
+
     <style name="TextInputLayoutAppearance" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="colorControlNormal">@color/white</item>
         <item name="colorControlActivated">@color/text_blue</item>
@@ -56,7 +53,5 @@
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textSize">12sp</item>
     </style>
-
-
 
 </resources>

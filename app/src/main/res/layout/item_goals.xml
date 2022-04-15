@@ -65,7 +65,7 @@
             <FrameLayout
                 android:id="@+id/frameGoals"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +75,7 @@
                     android:id="@+id/textViewDataTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="12dp"
                     android:fontFamily="sans-serif-light"
@@ -87,11 +87,11 @@
                     android:id="@+id/textViewDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="35dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="12dp"
                     android:fontFamily="sans-serif-medium"
-                    android:maxLines="2"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     tools:text="Новая машина" />
@@ -100,7 +100,7 @@
                     android:id="@+id/textViewTitleCriteria"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="17dp"
                     android:layout_marginTop="80dp"
                     android:layout_marginBottom="12dp"
                     android:fontFamily="sans-serif-light"
@@ -127,7 +127,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="17dp"
                     android:layout_marginTop="165dp"
                     android:layout_marginBottom="12dp">
 

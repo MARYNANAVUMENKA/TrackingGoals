@@ -127,10 +127,10 @@ class RoomNoteRepository(
 
     override suspend fun getCurrentDay(): Note {
         val calendar = Calendar.getInstance()
-        val currentYear = calendar.get(Calendar.YEAR)
-        val currentMonth = calendar.get(Calendar.MONTH)
-        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
-        calendar.set(currentYear, currentMonth, currentDay)
+//        val currentYear = calendar.get(Calendar.YEAR)
+//        val currentMonth = calendar.get(Calendar.MONTH)
+//        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+        calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
         val data = SimpleDateFormat("EEEE, dd MMMM").format(calendar.time).capitalize()
         val list = noteDao.getAllNotes()
         return if (list.contains(noteDao.findByData(data))) {
@@ -173,8 +173,10 @@ class RoomNoteRepository(
     override suspend fun saveNoteWithIncomingFromGoals(
         progress: String,
         textGoals: String,
-        note: Note
+        note: Note,
+        text:String
     ) {
+
         if (note.id == 1) {
             val idNewNote = UUID.randomUUID().hashCode()
             val noteDbEntity = NoteDbEntity(idNewNote, note.currentData,false)
@@ -185,7 +187,7 @@ class RoomNoteRepository(
                 note.currentData,
                 textGoals,
                 progress,
-                "Новый результат по цели \"$textGoals\""
+                "$text $textGoals"
             )
             noteDao.createIncoming(incomingDbEntity)
         } else {
@@ -196,7 +198,7 @@ class RoomNoteRepository(
                     note.currentData,
                     textGoals,
                     progress,
-                    "Новый результат по цели \"$textGoals\""
+                    "$text $textGoals"
                 )
             )
         }

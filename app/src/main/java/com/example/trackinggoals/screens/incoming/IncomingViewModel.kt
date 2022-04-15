@@ -29,7 +29,6 @@ class IncomingViewModel(
     private val _currentData = MutableLiveData<String>()
     val currentData: LiveData<String> = _currentData
 
-
     private val _listGoalsLiveData = MutableLiveData<ArrayList<String>>()
     val listGoalsLiveData: LiveData<ArrayList<String>> = _listGoalsLiveData
 
@@ -82,7 +81,6 @@ class IncomingViewModel(
         }
     }
 
-
     fun updateTextIncoming(textMessages: String, idIm: Int) {
         scope.launch {
             try {
@@ -95,11 +93,11 @@ class IncomingViewModel(
         }
     }
 
-    fun updateProgress(progress: String, idGoals: Int) {
+    fun updateProgress(progress: String, idGoals: Int, text: String) {
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    incomingRepository.updateProgress(progress, idGoals)
+                    incomingRepository.updateProgress(progress, idGoals, text)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

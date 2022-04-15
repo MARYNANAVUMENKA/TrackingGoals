@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    tools:context="com.example.trackinggoals.screens.incoming.IncomingFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/frameTopIncoming"
@@ -91,8 +92,7 @@
                 android:layout_marginTop="13dp"
                 android:layout_marginEnd="13dp"
                 android:background="@android:color/transparent"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
+
                 android:fontFamily="sans-serif-medium"
                 android:gravity="top"
                 android:hint="@string/editText_incoming"
@@ -149,8 +149,7 @@
             android:id="@+id/cardInner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/color_primary"
-            android:checkable="true"
+            android:backgroundTint="@color/background_card"
             android:clickable="true"
             android:focusable="true"
             app:cardCornerRadius="8dp"
@@ -160,8 +159,8 @@
 
             <ImageButton
                 android:id="@+id/imageViewPic"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
                 android:layout_margin="15dp"
                 android:background="?android:selectableItemBackground"
                 android:scaleType="centerCrop"
@@ -182,7 +181,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="start"
-                android:textColor="@color/white"
+                android:textColor="@color/text_grey"
                 android:textSize="16sp"
                 tools:text="Машина" />
 
@@ -196,7 +195,7 @@
                 android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="start"
-                android:textColor="@color/white"
+                android:textColor="@color/text_orange"
                 android:textSize="14sp"
                 tools:text="+200 Долларов" />
 
