@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.trackinggoals.Navigator
 import com.example.trackinggoals.databinding.ItemIncomingBinding
 import com.example.trackinggoals.model.notes.entities.Incoming
 
@@ -13,7 +12,6 @@ interface IncomingActionListener {
 }
 
 class IncomingAdapter(
-    private val navigator: Navigator,
     private val actionListenerIncoming: IncomingActionListener
 ) :
     RecyclerView.Adapter<IncomingAdapter.Holder>(), View.OnClickListener {
@@ -43,14 +41,6 @@ class IncomingAdapter(
             textViewItemIncomingNewResult.text = incoming.textMessages
             textViewItemIncomingProgress.text = incoming.quantity
         }
-    }
-
-    override fun getItemId(position: Int): Long {
-        return super.getItemId(position)
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
     }
 
     override fun getItemCount(): Int = listIncoming.size

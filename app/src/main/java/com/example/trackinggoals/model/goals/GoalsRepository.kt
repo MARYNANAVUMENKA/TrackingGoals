@@ -4,13 +4,17 @@ import com.example.trackinggoals.model.goals.entities.Goals
 
 interface GoalsRepository {
 
+    suspend fun getListActiveGoals(): List<Goals>
+
+    suspend fun getListAchievedGoals(): List<Goals>
+
     suspend fun getListGoals(): List<Goals>
 
     suspend fun getIdGoals(id:Int): Goals
 
     suspend fun getTextGoals(textGoals: String): Goals
 
-    suspend fun createGoals():Int
+    suspend fun saveGoals(photo:String,textGoals: String, dataExecution: String, progress: Int, quantity: Int, unit: String, criterion: String)
 
     suspend fun removeGoals(id:Int)
 
@@ -22,9 +26,9 @@ interface GoalsRepository {
 
     suspend fun updateIsActive(isActive: Boolean, id: Int)
 
-    suspend fun updateProgress(progress: String, id: Int)
+    suspend fun updateProgress(progress: String, id: Int,text:String)
 
-    suspend fun updateProgressWithoutNewResult(progress: String, id: Int)
+    suspend fun updateProgressWithoutNewResult(progress: String, id: Int,text:String)
 
     suspend fun updateQuantity(quantity: Int, id: Int)
 

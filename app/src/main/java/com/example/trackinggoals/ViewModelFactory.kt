@@ -25,4 +25,3 @@ inline fun <reified VM : ViewModel> ComponentActivity.viewModelCreator(noinline 
     return viewModels { ViewModelFactory(creator) }
 }
 
-fun Fragment.navigator() = requireActivity() as Navigator

@@ -24,8 +24,8 @@ class RoomIncomingRepository(
         noteRepository.updateIncoming(textMessages, idIm)
     }
 
-    override suspend fun updateProgress(progress: String, idGoals: Int) {
-        goalsRepository.updateProgressWithoutNewResult(progress, idGoals)
+    override suspend fun updateProgress(progress: String, idGoals: Int, text: String) {
+        goalsRepository.updateProgressWithoutNewResult(progress, idGoals, text)
     }
 
     override suspend fun updateTextGoals(textGoals: String, idIm: Int) {
@@ -41,7 +41,7 @@ class RoomIncomingRepository(
     }
 
     override suspend fun getAllGoals(): ArrayList<String> {
-        val listGoals = goalsRepository.getListGoals()
+        val listGoals = goalsRepository.getListActiveGoals()
         return if (listGoals.isNotEmpty()) {
             listGoals.map { goals: Goals -> goals.textGoals } as ArrayList<String>
         } else {

@@ -11,32 +11,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="11dp"
         android:fontFamily="sans-serif-medium"
-        android:textColor="@color/text_grey_light"
-        android:textSize="16sp"
-        />
+        android:textColor="@color/text_blue"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textViewItemNoteToday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="320dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="11dp"
         android:fontFamily="sans-serif-medium"
-        android:textColor="@color/text_blue"
+        android:paddingStart="17dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="17dp"
+        android:paddingBottom="5dp"
+        android:textColor="@color/white"
         android:textSize="16sp" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
+        android:layout_marginStart="7dp"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginEnd="7dp"
         android:layout_marginBottom="2dp"
-        app:cardCornerRadius="9dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="11dp"
         app:cardElevation="4dp"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -50,7 +56,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:itemCount="2"
+                tools:itemCount="1"
                 tools:listitem="@layout/item_incoming">
 
             </androidx.recyclerview.widget.RecyclerView>
@@ -59,8 +65,6 @@
                 android:id="@+id/bottomDivider"
                 android:layout_width="0dp"
                 android:layout_height="0.5dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:background="#d9d9d9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +80,7 @@
                 android:layout_marginBottom="12dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/textView_note"
-                android:textColor="@color/text_blue"
+                android:textColor="@color/text_grey_light"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tabs_graph"
+    app:startDestination="@id/goals">
+
+    <include app:graph="@navigation/note" />
+    <include app:graph="@navigation/goals" />
+    <include app:graph="@navigation/motivation" />
+    <action
+        android:id="@+id/action_global_note"
+        app:destination="@id/note" />
+</navigation>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    tools:context="com.example.trackinggoals.screens.incoming.IncomingFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/frameTopIncoming"
@@ -36,7 +37,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             tools:text="Воскресенье, 31 декабря" />
 
@@ -57,7 +58,10 @@
         android:id="@+id/external"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="13dp"
+        android:layout_margin="15dp"
+        app:cardCornerRadius="11dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
         android:background="@color/background_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,26 +86,25 @@
             <EditText
                 android:id="@+id/editTextIncoming"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="210dp"
                 android:layout_marginStart="13dp"
                 android:layout_marginTop="13dp"
                 android:layout_marginEnd="13dp"
                 android:background="@android:color/transparent"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
+
                 android:fontFamily="sans-serif-medium"
                 android:gravity="top"
                 android:hint="@string/editText_incoming"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
-                android:minLines="12"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Новый результат" />
+                 />
 
             <ImageButton
                 android:id="@+id/imageViewDelete"
@@ -109,80 +112,95 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginEnd="13dp"
-                android:background="@color/background_menu"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageViewGoals"
                 app:srcCompat="@drawable/ic_delete"
                 tools:ignore="ContentDescription" />
+        </LinearLayout>
 
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/external">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/textView_incoming_goals"
+            android:textColor="@color/text_blue"
+            android:textSize="16sp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardInner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/background_card"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true"
+            >
+
+            <ImageButton
+                android:id="@+id/imageViewPic"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_margin="15dp"
+                android:background="?android:selectableItemBackground"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewGoals"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_goals_orange"
+                tools:ignore="ContentDescription" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/textView_incoming_goals"
-                android:textColor="@color/text_grey_light"
-                android:textSize="16sp" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardInner"
+                android:id="@+id/textViewIncomingTextGoals"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checkable="true"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardElevation="9dp"
-                app:cardUseCompatPadding="true">
+                android:layout_gravity="start"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="start"
+                android:textColor="@color/text_grey"
+                android:textSize="16sp"
+                tools:text="Машина" />
 
-                <ImageButton
-                    android:id="@+id/imageViewPic"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="10dp"
-                    android:background="?android:selectableItemBackground"
-                    android:scaleType="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageViewGoals"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_chainStyle="spread_inside"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/ic_menu_goals"
-                    tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/textViewIncomingQuantityGoals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="start"
+                android:textColor="@color/text_orange"
+                android:textSize="14sp"
+                tools:text="+200 Долларов" />
 
-                <TextView
-                    android:id="@+id/textViewIncomingTextGoals"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="start"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    tools:text="Машина" />
+        </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:id="@+id/textViewIncomingQuantityGoals"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginTop="40dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="start"
-                    android:textColor="@color/color_primary"
-                    android:textSize="14sp"
-                    tools:text="+200 Долларов" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

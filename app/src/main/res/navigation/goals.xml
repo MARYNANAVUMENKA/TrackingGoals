@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/goals"
+    app:startDestination="@id/goalsStartFragment">
+
+    <fragment
+        android:id="@+id/goalsStartFragment"
+        android:name="com.example.trackinggoals.screens.tab.goals.start.GoalsStartFragment"
+        android:label="fragment_start_goals"
+        tools:layout="@layout/fragment_start_goals" >
+        <action
+            android:id="@+id/action_goalsStartFragment_to_goalsListActiveFragment"
+            app:destination="@id/goalsListActiveFragment" />
+        <action
+            android:id="@+id/action_goalsStartFragment_to_goalsListAchievedFragment"
+            app:destination="@id/goalsListAchievedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/goalsListActiveFragment"
+        android:name="com.example.trackinggoals.screens.tab.goals.list.active.GoalsListActiveFragment"
+        android:label="fragment_goals_list_active"
+        tools:layout="@layout/fragment_goals_list_active" >
+        <action
+            android:id="@+id/action_goalsListActiveFragment_to_goalsListAchievedFragment"
+            app:destination="@id/goalsListAchievedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/goalsListAchievedFragment"
+        android:name="com.example.trackinggoals.screens.tab.goals.list.achieved.GoalsListAchievedFragment"
+        android:label="fragment_goals_list_achieved"
+        tools:layout="@layout/fragment_goals_list_achieved" >
+
+    </fragment>
+</navigation>

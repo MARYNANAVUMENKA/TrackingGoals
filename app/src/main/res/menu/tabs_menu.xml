@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@id/note"
+        android:icon="@drawable/ic_menu_diary"
+        android:title="@string/menu_diary" />
+
+    <item
+        android:id="@id/goals"
+        android:icon="@drawable/ic_menu_goals"
+        android:title="@string/menu_goals" />
+    <item
+        android:id="@id/motivation"
+        android:icon="@drawable/ic_menu_menu"
+        android:title="@string/menu_motivation" />
+
+</menu>

@@ -16,7 +16,7 @@ interface NoteRepository {
 
     suspend fun saveNoteWithIncoming(incoming: Incoming)
 
-    suspend fun saveNoteWithIncomingFromGoals(progress:String,textGoals: String,note: Note)
+    suspend fun saveNoteWithIncomingFromGoals(progress:String,textGoals: String,note: Note,text:String)
 
     suspend fun updateIncoming(textMessages: String, idIm: Int)
 

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".screens.tab.note.NoteListFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -26,14 +27,14 @@
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif-black"
                 android:includeFontPadding="false"
-                android:paddingLeft="0dp"
+                android:paddingStart="10dp"
                 android:paddingTop="0dp"
-                android:paddingRight="0dp"
+                android:paddingEnd="10dp"
                 android:paddingBottom="0dp"
                 android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                tools:text="Февраль 2022" />
+                android:textColor="@color/text_toolbar"
+                android:textSize="20sp"
+                android:text="@string/btn_toolbar_note_list" />
 
             <ImageView
                 android:id="@+id/imageViewNoteList"

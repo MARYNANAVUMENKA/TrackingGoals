@@ -3,19 +3,19 @@
 
     <string name="menu_diary">Дневник</string>
     <string name="menu_goals">Цели</string>
-    <string name="menu_menu">Меню</string>
+    <string name="menu_motivation">Мотивация</string>
 
     <string name="textView_note">Новая заметка</string>
 
-    <string name="editText_incoming">Твой вывод,воспоминание за день,ключевое событие или заметка</string>
+    <string name="editText_incoming">Твой вывод,воспоминание за день, ключевое событие или заметка</string>
 
     <string name="alert_dialog_exit_title">Выйти без сохранения?</string>
-    <string name="alert_dialog_exit_text">Не введен текст.Остальные данные не будут сохранены.</string>
+    <string name="alert_dialog_exit_text">Не введен текст. Остальные данные не будут сохранены.</string>
     <string name="alert_dialog_action_exit">Выйти</string>
     <string name="alert_dialog_action_return">Вернуться</string>
 
-    <string name="alert_dialog_delete_title">Удалить заметку</string>
-    <string name="alert_dialog_delete_text">Подтверди удаление заметки.Восстановить её будет невозможно</string>
+    <string name="alert_dialog_delete_title">Удалить заметку?</string>
+    <string name="alert_dialog_delete_text">Подтверди удаление заметки. Восстановить её будет невозможно</string>
     <string name="alert_dialog_action_yes">Да</string>
     <string name="alert_dialog_action_no">Нет</string>
 
@@ -79,13 +79,13 @@
         <item>@string/books</item>
     </string-array>
 
-    <string name="text_goals_accumulated">НАКОПЛЕНО</string>
+
     <string name="text_goals_reaching_now">Достигаю сейчас</string>
     <string name="text_goals_achieved">Достигнутые</string>
     <string name="add_goals_content_description">Add new goals</string>
     <string name="button_constructor_start">Начать</string>
     <string name="textView_constructor_title">Конструктор целей</string>
-    <string name="textView_constructor_description">Это твой мощный инструмент для достижения любых целей. Создай свою цель,воплощай и следи за прогрессом!</string>
+    <string name="textView_constructor_description">Это твой мощный инструмент для достижения любых целей. Создай свою цель, воплощай и следи за прогрессом!</string>
 
     <string name="textView_goals_first">Конструктор целей</string>
     <string name="textView_goals_title">Чего ты хочешь?</string>
@@ -104,7 +104,7 @@
     <string name="editText_goals_want">СКОЛЬКО ХОЧУ</string>
     <string name="editText_goals_quantity">ЕДИНИЦА ИЗМЕРЕНИЯ</string>
     <string name="editText_goals_criterion">ОПИСАНИЕ КРИТЕРИЯ</string>
-    <string name="button_goals_complete">Завершить создание</string>
+
 
     <string name="photo_choose">Выбрать из предложенных</string>
     <string name="photo_load">Загрузить свою</string>
@@ -114,7 +114,6 @@
     <string-array name="picture">
         <item>@string/photo_choose</item>
         <item>@string/photo_load</item>
-        <item>@string/photo_create</item>
     </string-array>
 
 
@@ -124,7 +123,7 @@
 
 
     <string name="popupmenu_goals_edit">Редактировать</string>
-    <string name="popupmenu_goals_accomplished">Цель достигнута</string>
+    <string name="popupmenu_goals_accomplished">Изменить статус выполнения цели</string>
     <string name="popupmenu_goals_remove">Удалить цель</string>
 
     <string name="hint_custom_fragment">Введите количество</string>
@@ -139,5 +138,11 @@
     <string name="textView_incoming_goals">Относится к цели:</string>
     <string name="textView_Goals_Quantity_Now_Null">0</string>
     <string name="textView_Goals_Quantity_Of">из</string>
+    <string name="btn_toolbar_note_list">Выбрать дату</string>
+    <string name="please_wait">please_wait</string>
+    <string name="textView_motivation">Следующая аффирмация будет завтра</string>
+
+    <string name="text_new_result">Новый результат по цели</string>
+    <string name="text_today">Сегодня</string>
 
 </resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motivation"
+    app:startDestination="@id/motivationFragment">
+
+    <fragment
+        android:id="@+id/motivationFragment"
+        android:name="com.example.trackinggoals.screens.tab.motivation.MotivationFragment"
+        android:label="fragment_motivation"
+        tools:layout="@layout/fragment_motivation" />
+</navigation>

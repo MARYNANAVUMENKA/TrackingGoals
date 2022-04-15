@@ -10,7 +10,7 @@ interface IncomingRepository {
 
     suspend fun updateTextIncoming(textMessages: String, idIm: Int)
 
-    suspend fun updateProgress(progress: String, idGoals: Int)
+    suspend fun updateProgress(progress: String, idGoals: Int, text: String)
 
     suspend fun updateTextGoals(textGoals: String, idIm: Int)
 
