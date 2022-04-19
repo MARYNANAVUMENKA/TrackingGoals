@@ -89,7 +89,7 @@
 
     <string name="textView_goals_first">Конструктор целей</string>
     <string name="textView_goals_title">Чего ты хочешь?</string>
-    <string name="textView_goals_description">Напиши желание которое тебя вдохновляет,и добавь картинку. Пиши, даже если пока не знаешь как этого достичь.</string>
+    <string name="textView_goals_description">Напиши желание которое тебя вдохновляет, и добавь картинку. Пиши, даже если пока не знаешь как этого достичь.</string>
     <string name="hint_goals_quantity">100</string>
     <string name="hint_goalsStep_open_list">Открыть список</string>
     <string name="hint_goals_description_goals">Сформулируй своё желание и запиши его</string>
