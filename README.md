@@ -6,3 +6,5 @@
 Работа с приложением начинается с правильной постановки цели с помощью конструктора.
 
 ![constructor](screenshots/constructor_rus.png)  ![constructor](screenshots/constructor_rus_start.png)  ![constructor](screenshots/constructor_rus_end.png)
+
+![constructor](screenshots/edit_progress_goals.gif)
