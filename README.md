@@ -10,7 +10,7 @@ Working with the app starts with setting a goal correctly in the goal builder. Y
 
 ![constructor](screenshots/constructor_en.png) ![constructor](screenshots/constructor_en_start.png) ![constructor](screenshots/constructor_en_end.png)
 
-You can always edit created goals by clicking on . in the right corner of the goal. Once the goal is achieved, you can change the goal's completion status and it will be moved to the achieved goals. Until you move a goal to achieved goals, it will remain in your active goals.
+You can always edit created goals by clicking on ... in the right corner of the goal. Once the goal is achieved, you can change the goal's completion status and it will be moved to the achieved goals. Until you move a goal to achieved goals, it will remain in your active goals.
 
 ![goals](screenshots/active_goals_en.png) ![goals](screenshots/edit_goals_en.png) ![goals](screenshots/achieved_goals_en.png)
 
