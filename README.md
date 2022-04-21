@@ -17,14 +17,14 @@ ___Room Database -  Jetpack Navigation component - Retrofit - Kotlin Coroutines 
 
 ![goals](screenshots/active_goals.png) ![goals](screenshots/edit_goals.png) ![goals](screenshots/achieved_goals.png)
 
-Вкладка меню "Дневник" нужна чтобы вы могли каждый день отмечать что вы сделали для своей цели. Также можно выбрать дату для новой записи.
+На вкладке меню "Дневник" вы можете каждый день создавать запись. Также можно выбрать дату для новой записи.
 
 ![diary](screenshots/diary.png) ![diary](screenshots/diary_cal.png) 
 
 После создания цели, рекомендуется каждый день отмечать в приложении, что вы сделали в течение дня для своей цели, отметив сколько прибавилось или отнялось. Это можно сделать как с вкладки цели, нажав на + на самой цели, так и из вкладки дневник, добавив в заметку к какой цели относится.
 
-![edit_progress](screenshots/edit_progress_goals.gif) ![edit_progress](screenshots/edit_progress_diary.gif)
+![edit_progress](screenshots/edit_progress_goals.gif)        ![edit_progress](screenshots/edit_progress_diary.gif)
 
 На вкладке "Мотивация" каждый день вы можете прочитать новую вдохновляющую аффирмацию.
 
-![motivation]((screenshots/motivation.png)
+![motivation](screenshots/motivation.png)
