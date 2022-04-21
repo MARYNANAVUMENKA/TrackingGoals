@@ -5,4 +5,4 @@
 
 Работа с приложением начинается с правильной постановки цели с помощью конструктора целей.
 
-![constructor](screenshots/constructor_rus.jpg)
+![constructor](screenshots/constructor_rus.png)
