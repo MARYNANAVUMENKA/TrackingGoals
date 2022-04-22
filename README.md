@@ -8,23 +8,34 @@ The name Tracking Goals speaks for itself, the app helps you achieve your goals 
 
 Working with the app starts with setting a goal correctly in the goal builder. You can also add a picture for a goal from your gallery or choose from the ones offered by the app.
 
+
 ![constructor](screenshots/constructor_en.png) ![constructor](screenshots/constructor_en_start.png) ![constructor](screenshots/constructor_en_end.png)
+
 
 You can always edit created goals by clicking on ... in the right corner of the goal. Once the goal is achieved, you can change the goal's completion status and it will be moved to the achieved goals. Until you move a goal to achieved goals, it will remain in your active goals.
 
+
 ![goals](screenshots/active_goals_en.png) ![goals](screenshots/edit_goals_en.png) ![goals](screenshots/achieved_goals_en.png)
+
 
 The Diary menu tab displays the current month with blank notes to fill in. You can create one or more entries each day. You can also choose a date for a new entry.
 
+
 ![diary](screenshots/diary_en.png) ![diary](screenshots/diary_cal_en.png) 
+
 
 Once you've created a goal, it's recommended that each day you note in the app what you did during the day for your goal, noting how much was added or subtracted. You can do this either from the goal tab by clicking the + on the goal itself, or from the diary tab by adding in a note to which the goal applies.
 
+
 ![edit_progress](screenshots/edit_progress_goals_en.gif) ![edit_progress](screenshots/edit_progress_diary_en.gif)
 
-You can read a new inspirational affirmation every day in the Motivation tab.
+
+You can read a new inspirational affirmation every day in the Motivation tab
+
 
 ![motivation](screenshots/motivation_en.png)
+
+
 
 ## Tracking Goals (ru)
 
