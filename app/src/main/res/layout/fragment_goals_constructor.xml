@@ -165,7 +165,7 @@
                             android:fontFamily="sans-serif-medium"
                             android:hint="@string/hint_goals_description_goals"
                             android:importantForAutofill="no"
-                            android:inputType="textMultiLine|textCapWords"
+                            android:inputType="textMultiLine|textCapSentences"
                             android:textSize="20sp" />
 
                     </FrameLayout>
@@ -347,7 +347,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:hint="@string/hint_goals_description_criterion"
                     android:imeOptions="actionDone"
-                    android:inputType="text|textCapWords"
+                    android:inputType="text|textCapCharacters"
                     android:lines="1"
                     android:textColor="@color/black"
                     android:textColorHint="@color/text_grey_hint_light"

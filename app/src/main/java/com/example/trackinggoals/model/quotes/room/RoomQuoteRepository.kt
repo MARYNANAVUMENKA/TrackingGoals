@@ -47,7 +47,7 @@ class RoomQuoteRepository(
                 if (list.isNotEmpty()) {
                     list[list.lastIndex].toQuotes()
                 } else {
-                    Quote("", "You are offline", "", "")
+                    Quote("", "", "", "")
                 }
             }
         }

@@ -46,7 +46,7 @@
             android:fontFamily="sans-serif-black"
             android:gravity="center"
             android:minLines="2"
-            tools:text="Мозги есть у всех, но не все разобрались с инструкцией применению."
+            tools:text="Большой успех – это сумма маленьких шажков, которые мы делаем ежедневно!"
             android:textColor="@color/black"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +69,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewQuotes"
             android:layout_marginTop="17dp"
-            tools:text="Хью Лори"
+            tools:text="Роберт Кольер"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

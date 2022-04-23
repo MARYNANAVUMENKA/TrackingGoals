@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.trackinggoals.R
 import com.example.trackinggoals.databinding.FragmentMotivationBinding
 import com.example.trackinggoals.model.Repositories
 import com.example.trackinggoals.viewModelCreator
@@ -32,6 +34,10 @@ class MotivationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.quoteText.observe(viewLifecycleOwner) {
+            when(it){
+                ""-> Toast.makeText(requireContext(), R.string.error_network, Toast.LENGTH_SHORT)
+                    .show()
+            }
             binding.textViewQuotes.text = it
         }
         viewModel.author.observe(viewLifecycleOwner) {
