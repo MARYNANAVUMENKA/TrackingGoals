@@ -41,7 +41,8 @@ ___
 ## Tracking Goals (ru)
 
 
-___Kotlin  -  MVVM  -  Clean Architecture  -  Jetpack Navigation component (Bottom navigation bar, safe args)  -  Retrofit + OkHttp + GSON   -   Room Database  - Kotlin Coroutines  -  View Binding  -  Glide  -  Workmanager  -  Notification  -  RecyclerView___
+___Kotlin  -  MVVM  -  Clean Architecture  -  Jetpack Navigation component (Bottom navigation bar, safe args)  -   Room Database___   
+___Retrofit + OkHttp + GSON -  Kotlin Coroutines   -  View Binding  -  Glide  -  Workmanager  -  Notification  -  RecyclerView___
 
 >Большой Успех - это сумма маленьких шажков, которые мы делаем ежедневно!
 
