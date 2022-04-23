@@ -30,7 +30,7 @@ Once you've created a goal, it's recommended that each day you note in the app w
 ![edit_progress](screenshots/edit_progress_goals_en.gif) ![edit_progress](screenshots/edit_progress_diary_en.gif)
 
 
-You can read a new inspirational affirmation every day in the Motivation tab
+You can read a new inspirational affirmation every day in the Motivation tab.
 
 
 ![motivation](screenshots/motivation_en.png)
