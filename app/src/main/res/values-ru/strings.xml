@@ -144,5 +144,6 @@
 
     <string name="text_new_result">Новый результат по цели</string>
     <string name="text_today">Сегодня</string>
+    <string name="error_network">Вы не в сети! </string>
 
 </resources>

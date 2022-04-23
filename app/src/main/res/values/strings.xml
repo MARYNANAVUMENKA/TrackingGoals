@@ -138,4 +138,6 @@
     <string name="text_new_result">A new result to the goal</string>
     <string name="text_today">Today</string>
 
+    <string name="error_network">You are offline! </string>
+
 </resources>
