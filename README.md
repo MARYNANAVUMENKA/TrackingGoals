@@ -35,7 +35,7 @@ You can read a new inspirational affirmation every day in the Motivation tab
 
 ![motivation](screenshots/motivation_en.png)
 
-
+___
 
 ## Tracking Goals (ru)
 
