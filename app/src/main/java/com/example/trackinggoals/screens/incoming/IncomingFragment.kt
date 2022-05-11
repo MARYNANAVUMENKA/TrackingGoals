@@ -16,17 +16,18 @@ import com.example.trackinggoals.R
 import com.example.trackinggoals.databinding.FragmentIncomingBinding
 import com.example.trackinggoals.findTopNavController
 import com.example.trackinggoals.model.notes.entities.Incoming
-import com.example.trackinggoals.model.Repositories
 import com.example.trackinggoals.screens.dialogs.CustomInputDialogFragment
 import com.example.trackinggoals.screens.dialogs.CustomInputDialogListener
 import com.example.trackinggoals.screens.dialogs.GoalsBottomSheetDialogFragment
 import com.example.trackinggoals.screens.dialogs.GoalsBottomSheetDialogFragmentListener
-import com.example.trackinggoals.viewModelCreator
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class IncomingFragment : Fragment() {
-    private lateinit var binding: FragmentIncomingBinding
-    private val viewModel by viewModelCreator { IncomingViewModel(Repositories.incomingRepository) }
+    private  var _binding: FragmentIncomingBinding?=null
+    private val binding get() = _binding!!
+    private val viewModel by viewModel<IncomingViewModel> { parametersOf() }
     private lateinit var currentIncoming: Incoming
     private var textIncoming = ""
 
@@ -44,7 +45,7 @@ class IncomingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentIncomingBinding.inflate(inflater, container, false)
+        _binding = FragmentIncomingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -166,7 +167,6 @@ class IncomingFragment : Fragment() {
                     viewModel.getSelectedGoals(textGoals)
                     showCustomInputDialogFragment(KEY_INPUT_REQUEST_KEY)
                 }
-//                KEY_SECOND_REQUEST_KEY -> this.secondVolume = volume
             }
             viewModel.selectedGoals.observe(viewLifecycleOwner) {
                 binding.textViewIncomingTextGoals.text = it.textGoals
@@ -262,12 +262,6 @@ class IncomingFragment : Fragment() {
                 DialogInterface.BUTTON_POSITIVE -> {
                     viewModel.deleteIncoming(currentIncoming)
                     findTopNavController().popBackStack()
-//                    findTopNavController().navigate(R.id.tabsFragment, null, navOptions {
-//                        popUpTo(R.id.tabsFragment) {
-//                            inclusive = true
-//                        }
-//                    })
-//                    navigateToNoteList()
                 }
                 DialogInterface.BUTTON_NEGATIVE -> Log.d("dialog", "Dialog dismissed")
             }

@@ -69,34 +69,30 @@ class GoalsAdapter(private val actionListener: GoalsActionListener) :
             textViewDescription.text = goals.textGoals
             textViewTitleCriteria.text = goals.criterion
             textViewDataTitle.text = goals.dataExecution
-            textViewQuantityTotal.text = goals.quantity.toString()
-            if (goals.quantity != 0 && goals.progress.toFloat() < goals.quantity.toFloat() && goals.progress.toFloat() > 0.0F) {
-                slider.valueFrom = 0.0F
-                slider.value = goals.progress.toFloat()
-                slider.valueTo = goals.quantity.toFloat()
-            } else if (goals.progress.toFloat() > goals.quantity.toFloat()) {
-                slider.valueFrom = 0.0F
-                slider.value = goals.progress.toFloat()
-                slider.valueTo = goals.progress.toFloat()
-            } else if (goals.progress.toFloat() == goals.quantity.toFloat()) {
-                slider.valueFrom = 0.0F
-                slider.value = goals.quantity.toFloat()
-                slider.valueTo = goals.quantity.toFloat()
-            } else if (goals.quantity == 0) {
-                slider.valueFrom = 0.0F
-                slider.valueTo = 0.1F
-            } else if (goals.progress.toFloat() < goals.quantity.toFloat() && goals.progress.toFloat() < 0) {
-                slider.valueFrom = 0.0F
-                slider.valueTo = 0.1F
-            }
-
-            textViewQuantityUnit.text = goals.unit
-            textViewQuantityNow.text = goals.progress.toString()
-            if (goals.quantity == 0) {
-                textViewQuantityPercent.text = "(0 %)"
+            val quantity = goals.quantity.toString()
+            val progress=goals.progress.toString()
+            val unit = goals.unit.toString()
+            if (goals.quantity == 0L) {
+                textViewQuantityNow.text = "$progress / $quantity $unit ($0 %)"
             } else {
-                val percent = (goals.progress * 100) / goals.quantity
-                textViewQuantityPercent.text = "($percent %)"
+                val percent = goals.progress.toFloat()  / goals.quantity.toFloat() * 100.00F
+                textViewQuantityNow.text = "$progress / $quantity $unit (${percent.toInt().toString()} %)"
+            }
+            when {
+                goals.progress.toFloat() < goals.quantity.toFloat() -> {
+                    slider.valueFrom = 0.0F
+                    slider.value = goals.progress.toFloat()
+                    slider.valueTo = goals.quantity.toFloat()
+                }
+                goals.progress.toFloat() == goals.quantity.toFloat() -> {
+                    slider.valueFrom = 0.0F
+                    slider.value = goals.quantity.toFloat()
+                    slider.valueTo = goals.quantity.toFloat()
+                }
+                else -> {
+                    slider.valueFrom = 0.0F
+                    slider.valueTo = 0.1F
+                }
             }
 
             if (goals.photo.substringBefore(':') == "https") {

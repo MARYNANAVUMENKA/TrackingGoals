@@ -1,20 +1,16 @@
 package com.example.trackinggoals.model.goals.room
 
-import android.os.Build
-import androidx.annotation.RequiresApi
+
 import com.example.trackinggoals.model.goals.room.entities.GoalsDbEntity
-import com.example.trackinggoals.model.notes.NoteRepository
-import com.example.trackinggoals.model.goals.GoalsRepository
+import com.example.trackinggoals.repositories.GoalsRepository
 import com.example.trackinggoals.model.goals.entities.Goals
 import java.util.*
 
 
 class RoomGoalsRepository(
-    private val noteRepository: NoteRepository,
     private val goalsDao: GoalsDao,
 ) : GoalsRepository {
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override suspend fun getListActiveGoals(): List<Goals> {
         val listGoalsDbEntity = goalsDao.getAllGoals()
         if (listGoalsDbEntity.isNullOrEmpty()) {
@@ -33,12 +29,12 @@ class RoomGoalsRepository(
                     criterion = it.criterion
                 )
             }.toMutableList()
-            listGoals.removeIf { it.textGoals == "" || !it.isActive }
+            listGoals.removeAll { !it.isActive }
             return listGoals
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
+
     override suspend fun getListAchievedGoals(): List<Goals> {
         val listGoalsDbEntity = goalsDao.getAllGoals()
         if (listGoalsDbEntity.isNullOrEmpty()) {
@@ -57,12 +53,12 @@ class RoomGoalsRepository(
                     criterion = it.criterion
                 )
             }.toMutableList()
-            listGoals.removeIf { it.textGoals == "" || it.isActive }
+            listGoals.removeAll { it.isActive }
             return listGoals
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
+
     override suspend fun getListGoals(): List<Goals> {
         val listGoalsDbEntity = goalsDao.getAllGoals()
         if (listGoalsDbEntity.isNullOrEmpty()) {
@@ -81,15 +77,14 @@ class RoomGoalsRepository(
                     criterion = it.criterion
                 )
             }.toMutableList()
-            listGoals.removeIf { it.textGoals == "" }
             return listGoals
         }
     }
 
     override suspend fun getIdGoals(id: Int): Goals {
-        return if (id == 1) {
+        return if (id == ID_NEW_GOALS) {
             val id = UUID.randomUUID().hashCode()
-            GoalsDbEntity(id, true, "", "", "", 0, 0, "", "").toGoals()
+            GoalsDbEntity(id, true, "", "", "", 0L, 0L, "", "").toGoals()
         } else {
             goalsDao.findById(id).toGoals()
         }
@@ -103,8 +98,8 @@ class RoomGoalsRepository(
         photo: String,
         textGoals: String,
         dataExecution: String,
-        progress: Int,
-        quantity: Int,
+        progress: Long,
+        quantity: Long,
         unit: String,
         criterion: String
     ) {
@@ -126,19 +121,19 @@ class RoomGoalsRepository(
         goalsDao.deleteGoals(goalsDao.findById(id))
     }
 
-    override suspend fun updateText(textGoals: String, id: Int) {
+    override suspend fun updateTextGoals(textGoals: String, id: Int) {
         goalsDao.updateText(textGoals, id)
     }
 
-    override suspend fun updatePhoto(photo: String, id: Int) {
+    override suspend fun updatePhotoGoals(photo: String, id: Int) {
         goalsDao.updatePhoto(photo, id)
     }
 
-    override suspend fun updateDataExecution(dataExecution: String, id: Int) {
+    override suspend fun updateDataExecutionGoals(dataExecution: String, id: Int) {
         goalsDao.updateDataExecution(dataExecution, id)
     }
 
-    override suspend fun updateIsActive(isActive: Boolean, id: Int) {
+    override suspend fun updateIsActiveGoals(isActive: Boolean, id: Int) {
         if (isActive) {
             goalsDao.updateIsActive(false, id)
         } else {
@@ -146,42 +141,59 @@ class RoomGoalsRepository(
         }
     }
 
-    override suspend fun updateProgress(progress: String, id: Int, text: String) {
-        val change = progress.substring(1).toInt()
+    override suspend fun updateProgressGoals(progress: String, id: Int, text: String) {
+        val change = progress.substring(1).toLong()
         val goalsDbEntity = goalsDao.findById(id)
         val currentProgress = goalsDbEntity.progress
-        val textGoalsDbEntity = goalsDbEntity.textGoals
-        val note = noteRepository.getCurrentDay()
+        val quantity = goalsDbEntity.quantity
+        val changeMinusProgress = currentProgress - change
+        val changePlusProgress = currentProgress + change
         if (progress.contains("-")) {
-            goalsDao.updateProgress(currentProgress - change, id)
-            noteRepository.saveNoteWithIncomingFromGoals(progress, textGoalsDbEntity, note, text)
-        } else {
-            goalsDao.updateProgress(currentProgress + change, id)
-            noteRepository.saveNoteWithIncomingFromGoals(progress, textGoalsDbEntity, note, text)
+            when (changeMinusProgress) {
+                in 1L..quantity -> goalsDao.updateProgress(changeMinusProgress, id)
+                else -> goalsDao.updateProgress(0L, id)
+            }
+        } else if (progress.contains("+")) {
+            if (changePlusProgress > quantity) {
+                goalsDao.updateProgress(quantity, id)
+            } else {
+                goalsDao.updateProgress(currentProgress + change, id)
+            }
         }
     }
 
-    override suspend fun updateProgressWithoutNewResult(progress: String, id: Int, text: String) {
-        val change = progress.substring(1).toInt()
-        val goalsDbEntity = goalsDao.findById(id)
-        val currentProgress = goalsDbEntity.progress
-        if (progress.contains("-")) {
-            goalsDao.updateProgress(currentProgress - change, id)
-        } else {
-            goalsDao.updateProgress(currentProgress + change, id)
-        }
+    override suspend fun updateProgressWithoutNewResultGoals(
+        progress: String,
+        id: Int,
+        text: String
+    ) {
+        updateProgressGoals(progress, id, text)
     }
 
-    override suspend fun updateQuantity(quantity: Int, id: Int) {
+    override suspend fun updateQuantityGoals(quantity: Long, id: Int) {
         goalsDao.updateQuantity(quantity, id)
     }
 
-    override suspend fun updateUnit(unit: String, id: Int) {
+    override suspend fun updateUnitGoals(unit: String, id: Int) {
         goalsDao.updateUnit(unit, id)
     }
 
-    override suspend fun updateCriterion(criterion: String, id: Int) {
+    override suspend fun updateCriterionGoals(criterion: String, id: Int) {
         goalsDao.updateCriterion(criterion, id)
+    }
+
+
+    override suspend fun getAllActiveGoalsForIncoming(): ArrayList<String> {
+        val listGoals = getListActiveGoals()
+        return if (listGoals.isNotEmpty()) {
+            listGoals.map { goals: Goals -> goals.textGoals } as ArrayList<String>
+        } else {
+            emptyList<String>() as ArrayList<String>
+        }
+    }
+
+    companion object {
+        const val ID_NEW_GOALS = 1
     }
 
 }

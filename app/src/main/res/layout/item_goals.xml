@@ -9,10 +9,10 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/white"
         app:cardCornerRadius="9dp"
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true">
@@ -20,7 +20,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
 
             <FrameLayout
                 android:id="@+id/frameImage"
@@ -47,7 +46,7 @@
                     app:backgroundTint="?android:attr/windowBackground"
                     app:fabCustomSize="35dp"
                     app:srcCompat="@drawable/ic_more_horiz"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
             </FrameLayout>
 
@@ -83,136 +82,82 @@
                     android:textSize="13sp"
                     tools:text="14 февраля, 2021" />
 
-                <TextView
-                    android:id="@+id/textViewDescription"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="35dp"
                     android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="12dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    tools:text="Новая машина" />
-
-                <TextView
-                    android:id="@+id/textViewTitleCriteria"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="80dp"
-                    android:layout_marginBottom="12dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <com.google.android.material.slider.Slider
-                    android:id="@+id/slider"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="110dp"
-                    android:layout_marginBottom="12dp"
-                    android:clickable="false"
-                    android:enabled="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:longClickable="false"
-                    app:thumbColor="@color/color_secondary"
-                    app:thumbRadius="0dp"
-                    app:trackColorActive="@color/color_secondary"
-                    app:trackHeight="15dp" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="165dp"
                     android:layout_marginBottom="12dp">
 
                     <TextView
-                        android:id="@+id/textViewQuantityNow"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/textViewDescription"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="sans-serif-light"
+                        android:fontFamily="sans-serif-medium"
                         android:textColor="@color/black"
-                        android:textSize="13sp"
-                        app:layout_constraintEnd_toStartOf="@+id/textViewQuantityFrom"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintHorizontal_chainStyle="packed"
+
+                        android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="297" />
+                        tools:text="Новая машина" />
 
                     <TextView
-                        android:id="@+id/textViewQuantityFrom"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/textViewTitleCriteria"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/textView_Goals_Quantity_Of"
-                        android:textColor="@color/black"
-                        android:textSize="13sp"
-                        app:layout_constraintEnd_toStartOf="@+id/textViewQuantityTotal"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/textViewQuantityNow"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textViewQuantityTotal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="5dp"
                         android:fontFamily="sans-serif-light"
                         android:textColor="@color/black"
-                        android:textSize="13sp"
-                        app:layout_constraintEnd_toStartOf="@+id/textViewQuantityUnit"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/textViewQuantityFrom"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="100000" />
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textViewDescription"
+                        tools:text="НАКОПЛЕНО" />
+
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/slider"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:clickable="false"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:longClickable="false"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTitleCriteria"
+                        app:thumbColor="@color/color_secondary"
+                        app:thumbRadius="0dp"
+                        app:trackColorActive="@color/color_secondary"
+                        app:trackHeight="15dp"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
                     <TextView
-                        android:id="@+id/textViewQuantityUnit"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/textViewQuantityNow"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="sans-serif-light"
-                        android:textColor="@color/black"
-                        android:textSize="13sp"
-                        app:layout_constraintEnd_toStartOf="@+id/textViewQuantityPercent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/textViewQuantityTotal"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Долларов" />
-
-                    <TextView
-                        android:id="@+id/textViewQuantityPercent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
                         android:fontFamily="sans-serif-light"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         app:layout_constraintEnd_toStartOf="@+id/imagePlusGoals"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/textViewQuantityUnit"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="0.3%" />
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/slider"
+                        tools:text="240 / 1000 долларов (0 %)" />
 
                     <ImageView
                         android:id="@+id/imagePlusGoals"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/textViewQuantityNow"
+                        app:layout_constraintTop_toBottomOf="@id/slider"
                         app:srcCompat="@drawable/ic_add_goals"
-                        tools:ignore="ContentDescription" />
-
+                        tools:ignore="ContentDescription,ImageContrastCheck" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
             </FrameLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

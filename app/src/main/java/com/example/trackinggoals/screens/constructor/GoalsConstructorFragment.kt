@@ -23,8 +23,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navOptions
 import com.example.trackinggoals.databinding.FragmentGoalsConstructorBinding
-import com.example.trackinggoals.model.Repositories
-import com.example.trackinggoals.viewModelCreator
 import java.text.SimpleDateFormat
 import java.util.*
 import com.bumptech.glide.Glide
@@ -35,14 +33,17 @@ import com.example.trackinggoals.screens.dialogs.PictureChoiceDialogFragment
 import com.example.trackinggoals.screens.constructor.picture.PictureChoiceFragment
 import java.io.*
 import android.graphics.BitmapFactory
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class GoalsConstructorFragment : Fragment() {
-    private lateinit var binding: FragmentGoalsConstructorBinding
+    private  var _binding: FragmentGoalsConstructorBinding?=null
+    private val binding get() = _binding!!
     private lateinit var selectedImage: Uri
     private var selectedBitmap: Bitmap? = null
     private var pathPicture: String = ""
 
-    private val viewModel by viewModelCreator { GoalsConstructorViewModel(Repositories.goalsRepository) }
+    private val viewModel by viewModel<GoalsConstructorViewModel> { parametersOf() }
 
     private val args by navArgs<GoalsConstructorFragmentArgs>()
 
@@ -56,7 +57,7 @@ class GoalsConstructorFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentGoalsConstructorBinding.inflate(inflater, container, false)
+        _binding = FragmentGoalsConstructorBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -64,7 +65,7 @@ class GoalsConstructorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupSingleChoiceDialogFragmentListener()
         setupPictureChoiceFragmentListener()
-        if (getGoalsId()==1){
+        if (getGoalsId()== ID_NEW_GOALS){
             binding.buttonGoalsFinishEdit.isEnabled = false
         }
 
@@ -73,9 +74,13 @@ class GoalsConstructorFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (binding.editTextGoalsWant.editableText.toString()=="0"){
+                    binding.editTextGoalsWant.setText("")
+                }
+
                 binding.buttonGoalsFinishEdit.isEnabled = false
                 if (binding.editTextInputTextGoals.text.isNotEmpty() &&
-                    binding.editTextGoalsWant.editableText.isNotEmpty()
+                    binding.editTextGoalsWant.editableText.isNotEmpty()&& binding.editTextGoalsWant.editableText.toString()!="0"
                     && binding.editTextGoalsCriterion.editableText.isNotEmpty() &&
                     binding.autoCompleteTextGoalsUnit.text.isNotEmpty()
                     && binding.buttonGoalsChooseDat.text.isNotEmpty()
@@ -134,7 +139,7 @@ class GoalsConstructorFragment : Fragment() {
             }
         }
         viewModel.quantity.observe(viewLifecycleOwner) {
-            if (it != 0) {
+            if (it != 0L) {
                 binding.editTextGoalsWant.setText(it.toString())
             }
         }
@@ -180,21 +185,21 @@ class GoalsConstructorFragment : Fragment() {
         }
 
         binding.buttonGoalsFinishEdit.setOnClickListener {
-            if (getGoalsId() == 1 && pathPicture != "") {
+            if (getGoalsId() == ID_NEW_GOALS && pathPicture != "") {
                 viewModel.saveGoals(
                     pathPicture, binding.editTextInputTextGoals.text.toString(),
                     binding.buttonGoalsChooseDat.text.toString(), 0,
-                    binding.editTextGoalsWant.text.toString().toInt(),
+                    binding.editTextGoalsWant.text.toString().toLong(),
                     binding.autoCompleteTextGoalsUnit.text.toString(),
                     binding.editTextGoalsCriterion.text.toString().uppercase(Locale.getDefault())
                 )
-            } else if (getGoalsId() == 1) {
+            } else if (getGoalsId() == ID_NEW_GOALS) {
                 val nameFile = UUID.randomUUID().toString()
                 selectedBitmap?.let { it1 -> savePhotoToInternalStorage(nameFile, it1) }
                 viewModel.saveGoals(
                     "$nameFile.jpg", binding.editTextInputTextGoals.text.toString(),
                     binding.buttonGoalsChooseDat.text.toString(), 0,
-                    binding.editTextGoalsWant.text.toString().toInt(),
+                    binding.editTextGoalsWant.text.toString().toLong(),
                     binding.autoCompleteTextGoalsUnit.text.toString(),
                     binding.editTextGoalsCriterion.text.toString().uppercase(Locale.getDefault())
                 )
@@ -221,7 +226,7 @@ class GoalsConstructorFragment : Fragment() {
                     getGoalsId()
                 )
                 viewModel.updateQuantityGoals(
-                    binding.editTextGoalsWant.text.toString().toInt(),
+                    binding.editTextGoalsWant.text.toString().toLong(),
                     getGoalsId()
                 )
                 viewModel.updateUnitGoals(
@@ -398,6 +403,8 @@ class GoalsConstructorFragment : Fragment() {
 
         @JvmStatic
         private val REQUEST_CODE_START_ACTIVITY = 2
+
+        const val ID_NEW_GOALS = 1
 
     }
 }

@@ -37,10 +37,10 @@ interface GoalsDao {
     fun updateDataExecution(dataExecution: String, id: Int)
 
     @Query("UPDATE goals SET progress =:progress WHERE id = :id")
-    fun updateProgress(progress: Int, id: Int)
+    fun updateProgress(progress: Long, id: Int)
 
     @Query("UPDATE goals SET quantity =:quantity WHERE id = :id")
-    fun updateQuantity(quantity: Int, id: Int)
+    fun updateQuantity(quantity: Long, id: Int)
 
     @Query("UPDATE goals SET unit =:unit WHERE id = :id")
     fun updateUnit(unit: String, id: Int)

@@ -1,9 +1,8 @@
 package com.example.trackinggoals.model.notes.room
 
-import android.os.Build
-import androidx.annotation.RequiresApi
+
 import com.example.trackinggoals.model.notes.NoteDao
-import com.example.trackinggoals.model.notes.NoteRepository
+import com.example.trackinggoals.repositories.NoteRepository
 import com.example.trackinggoals.model.notes.entities.Incoming
 import com.example.trackinggoals.model.notes.entities.Note
 import com.example.trackinggoals.model.notes.entities.NoteIncoming
@@ -16,7 +15,7 @@ class RoomNoteRepository(
     private val noteDao: NoteDao,
 ) : NoteRepository {
 
-    override suspend fun getCurrentMonthYear(
+    override suspend fun getCurrentMonthYearNote(
         currentYear: Int,
         currentMonth: Int,
         currentDay: Int
@@ -26,8 +25,8 @@ class RoomNoteRepository(
         return SimpleDateFormat("dd MMMM, yyyy").format(calendar.time)
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
-    override suspend fun getListCurrentMonthYear(
+
+    override suspend fun getListCurrentMonthYearNote(
         currentYear: Int,
         currentMonth: Int,
         currentDay: Int
@@ -61,7 +60,7 @@ class RoomNoteRepository(
                 }
             )
         }.toMutableList()
-        listNoteIncoming.removeIf { !it.note.currentData.contains(days) }
+        listNoteIncoming.removeAll { !it.note.currentData.contains(days) }
         var list = mutableListOf<NoteIncoming>()
         for (i in 0 until allDays.size) {
             val note = Note(1, allDays[i],false)
@@ -72,10 +71,10 @@ class RoomNoteRepository(
         }
         list.addAll(listNoteIncoming)
         for (item in listNoteIncoming) {
-            list.removeIf { it.note.currentData == item.note.currentData && it.note.id == 1 }
+            list.removeAll { it.note.currentData == item.note.currentData && it.note.id == 1 }
         }
         list.sortBy { it.note.currentData.substringAfter(',') }
-        if (getCurrentDay().currentData==dataCurrentDay){
+        if (getCurrentDayNote().currentData==dataCurrentDay){
             list?.firstOrNull { it.note.currentData==dataCurrentDay}?.note!!.isToday=true
         }
         return list
@@ -91,7 +90,7 @@ class RoomNoteRepository(
             listincomingDbEntity.contains(noteDao.findByIncomingId(incomingId)) -> {
                 return noteDao.findByIncomingId(incomingId).toIncoming()
             }
-            noteId == 1 -> {
+            noteId == ID_NEW_NOTE -> {
                 val idNewNote = UUID.randomUUID().hashCode()
                 val noteDbEntity = NoteDbEntity(idNewNote, currentDataIn,false)
                 noteDao.createNote(noteDbEntity)
@@ -125,11 +124,8 @@ class RoomNoteRepository(
         }
     }
 
-    override suspend fun getCurrentDay(): Note {
+    override suspend fun getCurrentDayNote(): Note {
         val calendar = Calendar.getInstance()
-//        val currentYear = calendar.get(Calendar.YEAR)
-//        val currentMonth = calendar.get(Calendar.MONTH)
-//        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
         calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
         val data = SimpleDateFormat("EEEE, dd MMMM").format(calendar.time).capitalize()
         val list = noteDao.getAllNotes()
@@ -143,7 +139,7 @@ class RoomNoteRepository(
     override suspend fun saveNoteWithIncoming(
         incoming: Incoming
     ) {
-        if (incoming.idNote == 1 || incoming.idIm == 1) {
+        if (incoming.idNote == ID_NEW_NOTE || incoming.idIm == ID_NEW_INCOMING) {
             val idNewNote = UUID.randomUUID().hashCode()
             val noteDbEntity = NoteDbEntity(idNewNote, incoming.currentDataIn,false)
             noteDao.createNote(noteDbEntity)
@@ -177,7 +173,7 @@ class RoomNoteRepository(
         text:String
     ) {
 
-        if (note.id == 1) {
+        if (note.id == ID_NEW_NOTE) {
             val idNewNote = UUID.randomUUID().hashCode()
             val noteDbEntity = NoteDbEntity(idNewNote, note.currentData,false)
             noteDao.createNote(noteDbEntity)
@@ -204,19 +200,19 @@ class RoomNoteRepository(
         }
     }
 
-    override suspend fun updateIncoming(textMessages: String, idIm: Int) {
+    override suspend fun updateIncomingNote(textMessages: String, idIm: Int) {
         noteDao.updateTextMessage(textMessages, idIm)
     }
 
-    override suspend fun updateTextGoals(textGoals: String, idIm: Int) {
+    override suspend fun updateTextGoalsNote(textGoals: String, idIm: Int) {
         noteDao.updateTextGoals(textGoals, idIm)
     }
 
-    override suspend fun updateQuantity(quantity: String, idIm: Int) {
+    override suspend fun updateQuantityNote(quantity: String, idIm: Int) {
         noteDao.updateQuantity(quantity, idIm)
     }
 
-    override suspend fun deleteIncoming(incoming: Incoming) {
+    override suspend fun deleteIncomingNote(incoming: Incoming) {
         noteDao.deleteIncoming(
             IncomingDbEntity(
                 incoming.idIm,
@@ -227,6 +223,11 @@ class RoomNoteRepository(
                 incoming.textMessages
             )
         )
+    }
+
+    companion object{
+        const val ID_NEW_NOTE = 1
+        const val ID_NEW_INCOMING = 1
     }
 }
 

@@ -11,18 +11,22 @@ import androidx.core.app.NotificationCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.trackinggoals.R
-import com.example.trackinggoals.model.Repositories
 import com.example.trackinggoals.screens.main.MainActivity
+import com.example.trackinggoals.usecases.quote.LoadQuotesInBackgroundUseCase
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 
 class RefreshDataWorker(
     private val context: Context,
     workerParameters: WorkerParameters
-) : CoroutineWorker(context, workerParameters) {
-    
+) : CoroutineWorker(context, workerParameters), KoinComponent {
+
+    private val loadQuotesInBackgroundUseCase: LoadQuotesInBackgroundUseCase by inject()
+
     override suspend fun doWork(): Result {
-        Repositories.init(context)
-        Repositories.quoteRepository.loadQuotesInBackground()
+
+        loadQuotesInBackgroundUseCase.invoke()
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -59,8 +63,8 @@ class RefreshDataWorker(
 
     companion object {
         private const val CHANNEL_ID = "1"
-        private const val CONTENT_TITLE ="Affirmation updated"
-        private const val CONTENT_NAME ="See your affirmation for today"
+        private const val CONTENT_TITLE = "Affirmation updated"
+        private const val CONTENT_NAME = "See your affirmation for today"
         private const val NOTIFICATION_CHANNEL_NAME = "Work Service"
         private const val CONTENT_REQUEST_CODE = 2
         const val WORK_NAME = "RefreshDataWorker"

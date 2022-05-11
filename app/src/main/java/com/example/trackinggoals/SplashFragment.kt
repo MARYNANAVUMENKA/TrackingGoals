@@ -8,15 +8,14 @@ import com.example.trackinggoals.databinding.FragmentSplashBinding
 import com.example.trackinggoals.screens.main.MainActivity
 import com.example.trackinggoals.screens.main.MainActivityArgs
 
-
 class SplashFragment : Fragment(R.layout.fragment_splash) {
 
-    private lateinit var binding: FragmentSplashBinding
-
+    private  var _binding: FragmentSplashBinding?=null
+    private val binding get() = _binding!!
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding = FragmentSplashBinding.bind(view)
+        _binding = FragmentSplashBinding.bind(view)
         renderAnimations()
         launchMainScreen(true)
     }
