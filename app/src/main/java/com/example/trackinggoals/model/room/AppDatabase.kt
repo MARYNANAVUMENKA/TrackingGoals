@@ -21,5 +21,5 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getGoalsDao(): GoalsDao
 
-    abstract fun getQuotes(): QuoteDao
+    abstract fun getQuotesDao(): QuoteDao
 }

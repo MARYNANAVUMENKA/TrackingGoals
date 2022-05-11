@@ -3,26 +3,16 @@ package com.example.trackinggoals.model.quotes.room
 import com.example.trackinggoals.model.quotes.entities.Quote
 import com.example.trackinggoals.model.quotes.room.entities.QuoteDbEntity
 import com.example.trackinggoals.model.quotes.retrofit.QuoteService
-import com.example.trackinggoals.model.quotes.QuoteRepository
+import com.example.trackinggoals.repositories.QuoteRepository
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
 class RoomQuoteRepository(
+    private val api: QuoteService,
     private val quoteDao: QuoteDao
 ) : QuoteRepository {
-
-    private val quoteService: QuoteService
-
-    init {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.fisenko.net/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        quoteService = retrofit.create(QuoteService::class.java)
-    }
-
 
     override suspend fun loadQuotes(): Quote {
         val calendar = Calendar.getInstance()
@@ -37,7 +27,7 @@ class RoomQuoteRepository(
             quoteDao.findByData(data).toQuotes()
         } else {
             return try {
-                val quote = quoteService.loadQuote()
+                val quote = api.loadQuote()
                 val quoteDbEntity =
                     QuoteDbEntity(quote.id!!, quote.text!!, quote.author!!.name!!, data)
                 quoteDao.saveQuote(quoteDbEntity)
@@ -64,7 +54,7 @@ class RoomQuoteRepository(
         val list = quoteDao.getAllQuotes()
         if (!list.contains(quoteDao.findByData(data))) {
             try {
-                val quote = quoteService.loadQuote()
+                val quote = api.loadQuote()
                 val quoteDbEntity =
                     QuoteDbEntity(quote.id!!, quote.text!!, quote.author!!.name!!, data)
                 quoteDao.saveQuote(quoteDbEntity)
@@ -73,6 +63,4 @@ class RoomQuoteRepository(
             }
         }
     }
-
-
 }

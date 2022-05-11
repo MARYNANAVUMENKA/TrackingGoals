@@ -21,9 +21,9 @@ data class GoalsDbEntity(
     @ColumnInfo(name = "data_execution")
     val dataExecution: String,
     @ColumnInfo(name = "progress")
-    val progress: Int,
+    val progress: Long,
     @ColumnInfo(name = "quantity")
-    val quantity: Int,
+    val quantity: Long,
     @ColumnInfo(name = "unit")
     val unit: String,
     @ColumnInfo(name = "criterion")

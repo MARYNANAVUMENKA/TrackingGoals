@@ -3,38 +3,52 @@ package com.example.trackinggoals.screens.constructor
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.trackinggoals.model.goals.GoalsRepository
+import com.example.trackinggoals.usecases.goals.*
 import kotlinx.coroutines.*
 
 class GoalsConstructorViewModel(
-    private val goalsRepository: GoalsRepository
-) : ViewModel() {
+    private val getIdGoalsUseCase: GetIdGoalsUseCase,
+    private val saveGoalsUseCase: SaveGoalsUseCase,
+    private val updateTextGoalsUseCase: UpdateTextGoalsUseCase,
+    private val updatePhotoGoalsUseCase: UpdatePhotoGoalsUseCase,
+    private val updateDataExecutionGoalsUseCase: UpdateDataExecutionGoalsUseCase,
+    private val updateQuantityGoalsUseCase: UpdateQuantityGoalsUseCase,
+    private val updateUnitGoalsUseCase: UpdateUnitGoalsUseCase,
+    private val updateCriterionGoalsUseCase: UpdateCriterionGoalsUseCase,
+
+    ) : ViewModel() {
 
     private val scope = CoroutineScope(Dispatchers.Main)
 
     private val _photo = MutableLiveData<String>()
-    val photo: LiveData<String> = _photo
+    val photo: LiveData<String>
+        get() = _photo
 
     private val _textGoals = MutableLiveData<String>()
-    val textGoals: LiveData<String> = _textGoals
+    val textGoals: LiveData<String>
+        get() = _textGoals
 
     private val _dataExecution = MutableLiveData<String>()
-    val dataExecution: LiveData<String> = _dataExecution
+    val dataExecution: LiveData<String>
+        get() = _dataExecution
 
-    private val _quantity = MutableLiveData<Int>()
-    val quantity: LiveData<Int> = _quantity
+    private val _quantity = MutableLiveData<Long>()
+    val quantity: LiveData<Long>
+        get() = _quantity
 
     private val _unit = MutableLiveData<String>()
-    val unit: LiveData<String> = _unit
+    val unit: LiveData<String>
+        get() = _unit
 
     private val _criterion = MutableLiveData<String>()
-    val criterion: LiveData<String> = _criterion
+    val criterion: LiveData<String>
+        get() = _criterion
 
     fun loadGoals(id: Int) {
         scope.launch {
             try {
                 val goals = withContext(Dispatchers.IO) {
-                    goalsRepository.getIdGoals(id)
+                    getIdGoalsUseCase.invoke(id)
                 }
                 _photo.value = goals.photo
                 _textGoals.value = goals.textGoals
@@ -52,15 +66,15 @@ class GoalsConstructorViewModel(
         photo: String,
         textGoals: String,
         dataExecution: String,
-        progress: Int,
-        quantity: Int,
+        progress: Long,
+        quantity: Long,
         unit: String,
         criterion: String
     ) {
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    goalsRepository.saveGoals(
+                    saveGoalsUseCase.invoke(
                         photo,
                         textGoals,
                         dataExecution,
@@ -80,7 +94,7 @@ class GoalsConstructorViewModel(
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    goalsRepository.updateText(textGoals, id)
+                    updateTextGoalsUseCase.invoke(textGoals, id)
                 }
 
             } catch (e: Exception) {
@@ -93,7 +107,7 @@ class GoalsConstructorViewModel(
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    goalsRepository.updatePhoto(photo, id)
+                    updatePhotoGoalsUseCase.invoke(photo, id)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -105,7 +119,7 @@ class GoalsConstructorViewModel(
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    goalsRepository.updateDataExecution(data, id)
+                    updateDataExecutionGoalsUseCase.invoke(data, id)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -113,11 +127,11 @@ class GoalsConstructorViewModel(
         }
     }
 
-    fun updateQuantityGoals(quantity: Int, id: Int) {
+    fun updateQuantityGoals(quantity: Long, id: Int) {
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    goalsRepository.updateQuantity(quantity, id)
+                    updateQuantityGoalsUseCase.invoke(quantity, id)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -129,7 +143,7 @@ class GoalsConstructorViewModel(
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    goalsRepository.updateUnit(unit, id)
+                    updateUnitGoalsUseCase.invoke(unit, id)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -141,7 +155,7 @@ class GoalsConstructorViewModel(
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    goalsRepository.updateCriterion(criterion, id)
+                    updateCriterionGoalsUseCase.invoke(criterion, id)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

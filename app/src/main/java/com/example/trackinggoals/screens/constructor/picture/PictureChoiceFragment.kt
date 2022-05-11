@@ -13,7 +13,8 @@ import com.example.trackinggoals.findTopNavController
 
 
 class PictureChoiceFragment : Fragment() {
-    private lateinit var binding: FragmentPictureChoiceBinding
+    private  var _binding: FragmentPictureChoiceBinding?=null
+    private val binding get() = _binding!!
     private lateinit var adapter: PictureAdapter
 
     override fun onCreateView(
@@ -21,7 +22,7 @@ class PictureChoiceFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentPictureChoiceBinding.inflate(inflater, container, false)
+        _binding = FragmentPictureChoiceBinding.inflate(inflater, container, false)
         return binding.root
     }
 

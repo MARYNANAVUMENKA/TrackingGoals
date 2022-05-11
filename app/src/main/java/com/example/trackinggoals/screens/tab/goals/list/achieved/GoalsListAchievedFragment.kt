@@ -11,19 +11,20 @@ import com.example.trackinggoals.R
 import com.example.trackinggoals.databinding.FragmentGoalsListAchievedBinding
 import com.example.trackinggoals.findTopNavController
 import com.example.trackinggoals.model.goals.entities.Goals
-import com.example.trackinggoals.model.Repositories
 import com.example.trackinggoals.screens.dialogs.CustomInputDialogFragment
 import com.example.trackinggoals.screens.dialogs.CustomInputDialogListener
 import com.example.trackinggoals.screens.tab.TabsFragmentDirections
 import com.example.trackinggoals.screens.tab.goals.list.GoalsActionListener
 import com.example.trackinggoals.screens.tab.goals.list.GoalsAdapter
-import com.example.trackinggoals.viewModelCreator
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class GoalsListAchievedFragment : Fragment() {
-    private lateinit var binding: FragmentGoalsListAchievedBinding
+    private  var _binding: FragmentGoalsListAchievedBinding?=null
+    private val binding get() = _binding!!
     private lateinit var adapter: GoalsAdapter
 
-    private val viewModel by viewModelCreator { GoalsListAchievedViewModel(Repositories.goalsRepository) }
+    private val viewModel by viewModel<GoalsListAchievedViewModel> { parametersOf() }
 
 
     override fun onCreateView(
@@ -31,7 +32,7 @@ class GoalsListAchievedFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentGoalsListAchievedBinding.inflate(inflater, container, false)
+        _binding = FragmentGoalsListAchievedBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,7 +41,6 @@ class GoalsListAchievedFragment : Fragment() {
 
         adapter = GoalsAdapter(object : GoalsActionListener {
             override fun onEditGoals(goals: Goals) {
-//                navigator().showGoalsConstructor(goals.id)
             }
 
             override fun onEditStatusGoals(goals: Goals) {

@@ -274,6 +274,7 @@
                     android:inputType="number"
                     android:lines="1"
                     android:textColor="@color/black"
+                    android:maxLength="18"
                     android:textColorHint="@color/text_grey_hint_light"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>

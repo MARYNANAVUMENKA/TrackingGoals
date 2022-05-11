@@ -4,17 +4,25 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.trackinggoals.model.goals.entities.Goals
-import com.example.trackinggoals.model.goals.GoalsRepository
+import com.example.trackinggoals.usecases.goals.GetListAchievedGoalsUseCase
+import com.example.trackinggoals.usecases.goals.RemoveGoalsUseCase
+import com.example.trackinggoals.usecases.goals.UpdateIsActiveGoalsUseCase
+import com.example.trackinggoals.usecases.goals.UpdateProgressGoalsUseCase
 import kotlinx.coroutines.*
 
 class GoalsListAchievedViewModel(
-    private var goalsRepository: GoalsRepository
+    private val getListAchievedGoalsUseCase: GetListAchievedGoalsUseCase,
+    private val updateIsActiveGoalsUseCase: UpdateIsActiveGoalsUseCase,
+    private val removeGoalsUseCase: RemoveGoalsUseCase,
+    private val updateProgressGoalsUseCase: UpdateProgressGoalsUseCase,
+
 ) : ViewModel() {
 
     private val scope = CoroutineScope(Dispatchers.Main)
 
     private val _listGoalsLiveData = MutableLiveData<List<Goals>>()
-    val listGoalsLiveData: LiveData<List<Goals>> = _listGoalsLiveData
+    val listGoalsLiveData: LiveData<List<Goals>>
+        get() = _listGoalsLiveData
 
     init {
         getListActiveGoals()
@@ -24,7 +32,7 @@ class GoalsListAchievedViewModel(
         scope.launch {
             try {
                 val listGoals = withContext(Dispatchers.IO) {
-                    goalsRepository.getListAchievedGoals()
+                    getListAchievedGoalsUseCase.invoke()
                 }
                 _listGoalsLiveData.value = listGoals
             } catch (e: Exception) {
@@ -37,7 +45,7 @@ class GoalsListAchievedViewModel(
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    goalsRepository.updateIsActive(isActive, id)
+                    updateIsActiveGoalsUseCase.invoke(isActive, id)
                 }
                 getListActiveGoals()
             } catch (e: Exception) {
@@ -50,7 +58,7 @@ class GoalsListAchievedViewModel(
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    goalsRepository.removeGoals(id)
+                    removeGoalsUseCase.invoke(id)
                 }
                 getListActiveGoals()
             } catch (e: Exception) {
@@ -63,7 +71,7 @@ class GoalsListAchievedViewModel(
         scope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    goalsRepository.updateProgress(progress, id, text)
+                    updateProgressGoalsUseCase.invoke(progress, id, text)
                 }
                 getListActiveGoals()
             } catch (e: Exception) {

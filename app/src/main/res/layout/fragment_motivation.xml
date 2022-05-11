@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_quotes"
     tools:context="com.example.trackinggoals.screens.tab.motivation.MotivationFragment">
 
     <androidx.appcompat.widget.Toolbar
@@ -31,10 +30,18 @@
         android:textColor="@color/text_toolbar"
         android:textSize="14sp" />
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?android:attr/actionBarSize"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_quotes"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textViewQuotes"
@@ -46,32 +53,28 @@
             android:fontFamily="sans-serif-black"
             android:gravity="center"
             android:minLines="2"
-            tools:text="Большой успех – это сумма маленьких шажков, которые мы делаем ежедневно!"
             android:textColor="@color/black"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
-            />
+            tools:text="Большой успех – это сумма маленьких шажков, которые мы делаем ежедневно!" />
 
         <TextView
             android:id="@+id/textViewAuthor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="25dp"
             android:fontFamily="sans-serif-black"
+            android:gravity="center"
             android:textColor="@color/black"
             android:textSize="22sp"
-            android:gravity="center"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewQuotes"
-            android:layout_marginTop="17dp"
-            tools:text="Роберт Кольер"
-            />
+            tools:text="Роберт Кольер" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </FrameLayout>

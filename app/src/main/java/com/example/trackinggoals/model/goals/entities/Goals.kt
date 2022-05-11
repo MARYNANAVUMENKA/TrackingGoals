@@ -6,8 +6,8 @@ data class Goals(
     val photo: String,
     val textGoals: String,
     val dataExecution: String,
-    val progress: Int,
-    val quantity: Int,
+    val progress: Long,
+    val quantity: Long,
     val unit: String,
     val criterion: String
 )

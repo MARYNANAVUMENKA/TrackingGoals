@@ -14,7 +14,8 @@ import com.example.trackinggoals.R
 import com.example.trackinggoals.workmanager.RefreshDataWorker
 import com.example.trackinggoals.screens.tab.TabsFragment
 import com.example.trackinggoals.databinding.ActivityMainBinding
-import com.example.trackinggoals.model.Repositories
+import org.koin.androidx.fragment.android.setupKoinFragmentFactory
+
 import java.util.concurrent.TimeUnit
 
 
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Repositories.init(applicationContext)
+        setupKoinFragmentFactory()
 
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }

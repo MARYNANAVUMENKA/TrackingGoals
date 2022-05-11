@@ -8,12 +8,16 @@ import com.example.trackinggoals.databinding.FragmentNoteListBinding
 import android.view.*
 import com.example.trackinggoals.*
 import com.example.trackinggoals.model.notes.entities.NoteIncoming
-import com.example.trackinggoals.model.Repositories
 import com.example.trackinggoals.screens.tab.TabsFragmentDirections
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 import java.util.*
 
 class NoteListFragment : Fragment() {
-    private lateinit var binding: FragmentNoteListBinding
+
+    private var _binding: FragmentNoteListBinding?=null
+    private val binding get() = _binding!!
+
     private lateinit var adapter: NoteAdapter
     private var position = 0
     private var calendar = Calendar.getInstance()
@@ -21,14 +25,14 @@ class NoteListFragment : Fragment() {
     private var month = calendar.get(Calendar.MONTH)
     private var day = calendar.get(Calendar.DAY_OF_MONTH)
 
-    private val viewModel by viewModelCreator { NoteListViewModel(Repositories.noteRepository) }
+    private val viewModel by viewModel<NoteListViewModel> { parametersOf() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentNoteListBinding.inflate(inflater, container, false)
+        _binding = FragmentNoteListBinding.inflate(inflater, container, false)
         return binding.root
     }
 

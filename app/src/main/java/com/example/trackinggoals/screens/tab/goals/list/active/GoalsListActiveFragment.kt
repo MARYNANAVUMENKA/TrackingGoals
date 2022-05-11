@@ -11,25 +11,27 @@ import com.example.trackinggoals.R
 import com.example.trackinggoals.databinding.FragmentGoalsListActiveBinding
 import com.example.trackinggoals.findTopNavController
 import com.example.trackinggoals.model.goals.entities.Goals
-import com.example.trackinggoals.model.Repositories
 import com.example.trackinggoals.screens.dialogs.CustomInputDialogFragment
 import com.example.trackinggoals.screens.dialogs.CustomInputDialogListener
 import com.example.trackinggoals.screens.tab.TabsFragmentDirections
 import com.example.trackinggoals.screens.tab.goals.list.GoalsActionListener
 import com.example.trackinggoals.screens.tab.goals.list.GoalsAdapter
-import com.example.trackinggoals.viewModelCreator
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class GoalsListActiveFragment : Fragment() {
-    private lateinit var binding: FragmentGoalsListActiveBinding
+    private  var _binding: FragmentGoalsListActiveBinding?=null
+    private val binding get() = _binding!!
+
     private lateinit var adapter: GoalsAdapter
-    private val viewModel by viewModelCreator { GoalsListActiveViewModel(Repositories.goalsRepository) }
+    private val viewModel by viewModel<GoalsListActiveViewModel> { parametersOf() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentGoalsListActiveBinding.inflate(inflater, container, false)
+        _binding = FragmentGoalsListActiveBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -45,7 +47,6 @@ class GoalsListActiveFragment : Fragment() {
 
             override fun onEditStatusGoals(goals: Goals) {
                 viewModel.editStatusGoals(goals.isActive, goals.id)
-//                navigator().goBaseMenu()
             }
 
             override fun onRemoveGoals(goals: Goals) {
