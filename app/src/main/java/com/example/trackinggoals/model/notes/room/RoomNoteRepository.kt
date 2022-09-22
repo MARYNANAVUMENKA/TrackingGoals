@@ -33,14 +33,14 @@ class RoomNoteRepository(
     ): List<NoteIncoming> {
         val calendarCurrent = Calendar.getInstance()
         calendarCurrent.set(currentYear, currentMonth, currentDay)
-        val dataCurrentDay = SimpleDateFormat("EEEE, dd MMMM").format( calendarCurrent.time).capitalize()
+        val dataCurrentDay = SimpleDateFormat("EEEE, dd MMMM",Locale("en","ru")).format( calendarCurrent.time).replaceFirstChar { it.uppercase() }
 
         val allDays = mutableListOf<String>()
         for (i in 1..calendarCurrent.getActualMaximum(Calendar.DAY_OF_MONTH)) {
             val calendar = Calendar.getInstance()
             calendar.set(currentYear, currentMonth, i)
             val data =
-                SimpleDateFormat("EEEE, dd MMMM").format(calendar.time).capitalize()
+                SimpleDateFormat("EEEE, dd MMMM").format(calendar.time).replaceFirstChar { it.uppercase() }
             allDays.add(data)
         }
         val days = allDays[0].substringAfterLast(" ")
@@ -75,7 +75,7 @@ class RoomNoteRepository(
         }
         list.sortBy { it.note.currentData.substringAfter(',') }
         if (getCurrentDayNote().currentData==dataCurrentDay){
-            list?.firstOrNull { it.note.currentData==dataCurrentDay}?.note!!.isToday=true
+            list.firstOrNull { it.note.currentData==dataCurrentDay}?.note!!.isToday=true
         }
         return list
     }
@@ -127,7 +127,7 @@ class RoomNoteRepository(
     override suspend fun getCurrentDayNote(): Note {
         val calendar = Calendar.getInstance()
         calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
-        val data = SimpleDateFormat("EEEE, dd MMMM").format(calendar.time).capitalize()
+        val data = SimpleDateFormat("EEEE, dd MMMM").format(calendar.time).replaceFirstChar { it.uppercase() }
         val list = noteDao.getAllNotes()
         return if (list.contains(noteDao.findByData(data))) {
             noteDao.findByData(data).toNote()

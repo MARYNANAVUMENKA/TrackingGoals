@@ -83,8 +83,7 @@ class RoomGoalsRepository(
 
     override suspend fun getIdGoals(id: Int): Goals {
         return if (id == ID_NEW_GOALS) {
-            val id = UUID.randomUUID().hashCode()
-            GoalsDbEntity(id, true, "", "", "", 0L, 0L, "", "").toGoals()
+            GoalsDbEntity(UUID.randomUUID().hashCode(), true, "", "", "", 0L, 0L, "", "").toGoals()
         } else {
             goalsDao.findById(id).toGoals()
         }

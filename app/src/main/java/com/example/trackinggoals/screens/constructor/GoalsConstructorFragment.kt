@@ -364,7 +364,7 @@ class GoalsConstructorFragment : Fragment() {
             requireActivity().let {
                 if (Build.VERSION.SDK_INT >= 28) {
                     if (requestCode == REQUEST_CODE_START_ACTIVITY) {
-                        val source = ImageDecoder.createSource(it.contentResolver, selectedImage!!)
+                        val source = ImageDecoder.createSource(it.contentResolver, selectedImage)
                         selectedBitmap = ImageDecoder.decodeBitmap(source)
                         pathPicture = ""
                         binding.buttonGoalsChoosePic.visibility = View.INVISIBLE
