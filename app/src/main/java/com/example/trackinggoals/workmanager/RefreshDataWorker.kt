@@ -11,8 +11,8 @@ import androidx.core.app.NotificationCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.trackinggoals.R
-import com.example.trackinggoals.screens.main.MainActivity
-import com.example.trackinggoals.usecases.quote.LoadQuotesInBackgroundUseCase
+import com.example.trackinggoals.presentation.main.MainActivity
+import com.example.trackinggoals.domain.usecases.quote.LoadQuotesInBackgroundUseCase
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".screens.constructor.GoalsConstructorFragment">
+    tools:context=".presentation.constructor.GoalsConstructorFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/frameTopGoals"
