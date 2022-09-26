@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".screens.constructor.picture.PictureChoiceFragment">
+    tools:context=".presentation.constructor.picture.PictureChoiceFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPicture"

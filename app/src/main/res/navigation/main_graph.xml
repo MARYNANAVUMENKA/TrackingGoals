@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/tabsFragment"
-        android:name="com.example.trackinggoals.screens.tab.TabsFragment"
+        android:name="com.example.trackinggoals.presentation.tab.TabsFragment"
         android:label="fragment_tabs"
         tools:layout="@layout/fragment_tabs" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/incomingFragment"
-        android:name="com.example.trackinggoals.screens.incoming.IncomingFragment"
+        android:name="com.example.trackinggoals.presentation.incoming.IncomingFragment"
         android:label="fragment_incoming"
         tools:layout="@layout/fragment_incoming">
         <argument
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/goalsConstructorFragment"
-        android:name="com.example.trackinggoals.screens.constructor.GoalsConstructorFragment"
+        android:name="com.example.trackinggoals.presentation.constructor.GoalsConstructorFragment"
         android:label="fragment_goals_constructor"
         tools:layout="@layout/fragment_goals_constructor">
     <argument
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/pictureChoiceFragment"
-        android:name="com.example.trackinggoals.screens.constructor.picture.PictureChoiceFragment"
+        android:name="com.example.trackinggoals.presentation.constructor.picture.PictureChoiceFragment"
         android:label="fragment_picture_choice"
         tools:layout="@layout/fragment_picture_choice" >
         <argument

@@ -5,7 +5,7 @@
     android:background="@color/background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".screens.tab.goals.list.active.GoalsListActiveFragment">
+    tools:context=".presentation.tab.goals.list.active.GoalsListActiveFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarGoalsList"

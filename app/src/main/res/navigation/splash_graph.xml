@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.trackinggoals.SplashFragment"
+        android:name="com.example.trackinggoals.presentation.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" />
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.example.trackinggoals.screens.main.MainActivity"
+        android:name="com.example.trackinggoals.presentation.main.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" >
         <argument
