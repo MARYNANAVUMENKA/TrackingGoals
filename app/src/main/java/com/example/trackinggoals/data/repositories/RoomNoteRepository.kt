@@ -2,11 +2,12 @@ package com.example.trackinggoals.data.repositories
 
 
 import com.example.trackinggoals.data.db.NoteDao
-import com.example.trackinggoals.data.room.entities.IncomingDbEntity
-import com.example.trackinggoals.data.room.entities.NoteDbEntity
+import com.example.trackinggoals.data.entities.IncomingDbEntity
+import com.example.trackinggoals.data.entities.NoteDbEntity
 import com.example.trackinggoals.domain.model.Incoming
 import com.example.trackinggoals.domain.model.Note
 import com.example.trackinggoals.domain.model.NoteIncoming
+import com.example.trackinggoals.domain.repositories.NoteRepository
 import java.text.SimpleDateFormat
 import java.util.*
 

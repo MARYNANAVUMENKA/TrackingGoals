@@ -3,7 +3,7 @@ package com.example.trackinggoals.data.db
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.trackinggoals.data.room.entities.QuoteDbEntity
+import com.example.trackinggoals.data.entities.QuoteDbEntity
 
 @Dao
 interface QuoteDao {

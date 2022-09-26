@@ -1,4 +1,4 @@
-package com.example.trackinggoals.data.room.entities
+package com.example.trackinggoals.data.entities
 
 import androidx.room.*
 import com.example.trackinggoals.domain.model.Incoming

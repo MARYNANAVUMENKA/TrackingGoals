@@ -1,9 +1,9 @@
 package com.example.trackinggoals.data.db
 
 import androidx.room.*
-import com.example.trackinggoals.data.room.entities.IncomingDbEntity
-import com.example.trackinggoals.data.room.entities.NoteDbEntity
-import com.example.trackinggoals.data.room.entities.NoteWithIncoming
+import com.example.trackinggoals.data.entities.IncomingDbEntity
+import com.example.trackinggoals.data.entities.NoteDbEntity
+import com.example.trackinggoals.data.entities.NoteWithIncoming
 
 @Dao
 interface NoteDao {
