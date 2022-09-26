@@ -2,8 +2,9 @@ package com.example.trackinggoals.data.repositories
 
 
 import com.example.trackinggoals.data.db.GoalsDao
-import com.example.trackinggoals.data.room.entities.GoalsDbEntity
+import com.example.trackinggoals.data.entities.GoalsDbEntity
 import com.example.trackinggoals.domain.model.Goals
+import com.example.trackinggoals.domain.repositories.GoalsRepository
 import java.util.*
 
 

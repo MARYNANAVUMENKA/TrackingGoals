@@ -2,10 +2,10 @@ package com.example.trackinggoals.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.trackinggoals.data.room.entities.QuoteDbEntity
-import com.example.trackinggoals.data.room.entities.GoalsDbEntity
-import com.example.trackinggoals.data.room.entities.IncomingDbEntity
-import com.example.trackinggoals.data.room.entities.NoteDbEntity
+import com.example.trackinggoals.data.entities.QuoteDbEntity
+import com.example.trackinggoals.data.entities.GoalsDbEntity
+import com.example.trackinggoals.data.entities.IncomingDbEntity
+import com.example.trackinggoals.data.entities.NoteDbEntity
 
 @Database(
     version = 1,

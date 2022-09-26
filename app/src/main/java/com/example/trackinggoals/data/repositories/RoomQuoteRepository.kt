@@ -2,8 +2,9 @@ package com.example.trackinggoals.data.repositories
 
 import com.example.trackinggoals.data.db.QuoteDao
 import com.example.trackinggoals.domain.model.Quote
-import com.example.trackinggoals.data.room.entities.QuoteDbEntity
+import com.example.trackinggoals.data.entities.QuoteDbEntity
 import com.example.trackinggoals.data.api.QuoteService
+import com.example.trackinggoals.domain.repositories.QuoteRepository
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -7,9 +7,9 @@ import com.example.trackinggoals.data.repositories.RoomGoalsRepository
 import com.example.trackinggoals.data.repositories.RoomNoteRepository
 import com.example.trackinggoals.data.repositories.RoomQuoteRepository
 import com.example.trackinggoals.data.db.AppDatabase
-import com.example.trackinggoals.data.repositories.GoalsRepository
-import com.example.trackinggoals.data.repositories.NoteRepository
-import com.example.trackinggoals.data.repositories.QuoteRepository
+import com.example.trackinggoals.domain.repositories.GoalsRepository
+import com.example.trackinggoals.domain.repositories.NoteRepository
+import com.example.trackinggoals.domain.repositories.QuoteRepository
 import com.example.trackinggoals.presentation.constructor.GoalsConstructorFragment
 import com.example.trackinggoals.presentation.constructor.GoalsConstructorViewModel
 import com.example.trackinggoals.presentation.incoming.IncomingFragment

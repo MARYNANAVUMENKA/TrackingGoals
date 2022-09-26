@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.trackinggoals.data.room.entities.GoalsDbEntity
+import com.example.trackinggoals.data.entities.GoalsDbEntity
 
 @Dao
 interface GoalsDao {

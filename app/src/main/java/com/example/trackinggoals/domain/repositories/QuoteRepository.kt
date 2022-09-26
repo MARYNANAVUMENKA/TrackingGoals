@@ -1,4 +1,4 @@
-package com.example.trackinggoals.data.repositories
+package com.example.trackinggoals.domain.repositories
 
 import com.example.trackinggoals.domain.model.Quote
 

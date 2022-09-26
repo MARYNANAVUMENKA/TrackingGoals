@@ -1,7 +1,7 @@
 package com.example.trackinggoals.domain.usecases.goals
 
-import com.example.trackinggoals.data.repositories.GoalsRepository
-import com.example.trackinggoals.data.repositories.NoteRepository
+import com.example.trackinggoals.domain.repositories.GoalsRepository
+import com.example.trackinggoals.domain.repositories.NoteRepository
 
 class UpdateProgressGoalsUseCase(private val goalsRepository: GoalsRepository, private val noteRepository: NoteRepository) {
     suspend operator fun invoke(progress: String, id: Int, text:String) {
